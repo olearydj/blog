@@ -1,0 +1,16 @@
+/.quarto/
+/_site/
+*.html
+*.pdf
+
+# If using R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# If using Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
