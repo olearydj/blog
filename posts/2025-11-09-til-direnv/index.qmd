@@ -1,0 +1,90 @@
+---
+title: "TIL: direnv for Project-Specific Secrets"
+author: "Dan O'Leary"
+date: "2025-11-09"
+categories: [TIL, shell, devops]
+description: "Auto-loading environment variables without global pollution"
+image: ""
+draft: false
+---
+
+## The Problem
+
+I needed an `ADMIN_TOKEN` available in my terminal for production monitoring
+commands. I didn't want to:
+
+- Export it inline before each command (clumsy, exposes secrets in LLM chat
+histories)
+- Write wrapper scripts/aliases that set it (adds complexity)
+- Set it globally in `~/.zshrc` (always loaded, pollutes environment)
+- Store it in `.env` (doesn't load for terminal commands)
+
+I wanted project-specific secrets that auto-load when I enter the directory
+and disappear when I leave. That's [direnv](https://direnv.net/).
+
+## What is direnv?
+
+`direnv` auto-loads and unloads environment variables based on your current
+directory. It's the standard solution for project-specific configuration like
+API keys and tokens.
+
+### Setup
+
+```bash
+# macOS
+brew install direnv
+# Add to ~/.zshrc (one-time)
+echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### My Workflow
+
+1. Create .envrc in project root:
+
+```bash
+cd my-project
+echo 'export ADMIN_TOKEN="my_super_secure_token"' > .envrc
+```
+
+2. Allow direnv to load it:
+
+```bash
+direnv allow
+```
+
+3. Use the variable:
+
+```bash
+curl -H "X-Admin-Token: $ADMIN_TOKEN" https://api.example.com
+./scripts/preflight_check.sh  # ADMIN_TOKEN automatically available
+```
+
+4. Leave directory - variable disappears:
+
+```bash
+cd ~
+echo $ADMIN_TOKEN  # (empty)
+```
+
+`direnv` won't auto-run untrusted `.envrc` files - you must explicitly direnv
+allow each one after reviewing its contents.
+
+> [!WARNING]
+> Always add `.envrc` and `.env` to `.gitignore` - **never commit secrets**.
+
+### Common Use Cases
+
+```bash
+# .envrc
+# API keys and tokens
+export OPENAI_API_KEY="sk-definitely_not_my_real_key"
+# Database credentials
+export DATABASE_URL="postgresql://admin:my_super_secure_password@localhost/mydb"
+# App configuration
+export FLASK_ENV="development"
+```
+
+## Resources
+- https://direnv.net/
+- https://direnv.net/docs/installation.html

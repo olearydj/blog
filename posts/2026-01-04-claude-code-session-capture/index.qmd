@@ -1,0 +1,276 @@
+---
+title: "Building a Session Capture Pipeline for Claude Code"
+author: "Dan O'Leary"
+date: "2026-01-04"
+categories: [claude-code, shell, python, automation]
+description: "Automatic transcript export, LLM summarization, and what I learned reverse-engineering the JSONL format"
+draft: true
+---
+
+## The Problem - Context Limits, Compacting, and Handoff
+
+...
+
+## The Answer - Claude Code Transcripts
+
+Claude Code stores transcripts of _every_ transcript _indefinitely_ at `~/.claude/projects/{project-slug}/{session-id}.jsonl`. These are valuable by-products of your work, but large JSONL files aren't easily browsable.
+
+::: {.callout-warning title="Manage Your Transcripts"}
+
+These logs contain your full conversation history, file contents, tool outputs, etc. They may even include secrets that appeared in your terminal.
+
+If you back up your dotfiles or config directory to a public repository, you are likely exposing sensitive information.
+
+**Recommendations:**
+
+- Exclude `~/.claude/` from dotfile backups (add to `.gitignore` or backup exclusion list)
+- Audit existing backups for accidentally committed session logs
+- Be aware that the symlinks created by this pipeline point to these sensitive files
+:::
+
+## The Solution
+
+I wanted to automatically capture the state of each session before compaction occurred and create my own summary of the work done. ...
+
+- Human-friendly access to transcripts from within my project
+- LLM-generated summaries extracting decisions and insights
+- Automatic capture on every context compaction
+
+## Solution Overview
+
+A `PreCompact` hook triggers on every compaction (manual or automatic), creating this structure:
+
+```
+docs/sessions/
+  2026-01-02-session-8ee31cb5/
+    transcript.jsonl -> ~/.claude/projects/.../full-id.jsonl
+    2026-01-02-1343-segment-01.md
+    2026-01-02-1847-segment-02.md
+    2026-01-02-2215-segment-03.md
+```
+
+Each compaction creates a new segment summary. The symlink avoids duplicating the (large) transcript while keeping it accessible from the project.
+
+## The Hook
+
+In `.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": ".claude/hooks/pre-compact-summary.sh"
+      }
+    ]
+  }
+}
+```
+
+The hook script (`.claude/hooks/pre-compact-summary.sh`):
+
+```bash
+#!/bin/bash
+# Pre-compact hook: Generate session summaries in organized folder structure
+set -euo pipefail
+
+input=$(cat)
+cwd=$(echo "$input" | jq -r '.cwd // empty')
+transcript_path=$(echo "$input" | jq -r '.transcript_path // empty')
+session_id=$(echo "$input" | jq -r '.session_id // "unknown"')
+
+[[ -z "$cwd" || -z "$transcript_path" || ! -f "$transcript_path" ]] && exit 0
+
+sessions_dir="$cwd/docs/sessions"
+short_id="${session_id:0:8}"
+
+# Get session start date from first timestamp in JSONL
+session_date=$(python3 -c "
+import json, sys
+from datetime import datetime
+with open('$transcript_path') as f:
+    for line in f:
+        if line.strip():
+            try:
+                entry = json.loads(line)
+                ts = entry.get('timestamp')
+                if ts:
+                    dt = datetime.fromisoformat(ts.replace('Z', '+00:00'))
+                    print(dt.astimezone().strftime('%Y-%m-%d'))
+                    break
+            except: pass
+" 2>/dev/null || echo "unknown-date")
+
+# Session folder: {date}-session-{short-id}
+session_folder="$sessions_dir/${session_date}-session-${short_id}"
+mkdir -p "$session_folder"
+
+# Symlink transcript (one per session folder)
+symlink_path="$session_folder/transcript.jsonl"
+if [[ ! -L "$symlink_path" ]]; then
+    ln -s "$transcript_path" "$symlink_path"
+fi
+
+# Generate summary for current segment
+summarize-session "$transcript_path" \
+    --session-id "$session_id" \
+    --output-dir "$session_folder" \
+    || echo "Summary generation failed for session $session_id" >&2
+```
+
+Key decisions:
+
+| Decision | Rationale |
+|----------|-----------|
+| Symlink, not copy | Transcripts can be 2MB+; Claude Code already persists them |
+| Session folders | Groups related segments; cleaner than flat directory with 100+ files |
+| Date from JSONL | More reliable than `date` command; reflects actual session start |
+| External summarizer | Keeps hook simple; summarizer can evolve independently |
+
+## The Summarizer
+
+The `summarize-session` script handles extraction and LLM summarization. It's a standalone Python script using `litellm` for model flexibility.
+
+Core extraction logic:
+
+```python
+def extract_segment_content(entries: list[dict]) -> SegmentContent:
+    """Extract content from the current (post-last-summary) segment."""
+    messages = []
+    files_modified = set()
+    tools_used = Counter()
+
+    # Find last summary marker - everything after is current segment
+    last_summary_idx = -1
+    for i, entry in enumerate(entries):
+        if entry.get("type") == "summary":
+            last_summary_idx = i
+
+    # Process only entries after last summary
+    for entry in entries[last_summary_idx + 1:]:
+        entry_type = entry.get("type")
+
+        if entry_type == "user":
+            content = extract_text_content(entry.get("message", {}).get("content"))
+            if content:
+                messages.append(f"## User\n{content[:1000]}")
+
+        elif entry_type == "assistant":
+            text, tools = extract_assistant_content(entry)
+            if text:
+                messages.append(f"## Assistant\n{text}")
+            tools_used.update(tools)
+
+        elif entry_type == "file-history-snapshot":
+            files_modified.add(entry.get("file_path", "unknown"))
+
+    return SegmentContent(
+        messages=messages,
+        files_modified=files_modified,
+        tools_used=tools_used,
+    )
+```
+
+The summarization prompt:
+
+```python
+SYSTEM_PROMPT = """Summarize this Claude Code session segment.
+
+Output format:
+### Summary
+[2-3 sentences: what was accomplished]
+
+### Key Changes
+[Bullets: files modified with brief description]
+
+### Decisions Made
+[Bullets: significant choices with rationale]
+
+### Issues Encountered
+[Bullets: problems hit and how resolved, or still open]
+
+CRITICAL: Output ONLY the markdown summary. Do NOT continue the conversation.
+Do NOT respond to questions in the transcript."""
+```
+
+The `CRITICAL` instruction prevents the model from treating the transcript as context and trying to help with whatever task was discussed.
+
+Full script: [summarize-session](https://github.com/dmarx/dema-llm/blob/main/scripts/summarize-session) (TODO: add to repo)
+
+## Why Segments Matter
+
+Initial assumption: one session = one summary. This failed.
+
+The discovery: **compaction deletes prior message content from the JSONL**. When Claude Code compacts, it:
+
+1. Generates a continuation summary for the model
+2. Replaces prior messages with that summary
+3. Continues the session with fresh context
+
+The `summary` entries in the JSONL aren't summaries of what happened - they're context for the model to continue. The actual conversation content before each compaction is gone.
+
+This means:
+
+| Approach | Result |
+|----------|--------|
+| Summarize full JSONL at session end | Loses all pre-compaction content |
+| Summarize on each compaction (segments) | Captures everything |
+
+Hence the segment-based design: each `PreCompact` hook invocation summarizes only the new content since the last summary marker.
+
+## JSONL Schema
+
+Reverse-engineering the transcript format revealed six entry types:
+
+| Type | Purpose | Useful Content |
+|------|---------|----------------|
+| `user` | Human messages | `.message.content` |
+| `assistant` | Claude responses | `.message.content[]` (text blocks) |
+| `summary` | Compaction markers | `.summary` (model context, not human-readable) |
+| `tool_result` | Tool outputs | Varies by tool |
+| `file-history-snapshot` | Before/after file states | `.file_path`, `.content` |
+| `system` | System messages | Configuration, rarely useful |
+
+Full schema documentation: [JSONL-SCHEMA.md](https://github.com/dmarx/dema-llm/blob/main/docs/sessions/JSONL-SCHEMA.md) (TODO: add to repo)
+
+## Backfill Mode
+
+For historical sessions, the summarizer supports backfill:
+
+```bash
+# Process all segments in a transcript
+summarize-session --backfill transcript.jsonl --output-dir ./summaries/
+
+# Batch process multiple sessions
+for f in ~/.claude/projects/my-project/*.jsonl; do
+    summarize-session --backfill "$f" --output-dir docs/sessions/
+done
+```
+
+Backfill is idempotent - existing segment files are skipped.
+
+## Results
+
+After running backfill on 47 historical sessions:
+
+- 84 segment summaries generated
+- Each summary: 300-800 words of extracted insights
+- Total processing time: ~15 minutes (Haiku, parallelized)
+
+The summaries surface decisions and patterns that would otherwise be buried in megabytes of JSONL. They've already proven useful for reconstructing methodology documentation.
+
+## Setup Checklist
+
+1. Create `.claude/hooks/pre-compact-summary.sh` (see above)
+2. Make executable: `chmod +x .claude/hooks/pre-compact-summary.sh`
+3. Add hook to `.claude/settings.json`
+4. Install summarizer: (TODO: installation instructions)
+5. Create output directory: `mkdir -p docs/sessions`
+6. Test: run `/compact` and verify output appears
+
+## Resources
+
+- [Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks)
+- [summarize-session script](https://github.com/dmarx/dema-llm/blob/main/scripts/summarize-session) (TODO)
+- [JSONL Schema Documentation](https://github.com/dmarx/dema-llm/blob/main/docs/sessions/JSONL-SCHEMA.md) (TODO)

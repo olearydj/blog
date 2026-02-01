@@ -1,0 +1,140 @@
+---
+title: "Clean TeX Setup on macOS"
+author: "Dan O'Leary"
+date: "2025-10-26"
+categories: [tools, presentations, quarto]
+description: "Setting up TeX for Pandoc/Quarto on a new Mac"
+image: ""
+draft: false
+---
+
+## Context
+
+I regularly use Quarto and pandoc for converting markdown to PDF, but just got a new Mac. Time to set up the TeX ecosystem properly from scratch.
+
+## The Setup Strategy
+
+### Install BasicTeX via Homebrew
+
+```bash
+brew install --cask basictex
+```
+
+**Why BasicTeX instead of MacTeX?**
+
+- **Size**: 100MB vs 4GB
+- **Sufficient**: Has everything needed for pandoc/Quarto PDF generation
+- **Focused**: Avoids GUI apps and specialized packages I don't need
+
+**Why Homebrew instead of Quarto's TinyTeX?**
+
+- **Unified management**: `brew upgrade` updates everything
+- **System-wide**: Both pandoc and Quarto can use the same installation
+- **No duplication**: Single ~100MB install vs. multiple TeX distributions
+- **PATH simplicity**: Homebrew handles it automatically
+
+### Initial Setup
+
+```bash
+# Refresh PATH to find new TeX binaries
+eval "$(/usr/libexec/path_helper)"
+
+# Update the TeX package manager
+sudo tlmgr update --self
+sudo tlmgr update --all
+
+# Set reliable mirror
+sudo tlmgr option repository ctan
+```
+
+### Install Essential Packages
+
+BasicTeX is minimal by design. Install what pandoc needs for syntax highlighting, code formatting, and code block line wrapping:
+
+```bash
+sudo tlmgr install framed fvextra
+```
+
+## Pandoc Configuration for Professional PDFs
+
+### Use xelatex, Not pdflatex
+
+Always use **xelatex** as the PDF engine:
+
+```bash
+--pdf-engine=xelatex
+```
+
+**Why?**
+- Native Unicode support (no special configuration for international characters, emoji, box-drawing characters)
+- Better font handling on macOS
+- Handles modern markdown content without breaking
+
+### Code Block Line Wrapping
+
+Create `header.tex` for automatic code wrapping:
+
+```latex
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  breaklines,
+  breakanywhere,
+  breaksymbol=,
+  commandchars=\\\{\}
+}
+```
+
+**Why this matters:** Long commands, URLs, or code lines will overflow page margins without this. This makes code blocks wrap intelligently without breaking syntax highlighting.
+
+### Complete Pandoc Command
+
+```bash
+pandoc document.md -o document.pdf \
+  --pdf-engine=xelatex \
+  --highlight-style=tango \
+  -V geometry:margin=1in \
+  -V fontsize=11pt \
+  -V colorlinks=true \
+  -V linkcolor=blue \
+  -V urlcolor=blue \
+  -V monofont="Menlo" \
+  --include-in-header=header.tex
+```
+
+**Design choices:**
+- **xelatex**: Unicode support
+- **tango**: Clean, professional syntax highlighting (alternatives: pygments, kate)
+- **1in margins**: Standard, readable
+- **11pt font**: More readable than default 10pt
+- **Colored links**: Better UX than boxed links
+- **Menlo monospace**: Native macOS font with excellent Unicode coverage
+- **header.tex**: Enables code wrapping
+
+For common conversions, save this as an executable script or alias.
+
+## Troubleshooting
+
+```bash
+# Check TeX is found
+which xelatex pdflatex
+# Should show: /Library/TeX/texbin/xelatex
+
+# Verify pandoc sees it
+pandoc --version
+# Should list xelatex in PDF engines
+
+# Quarto should auto-detect it
+quarto check
+# Should show: Tex: (detected)
+```
+
+## The Result
+
+This setup produces professional PDFs with:
+- Proper Unicode rendering (international characters, symbols)
+- Syntax-highlighted code that doesn't overflow
+- Clickable, colored links
+- Clean, readable typography
+- Fast rendering (xelatex is efficient)
+
+And everything stays updated with a simple `brew upgrade`.

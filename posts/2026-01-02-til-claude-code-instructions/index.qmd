@@ -1,0 +1,100 @@
+---
+title: "TIL: Claude Code's Five Instruction Mechanisms"
+author: "Dan O'Leary"
+date: "2026-01-02"
+categories: [TIL, claude-code, tools]
+description: "When to use CLAUDE.md vs sub-agents vs skills vs rules vs MCP servers"
+image: ""
+draft: false
+---
+
+## The Problem
+
+I had a growing markdown style guide in my `CLAUDE.md` that was bloating my main config. Every session loaded 50+ lines of formatting rules that only mattered when editing `.md` or `.qmd` files. I needed a better home for it, but Claude Code has *five* different places to put instructions: `CLAUDE.md`, sub-agents, skills, rules, and MCP servers. Which one?
+
+## The Decision Tree
+
+After experimenting, here's how I think about it:
+
+| Mechanism | Use when... |
+|-----------|-------------|
+| `CLAUDE.md` | Always-on project context (tech stack, conventions, key paths) |
+| Sub-agents | Task needs isolated context window or different model |
+| Skills | Teaching *how* to do something (triggered by semantic match) |
+| Rules | Style/convention enforcement for specific file types |
+| MCP servers | External tool capabilities (APIs, databases, custom CLIs) |
+
+## Rules: The Missing Piece
+
+Rules live in `.claude/rules/*.md` and have a key feature: **path matching**.
+
+```yaml
+---
+paths:
+  - "**/*.md"
+  - "**/*.qmd"
+---
+
+# Markdown Style Guide
+
+- Use ATX headers (# not underlines)
+- One sentence per line
+- Blank line before lists
+...
+```
+
+When you edit a file matching those globs, the rule auto-loads. No semantic triggering, no manual invocation. Just automatic context injection when relevant.
+
+### My Setup
+
+I split my bloated style guide into two rules:
+
+**`.claude/rules/markdown-style.md`**
+```yaml
+---
+paths:
+  - "**/*.md"
+  - "**/*.qmd"
+---
+# Common formatting: headers, lists, links, code blocks
+```
+
+**`.claude/rules/quarto-style.md`**
+```yaml
+---
+paths:
+  - "**/*.qmd"
+---
+# Quarto-specific: callouts, cross-refs, YAML frontmatter
+```
+
+When editing `.qmd` files, both rules apply (layered). When editing `.md` files, only the common rules load. Clean separation.
+
+## Why Not Skills?
+
+I initially made the style guide a skill. Skills are triggered by semantic matching on their description - Claude decides when they're relevant based on what you're doing.
+
+The problem: style guides should *always* apply when editing matching files, not when Claude thinks they might be relevant. Rules with path patterns are deterministic. Skills are probabilistic.
+
+Use skills for procedures ("how to deploy", "how to write a TIL post"). Use rules for constraints ("always format markdown this way").
+
+## Quick Reference
+
+```
+.claude/
+├── agents/           # Sub-agents (isolated tasks)
+│   └── researcher.md
+├── rules/            # Auto-applied by file pattern
+│   ├── markdown-style.md    # paths: ["**/*.md", "**/*.qmd"]
+│   └── quarto-style.md      # paths: ["**/*.qmd"]
+├── skills/           # Semantic triggering
+│   └── deploy/
+│       └── SKILL.md
+└── settings.json     # MCP server config
+CLAUDE.md             # Always loaded
+```
+
+## Resources
+
+- https://docs.anthropic.com/en/docs/claude-code
+- https://docs.anthropic.com/en/docs/claude-code/memory

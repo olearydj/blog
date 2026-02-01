@@ -1,0 +1,141 @@
+---
+title: "TIL: Jupytext + MyST for MD ↔ Jupyter Notebooks"
+author: "Dan O'Leary"
+date: "2025-11-02"
+categories: [TIL, jupyter, markdown]
+description: "My workflow for IPYNB development with LLMs using Markdown"
+image: ""
+draft: false
+---
+
+## The Problem
+
+I leverage LLMs like Claude and Cursor when generating lecture materials. They accelerate my work and help improve the end product with better sample code, etc. But all of those tools still struggle when creating / editing Jupyter notebooks, which is my medium of choice for this work. They can do it, but it is often a slow, cumbersome, more error-prone process. They often resort to writing Python scripts to generate JSON that the `ipynb` format is based on. Not ideal.
+
+But they know markdown really well, so I went looking for a `md` to `ipynb` converter, and found... [Jupytext](https://jupytext.readthedocs.io/)!
+
+I'm now able to easily round-trip markdown to ipynb and back, iteratively collaborating with my LLM of choice.
+
+## What is JupyText?
+
+Jupytext is a sort of swiss army knife for Jupyter notebooks. It converts them to and from plain text formats like Markdown, Python scripts, and R Markdown. It's bidirectional and structure-preserving - unlike `nbconvert` (which is a one-way trip), or Pandoc (which doesn't understand notebook cell semantics). Think of it as filling the gap between notebook-first tools (Jupyter) and text-first tools (Quarto, RMarkdown, your text editor). 
+
+### Installation
+
+For use as a CLI-only tool, [uvx](https://docs.astral.sh/uv/guides/tools/) is all you need. No install required. Just prefix any of the Jupytext commands that follow with `uvx` and you are good to go. For example, `uvx jupytext --to ipynb lecture.md`.
+
+### My Round-Trip Workflow
+
+You can start at any point in this process.
+
+1. AI generates `lecture.md`
+2. Convert: `jupytext --to ipynb lecture.md`
+3. Edit/execute in Jupyter
+4. Convert back: `jupytext lecture.ipynb --to md:myst`
+5. Send updated `.md` to AI for refinements
+6. Repeat
+
+## The Format
+
+It's markdown with some bells and whistles.
+
+### Frontmatter (MyST format)
+
+Include frontmatter in your `md` file to specify how Jupytext should handle conversion. Note that we're using the `myst` format...
+
+```markdown
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+```
+
+Why MyST[^1]? It's markdown-native and explicitly distinguishes executable code cells (`{code-cell}`) from markdown code blocks, preventing AI confusion.
+
+### Code Cells
+
+Use fenced code blocks with the `{code-cell}` directive:
+
+````markdown
+```{code-cell} ipython3
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'x': [1, 2, 3]})
+```
+````
+
+### Force Cell Boundaries
+
+Use `+++` on its own line to force cell boundaries. I prefer to do this before and after all headers to put them in their own cell. This is because Jupyter's cell folding does not hide body text in the folded cell, just those under it.
+
+## My AI Prompt Template
+
+When asking an AI to generate jupytext-ready content, I'll include something like this to specify Jupytext related details.
+
+```
+Format requirements:
+
+- Use MyST-flavored jupytext with this frontmatter:
+  ---
+  jupytext:
+    text_representation:
+      extension: .md
+      format_name: myst
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  ---
+
+Differentiate code that should be executable (have a run button) from those that
+are only documentation (python formatted code blocks in markdown cells) by adding
+`{code-cell} ipython3` after the opening triple-backticks on any code block.
+
+Also, please apply the following rules, just because I like it this way:
+
+- Use +++ BEFORE and AFTER ALL headers to put each in a separate cell
+- Do NOT use **bold** formatting in list item descriptors
+- Include a blank line before ALL bulleted/numbered lists and code blocks
+```
+
+This gives me clean, immediately-convertible markdown, and enforces some of my personal markdown styling preferences.
+
+## Converting with Jupytext
+
+Manual conversion is as easy as...
+
+```bash
+# Markdown to notebook
+jupytext --to ipynb lecture.md
+
+# Notebook back to markdown (for AI refinement)
+jupytext --to md:myst lecture.ipynb
+```
+
+## Syncing MD and IPYNB
+
+If you want to get fancy, do the following...
+
+```bash
+# Sync pair (auto-update both) - advanced
+jupytext --set-formats md:myst,ipynb lecture.ipynb
+```
+
+After that every time you save either file in Jupyter, both are generated. Perfect for the round-trip workflow.
+
+For this to work you'll need to have Jupytext installed in the same environment as Jupyter itself runs from. Pick your poison, `pip`, `conda`, or `uv` to update your venv accordingly.
+
+## Resources
+
+- [Jupytext docs](https://jupytext.readthedocs.io/)
+- [MyST format guide](https://jupytext.readthedocs.io/en/latest/formats.html#myst-markdown)
+- [MyST Markdown docs](https://mystmd.org/) (full publishing features)
+
+[^1]: MyST Markdown is a powerful publishing system. Similar to Quarto / RMarkdown, it supports cross-references, figure numbering, citations, admonitions (aka callouts), etc. Jupytext provides tools to connect those ecosystems. For example, you can [edit Quarto](https://jupytext.readthedocs.io/en/latest/formats-markdown.html#quarto) (`.qmd`) documents as notebooks in Jupyter, and pair `.ipynb` notebooks with `.qmd` notebooks. For lecture notebooks, you only need the basics shown here. But if you want more, MyST scales up.

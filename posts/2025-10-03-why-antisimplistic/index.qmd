@@ -1,0 +1,33 @@
+---
+title: "Why Antisimplistic"
+author: "Dan O'Leary"
+date: "2025-10-03"
+categories: [about, meta]
+image: "thumbnail.jpg"
+description: "The origin story of a 30-year-old handle and the philosophy behind it"
+draft: true
+---
+
+# Why _Antisimplistic_
+
+I've been using this handle for almost 30 years now. In the world of handles, that's a _long_ time. It emerged from frustration—the productive kind.
+
+I was working with my business partner and friend.[^1] Essentially, our roles boiled down to this: he was business development, I was production. Classic setup, classic tension. He'd make promises; I'd have to figure out how to keep them. When I'd explain why something was harder than it looked, I'd get "you're overcomplicating this." When he'd pitch a quick fix, I'd think "you don't get it."
+
+We were both partially right. I do embrace complexity, and he did focus on the bottom line. We both had the business' best interests in mind, but held different ideas about how to serve them. Both positions suited our roles at the time, and the reason our business worked was because we trusted one another to have vigorous debate. Constructive conflict, they call it, and it is essential.
+
+Anyway... I could never shake the feeling that "overcomplicating" was the wrong frame. Often things *are* complicated. Sometimes the elegant solution requires wrestling with that complexity rather than dismissing it.
+
+So: ***Antisimplistic***. The only real opposite of "overcomplicating" I could come up with. I've not since found a better word for it. One probably exists, but it's not nearly as catchy, and the domain name is almost certainly taken. Not _anti-simplicity_, mind you. I value clarity deeply, but simplicity should come from _rigor_, not _reduction_. From understanding the complexity well enough to distill it honestly.
+
+> _"Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away."_
+>
+> — Antoine de Saint-Exupéry
+
+The name Antisimplistic stuck because the pattern kept repeating. Engineering, game development, research, teaching — everywhere I go, there's tension between people who want the clean story and the messy reality underneath. I have little patience for hacky solutions or reductive thinking. If something's worth doing, it's worth doing right (and understanding deeply).
+
+This isn't about being contrarian or difficult. It's about recognizing that some problems deserve their complexity. _The world doesn't owe us simple answers_, and pretending otherwise just creates different problems downstream.
+
+Almost 30 years later, the handle still fits. If anything, it fits better now than it did then. The tension between wanting clear answers and respecting messy reality shows up everywhere, in pretty much every hard problem worth solving.
+
+[^1]: We both did a mix of dumb and (arguably) great things, and Erick was one of the smartest, most driven people I've ever known. Don't take this as a slight to him or elevation of my position. I'm not judging.

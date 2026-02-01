@@ -1,0 +1,63 @@
+---
+title: "TIL: Decktape for High-Quality PDF Exports from Reveal.js"
+author: "Dan O'Leary"
+date: "2025-10-10"
+categories: [TIL, tools, presentations, quarto]
+description: "How I finally got crisp, properly formatted PDFs from my Reveal.js presentations"
+image: ""
+draft: false
+---
+
+## The Problem
+
+I've been using Quarto with Reveal.js for presentations, and while they look great in the browser, getting them into PDF format has always been... frustrating. Browser print-to-PDF works, but the formatting is often wonky. Quarto's built-in PDF export is fine but loses some of the reveal.js magic.
+
+## The Solution: Decktape
+
+Enter [Decktape](https://github.com/astefanutti/decktape) - a headless Chrome tool specifically designed to convert HTML presentations to PDF. And it's **brilliant**.
+
+### Install
+
+```bash
+npm install -g decktape
+```
+
+### Use
+
+```bash
+# Start your presentation
+quarto preview presentation.qmd
+
+# In another terminal, convert to PDF
+decktape http://localhost:XXXX/presentation.html output.pdf
+```
+
+That's it. Decktape renders each slide exactly as it appears in the browser, then combines them into a crisp PDF.
+
+## Why It's Better
+
+- High fidelity: Slides look exactly like they do in the browser
+- Handles animations: Captures fragments and builds correctly
+- Works with Mermaid: Diagrams render perfectly
+- Custom styling preserved: All your CSS comes through
+- Professional output: No weird page breaks or formatting issues
+
+Where has this been all my life?!
+
+## Bonus: Options
+
+```bash
+# Custom page size
+decktape --size 1920x1080 http://localhost:XXXX/presentation.html output.pdf
+
+# Pause between slides (for heavy animations)
+decktape --pause 1000 http://localhost:XXXX/presentation.html output.pdf
+
+# Specify slide range
+decktape --slides 1-10 http://localhost:XXXX/presentation.html output.pdf
+```
+
+## Resources
+
+- [Decktape GitHub](https://github.com/astefanutti/decktape)
+- [Quarto Reveal.js Guide](https://quarto.org/docs/presentations/revealjs/)
