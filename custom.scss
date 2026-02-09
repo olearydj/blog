@@ -1,0 +1,96 @@
+/*-- scss:defaults --*/
+
+// Colors
+$body-bg: #FAF9F6;
+$body-color: #2D2D2D;
+$link-color: #C2571A;
+$link-hover-color: #A04815;
+
+// Typography
+$font-family-base: Georgia, "Times New Roman", serif;
+$headings-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-family-monospace: Menlo, "Cascadia Code", "Fira Code", monospace;
+$font-size-base: 1.05rem;
+
+// Navbar
+$navbar-bg: #2D2D2D;
+$navbar-fg: #FAF9F6;
+
+/*-- scss:rules --*/
+
+// Navbar links
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(250, 249, 246, 0.85);
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #E8A87C;
+}
+.navbar-dark .navbar-brand {
+  color: #FAF9F6;
+}
+
+// Title banner
+.quarto-title-banner {
+  background-color: #2D2D2D;
+  color: #FAF9F6;
+  margin-bottom: 1.5rem;
+}
+.quarto-title-banner .title {
+  color: #FAF9F6;
+}
+
+// Code blocks
+pre.sourceCode {
+  background-color: #F5F2EE;
+  border-left: 3px solid #C2571A;
+  border-radius: 4px;
+}
+
+// Inline code
+p code, li code {
+  color: #8B4513;
+  background-color: #F5F2EE;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+// Category pills
+.quarto-category {
+  border-color: #C2571A;
+  color: #C2571A;
+}
+.quarto-category:hover {
+  background-color: #C2571A;
+  color: #FAF9F6;
+}
+
+// Callout accent
+.callout-note .callout-header {
+  background-color: #F5F2EE;
+}
+
+// Sidebar categories
+#quarto-margin-sidebar .quarto-listing-category-title {
+  color: #2D2D2D;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+// Post listing
+.quarto-post .metadata {
+  color: #666;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+}
+
+// Blockquotes
+blockquote {
+  border-left: 3px solid #C2571A;
+  padding-left: 1rem;
+  color: #555;
+}
+
+// Footer
+.nav-footer {
+  background-color: #2D2D2D;
+  color: rgba(250, 249, 246, 0.7);
+}

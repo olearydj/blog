@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  description: "A blog built with Quarto"
+  description: "Thoughts on AI-assisted development, tools, and the craft of teaching with code"
   site-url: https://antisimplistic.com
   title: "Antisimplistic Blog"
   navbar:
@@ -16,5 +16,4 @@ format:
   html:
     theme:
       - cosmo
-      - brand
-    css: styles.css
+      - custom.scss
