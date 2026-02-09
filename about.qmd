@@ -11,8 +11,8 @@ about:
       href: https://twitter.com/antisimplistic
 ---
 
-I'm Dan O'Leary - a data science instructor, recovering engineer, and relentless tinkerer. I teach people to work with data and code, and I spend an unreasonable amount of time configuring my tools.
+I'm Dan O'Leary - a recovering entrepreneur, second-career academic, and relentless tinkerer. After 22 years building games, I now teach product development, data science, and machine learning at Auburn University.
 
-This blog documents what I learn along the way. Most posts are TILs - small, specific discoveries from actual work sessions. Some are longer pieces about how I think about development, AI tooling, and the craft of teaching technical subjects.
+This blog documents what I learn along the way. Many posts are TILs — small, specific discoveries from actual work sessions. Some are longer pieces about how I think about development, AI tooling, and the craft of teaching technical subjects.
 
 The name *Terminally Curious* is both a confession and a job description.
