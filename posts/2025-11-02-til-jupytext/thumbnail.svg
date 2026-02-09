@@ -16,10 +16,10 @@
   <!-- Right doc -->
   <rect x="360" y="40" width="180" height="220" rx="6" fill="none" stroke="#E8A87C" stroke-width="3"/>
   <!-- Notebook cells -->
-  <rect x="380" y="65" width="140" height="45" rx="4" fill="#C2571A" opacity="0.15" stroke="#E8A87C" stroke-width="1" opacity="0.3"/>
+  <rect x="380" y="65" width="140" height="45" rx="4" fill="#C2571A" fill-opacity="0.15" stroke="#E8A87C" stroke-width="1" stroke-opacity="0.3"/>
   <line x1="392" y1="85" x2="490" y2="85" stroke="#E8A87C" stroke-width="2" opacity="0.3"/>
-  <rect x="380" y="120" width="140" height="45" rx="4" fill="#C2571A" opacity="0.25" stroke="#C2571A" stroke-width="1" opacity="0.4"/>
+  <rect x="380" y="120" width="140" height="45" rx="4" fill="#C2571A" fill-opacity="0.25" stroke="#C2571A" stroke-width="1" stroke-opacity="0.4"/>
   <line x1="392" y1="140" x2="500" y2="140" stroke="#C2571A" stroke-width="2" opacity="0.4"/>
-  <rect x="380" y="175" width="140" height="45" rx="4" fill="#C2571A" opacity="0.15" stroke="#E8A87C" stroke-width="1" opacity="0.3"/>
+  <rect x="380" y="175" width="140" height="45" rx="4" fill="#C2571A" fill-opacity="0.15" stroke="#E8A87C" stroke-width="1" stroke-opacity="0.3"/>
   <line x1="392" y1="195" x2="480" y2="195" stroke="#E8A87C" stroke-width="2" opacity="0.3"/>
 </svg>
