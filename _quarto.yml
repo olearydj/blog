@@ -5,6 +5,8 @@ website:
   description: "Thoughts on AI-assisted development, tools, and the craft of teaching with code"
   site-url: https://antisimplistic.com
   title: "Antisimplistic Blog"
+  open-graph: true
+  twitter-card: true
   navbar:
     right:
       - about.qmd

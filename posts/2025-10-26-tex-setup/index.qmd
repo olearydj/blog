@@ -4,7 +4,7 @@ author: "Dan O'Leary"
 date: "2025-10-26"
 categories: [tools, presentations, quarto]
 description: "Setting up TeX for Pandoc/Quarto on a new Mac"
-image: thumbnail.svg
+image: thumbnail.png
 draft: false
 ---
 

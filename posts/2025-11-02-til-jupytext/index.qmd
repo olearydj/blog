@@ -4,7 +4,7 @@ author: "Dan O'Leary"
 date: "2025-11-02"
 categories: [TIL, jupyter, markdown]
 description: "My workflow for IPYNB development with LLMs using Markdown"
-image: thumbnail.svg
+image: thumbnail.png
 draft: false
 ---
 
