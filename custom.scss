@@ -58,10 +58,20 @@ p code, li code {
 .quarto-category {
   border-color: #C2571A;
   color: #C2571A;
+  background-color: rgba(250, 249, 246, 0.9);
 }
 .quarto-category:hover {
   background-color: #C2571A;
   color: #FAF9F6;
+}
+// Category pills on dark banner
+.quarto-title-banner .quarto-category {
+  border-color: #E8A87C;
+  color: #FAF9F6;
+  background-color: rgba(194, 87, 26, 0.5);
+}
+.quarto-title-banner .quarto-category:hover {
+  background-color: #C2571A;
 }
 
 // Callout accent
