@@ -3,14 +3,14 @@ title: "Why Antisimplistic"
 author: "Dan O'Leary"
 date: "2025-10-03"
 categories: [about, meta]
-image: "thumbnail.jpg"
+image: ""
 description: "The origin story of a 30-year-old handle and the philosophy behind it"
 draft: true
 ---
 
 # Why _Antisimplistic_
 
-I've been using this handle for almost 30 years now. In the world of handles, that's a _long_ time. It emerged from frustration—the productive kind.
+I've been using this handle for almost 30 years now. In the world of handles, that's a _long_ time. It emerged from frustration - the productive kind.
 
 I was working with my business partner and friend.[^1] Essentially, our roles boiled down to this: he was business development, I was production. Classic setup, classic tension. He'd make promises; I'd have to figure out how to keep them. When I'd explain why something was harder than it looked, I'd get "you're overcomplicating this." When he'd pitch a quick fix, I'd think "you don't get it."
 
@@ -24,7 +24,7 @@ So: ***Antisimplistic***. The only real opposite of "overcomplicating" I could c
 >
 > — Antoine de Saint-Exupéry
 
-The name Antisimplistic stuck because the pattern kept repeating. Engineering, game development, research, teaching — everywhere I go, there's tension between people who want the clean story and the messy reality underneath. I have little patience for hacky solutions or reductive thinking. If something's worth doing, it's worth doing right (and understanding deeply).
+The name Antisimplistic stuck because the pattern kept repeating. Engineering, game development, research, teaching - everywhere I go, there's tension between people who want the clean story and the messy reality underneath. I have little patience for hacky solutions or reductive thinking. If something's worth doing, it's worth doing right (and understanding deeply).
 
 This isn't about being contrarian or difficult. It's about recognizing that some problems deserve their complexity. _The world doesn't owe us simple answers_, and pretending otherwise just creates different problems downstream.
 

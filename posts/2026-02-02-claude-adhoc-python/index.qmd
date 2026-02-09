@@ -1,0 +1,188 @@
+---
+title: "A Controlled Python Environment for Claude Code"
+author: "Dan O'Leary"
+date: "2026-02-02"
+categories: [claude-code, python, uv]
+description: "Isolating ad-hoc Python tasks from system and project environments"
+image: ""
+draft: true
+---
+
+## The Problem
+
+When Claude Code needs Python for ad-hoc tasks (e.g., parsing Excel files, reading PDFs, quick data analysis) it uses whatever Python is available. This can cause issues:
+
+- No isolation: packages installed to user site-packages
+- Version uncertainty: using whatever Python happened to be installed
+- Dependency conflicts: risk of polluting project-specific environments
+- Ambiguity: no clear boundary between ad-hoc work and project venvs
+
+I wanted a dedicated, managed environment for Claude Code's throwaway tasks that wouldn't interfere with anything else.
+
+## The Solution
+
+A uv-managed Python environment specifically for Claude Code's ad-hoc work, invoked via a distinct shell command.
+
+### Why uv?
+
+```bash
+brew install uv
+```
+
+- Fast: installs packages in seconds, not minutes
+- Modern: handles both package management and environment isolation
+- Simple: one tool instead of virtualenv + pip + pyenv
+
+### Project Setup
+
+Create a dedicated project directory:
+
+```bash
+mkdir -p /casa/dev/claude-code
+cd /casa/dev/claude-code
+uv init
+```
+
+The `pyproject.toml` declares common dependencies:
+
+```toml
+[project]
+name = "claude-adhoc"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    # Data/Files
+    "pandas",
+    "numpy",
+    "openpyxl",
+    "xlrd",
+    "python-pptx",
+    "python-docx",
+    "pypdf",
+    "pdfplumber",
+    "pillow",
+    "pyyaml",
+    # Web
+    "requests",
+    "httpx",
+    "beautifulsoup4",
+    "lxml",
+    # Utilities
+    "rich",
+    "chardet",
+    "matplotlib",
+    "seaborn",
+    # Dev tools
+    "ruff",
+    "mypy",
+    "pytest",
+]
+```
+
+### Shell Script
+
+Create an executable script (not a shell function) and add it to your PATH:
+
+```bash
+#!/bin/zsh
+echo "⚠️  This Python instance is for ad-hoc usage only."
+echo "   If working in a project with its own venv, use that instead."
+echo ""
+exec uv run --project /casa/dev/claude-code python "$@"
+```
+
+Save this as `~/.config/scripts/claude-adhoc-python` (or wherever you keep scripts), make it executable, and symlink it to a directory in your PATH:
+
+```bash
+chmod +x ~/.config/scripts/claude-adhoc-python
+ln -sf ~/.config/scripts/claude-adhoc-python ~/.local/bin/claude-adhoc-python
+```
+
+Why a script instead of a shell function? Claude Code's Bash tool runs in a non-interactive shell, which only sources `.zshenv` - not `.zshrc` or any files it sources. Shell functions defined in `.zshrc` won't be available. A standalone script in your PATH works everywhere.
+
+Key design choices:
+
+| Choice | Rationale |
+|--------|-----------|
+| Standalone script | Works in non-interactive shells (like Claude Code's Bash) |
+| Distinct command name | Avoids confusion with project-local Python |
+| Warning message | Reminds both Claude and user this is for ad-hoc use |
+
+### Claude Code Instructions
+
+Add to your global `~/.config/claude/CLAUDE.md`:
+
+```markdown
+## Ad-hoc Python
+
+For quick Python tasks outside of project contexts, use:
+
+    claude-adhoc-python -c "import pandas as pd; ..."
+
+DO NOT use this inside projects that have their own venv or pyproject.toml.
+Use the project's environment instead.
+```
+
+This tells Claude when to use the ad-hoc environment and - critically - when not to.
+
+## Usage
+
+One-liners:
+
+```bash
+claude-adhoc-python -c "import pandas as pd; print(pd.read_excel('data.xlsx').head())"
+```
+
+Scripts:
+
+```bash
+claude-adhoc-python script.py
+```
+
+Or invoke uv directly:
+
+```bash
+uv run --project /casa/dev/claude-code python -c "import pdfplumber; ..."
+```
+
+::: {.callout-warning}
+## Sandbox Conflict with uv
+
+If you've [enabled Claude Code's sandbox](/posts/2026-02-02-claude-code-permissions/), the approaches above won't work. The uv cache contains `.git` marker files (to prevent git from indexing it), and the sandbox blocks all `.git` access - causing `uv` commands to fail with "Operation not permitted."
+
+Workaround: have Claude use the venv's Python interpreter directly:
+
+```bash
+/casa/dev/claude-code/.venv/bin/python -c "import pandas; ..."
+```
+
+This bypasses `uv run` entirely. You'll need to install packages manually (`uv add <package>`), but once installed, Claude can use them. Update your `CLAUDE.md` instructions accordingly.
+
+This is tracked upstream: [anthropics/claude-code#22620](https://github.com/astral-sh/uv/issues/16820)
+:::
+
+## What I Didn't Do
+
+No `ipykernel`: Claude Code's Bash tool is stateless; each command runs in a fresh shell. A persistent REPL adds no value here.
+
+No activation script: the `uv run --project` pattern handles isolation without needing to "activate" anything. Simpler mental model.
+
+## Maintenance
+
+Add packages as needed:
+
+```bash
+cd /casa/dev/claude-code
+uv add some-new-package
+```
+
+Update everything:
+
+```bash
+uv sync --upgrade
+```
+
+## Resources
+
+- [uv documentation](https://docs.astral.sh/uv/)
+- [Claude Code memory docs](https://docs.anthropic.com/en/docs/claude-code/memory)

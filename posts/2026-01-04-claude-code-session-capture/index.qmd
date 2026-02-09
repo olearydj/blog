@@ -21,7 +21,7 @@ These logs contain your full conversation history, file contents, tool outputs, 
 
 If you back up your dotfiles or config directory to a public repository, you are likely exposing sensitive information.
 
-**Recommendations:**
+Recommendations:
 
 - Exclude `~/.claude/` from dotfile backups (add to `.gitignore` or backup exclusion list)
 - Audit existing backups for accidentally committed session logs
@@ -40,7 +40,7 @@ I wanted to automatically capture the state of each session before compaction oc
 
 A `PreCompact` hook triggers on every compaction (manual or automatic), creating this structure:
 
-```
+```text
 docs/sessions/
   2026-01-02-session-8ee31cb5/
     transcript.jsonl -> ~/.claude/projects/.../full-id.jsonl
@@ -202,7 +202,7 @@ Full script: [summarize-session](https://github.com/dmarx/dema-llm/blob/main/scr
 
 Initial assumption: one session = one summary. This failed.
 
-The discovery: **compaction deletes prior message content from the JSONL**. When Claude Code compacts, it:
+The discovery: compaction deletes prior message content from the JSONL. When Claude Code compacts, it:
 
 1. Generates a continuation summary for the model
 2. Replaces prior messages with that summary

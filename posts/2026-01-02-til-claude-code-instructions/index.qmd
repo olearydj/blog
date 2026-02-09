@@ -1,38 +1,39 @@
 ---
-title: "TIL: Claude Code's Five Instruction Mechanisms"
+title: "TIL: Claude Code's Instruction Mechanisms"
 author: "Dan O'Leary"
 date: "2026-01-02"
 categories: [TIL, claude-code, tools]
-description: "When to use CLAUDE.md vs sub-agents vs skills vs rules vs MCP servers"
-image: ""
+description: "Where to put project conventions, style guides, and automation in Claude Code"
 draft: false
 ---
 
 ## The Problem
 
-I had a growing markdown style guide in my `CLAUDE.md` that was bloating my main config. Every session loaded 50+ lines of formatting rules that only mattered when editing `.md` or `.qmd` files. I needed a better home for it, but Claude Code has *five* different places to put instructions: `CLAUDE.md`, sub-agents, skills, rules, and MCP servers. Which one?
+I had a growing markdown style guide in my `CLAUDE.md` that was bloating my main config. Every session loaded 50+ lines of formatting rules that only mattered when editing `.md` or `.qmd` files. I needed a better home for it.
+
+Claude Code has four mechanisms for giving it instructions: `CLAUDE.md`, skills, rules, and hooks. It also has agents (isolated task workers) and MCP servers (external tools), but those serve different purposes. There's also auto memory - notes Claude writes for itself across sessions - but that's not something you author directly.
 
 ## The Decision Tree
-
-After experimenting, here's how I think about it:
 
 | Mechanism | Use when... |
 |-----------|-------------|
 | `CLAUDE.md` | Always-on project context (tech stack, conventions, key paths) |
-| Sub-agents | Task needs isolated context window or different model |
-| Skills | Teaching *how* to do something (triggered by semantic match) |
+| Skills | Reusable procedures, invoked via `/skill-name` or automatically by Claude |
 | Rules | Style/convention enforcement for specific file types |
-| MCP servers | External tool capabilities (APIs, databases, custom CLIs) |
+| Hooks | Automation triggered by events (compaction, tool calls) |
+
+`CLAUDE.md`, skills, and hooks are well-documented and fairly intuitive. Rules were the discovery for me.
+
+(Skills superseded the older `.claude/commands/` directory. Existing command files still work, but skills add auto-invocation, supporting files, and the option to run in an isolated context via `context: fork`.)
 
 ## Rules: The Missing Piece
 
-Rules live in `.claude/rules/*.md` and have a key feature: **path matching**.
+Rules live in `.claude/rules/*.md` and have a key feature: path matching.
 
 ```yaml
 ---
 paths:
-  - "**/*.md"
-  - "**/*.qmd"
+  - "**/*.{md,qmd}"
 ---
 
 # Markdown Style Guide
@@ -43,58 +44,66 @@ paths:
 ...
 ```
 
-When you edit a file matching those globs, the rule auto-loads. No semantic triggering, no manual invocation. Just automatic context injection when relevant.
+When you edit a file matching those globs, the rule auto-loads. No semantic triggering, no manual invocation. Just automatic context injection when relevant. Rules can also be organized into subdirectories (e.g., `rules/frontend/`, `rules/backend/`) - all `.md` files are discovered recursively.
+
+Rules live at two levels:
+
+- *User/global* (`~/.claude/rules/`) for cross-project standards
+- *Project* (`.claude/rules/`) for team-shared conventions, committed to git
+
+`CLAUDE.md` has additional flexibility - it cascades through parent directories (if you run Claude in `foo/bar/`, it loads from both `foo/` and `foo/bar/`) and supports a gitignored `CLAUDE.local.md` for machine-specific overrides.
 
 ### My Setup
 
-I split my bloated style guide into two rules:
+I keep formatting rules global since they apply everywhere:
 
-**`.claude/rules/markdown-style.md`**
-```yaml
----
-paths:
-  - "**/*.md"
-  - "**/*.qmd"
----
-# Common formatting: headers, lists, links, code blocks
-```
+`~/.claude/rules/markdown-style.md` - targets `**/*.{md,qmd}`
 
-**`.claude/rules/quarto-style.md`**
-```yaml
----
-paths:
-  - "**/*.qmd"
----
-# Quarto-specific: callouts, cross-refs, YAML frontmatter
-```
+- Formatting conventions: no bold, plain hyphens for dashes, backtick usage
+- Code blocks: always specify a language tag
+- Spacing: blank lines around lists, fences, and tables
+
+`~/.claude/rules/quarto-style.md` - targets `**/*.qmd`
+
+- Callout block conventions (note, tip, warning, important, caution)
+- Cross-reference syntax (`@sec-label`, `@tbl-label`, etc.)
 
 When editing `.qmd` files, both rules apply (layered). When editing `.md` files, only the common rules load. Clean separation.
 
-## Why Not Skills?
+## Why Rules Over the Alternatives
 
-I initially made the style guide a skill. Skills are triggered by semantic matching on their description - Claude decides when they're relevant based on what you're doing.
+I originally had the style guide in `CLAUDE.md`. That meant it loaded every session whether I was editing markdown or not, cluttering the always-on context. Worse, in long conversations the rules would get lost as context compacted and Claude stopped following them consistently.
 
-The problem: style guides should *always* apply when editing matching files, not when Claude thinks they might be relevant. Rules with path patterns are deterministic. Skills are probabilistic.
-
-Use skills for procedures ("how to deploy", "how to write a TIL post"). Use rules for constraints ("always format markdown this way").
+Rules with path patterns solve both problems. They only activate when you're working with matching files, and they persist across context compaction. Deterministic, not dependent on context window position.
 
 ## Quick Reference
 
-```
-.claude/
-├── agents/           # Sub-agents (isolated tasks)
-│   └── researcher.md
-├── rules/            # Auto-applied by file pattern
-│   ├── markdown-style.md    # paths: ["**/*.md", "**/*.qmd"]
-│   └── quarto-style.md      # paths: ["**/*.qmd"]
-├── skills/           # Semantic triggering
-│   └── deploy/
+```text
+~/.claude/                        # User/global config
+├── agents/                       # Isolated tasks, semantic triggering
+│   └── til-blog-writer.md
+├── skills/                       # Reusable procedures (/sessions, etc.)
+│   └── sessions/
 │       └── SKILL.md
-└── settings.json     # MCP server config
-CLAUDE.md             # Always loaded
+├── hooks/                        # Event-triggered automation
+│   └── pre-compact-summary.sh
+├── rules/                        # Auto-applied by file pattern
+│   ├── markdown-style.md         # paths: ["**/*.{md,qmd}"]
+│   └── quarto-style.md           # paths: ["**/*.qmd"]
+├── settings.json                 # Permissions, MCP servers, hook config
+└── CLAUDE.md                     # Always loaded
+
+project/.claude/                  # Project-level (committed to git)
+├── skills/                       # Project-specific skills
+├── rules/                        # Project-specific rules
+├── settings.json                 # Project permissions
+└── settings.local.json           # Local overrides (gitignored)
+project/CLAUDE.md                 # Project context
+project/CLAUDE.local.md           # Local overrides (gitignored)
 ```
 
 ## Resources
 
-- https://docs.anthropic.com/en/docs/claude-code
-- https://docs.anthropic.com/en/docs/claude-code/memory
+- [Claude Code memory](https://code.claude.com/docs/en/memory) (CLAUDE.md, rules, auto memory)
+- [Claude Code skills](https://code.claude.com/docs/en/skills)
+- [Claude Code hooks](https://code.claude.com/docs/en/hooks)

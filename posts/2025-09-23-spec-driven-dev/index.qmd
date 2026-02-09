@@ -3,7 +3,7 @@ title: "Spec-Driven Development"
 author: "Dan O'Leary"
 date: "2025-09-23"
 categories: [sdd, codegen, dev]
-image: "thumbnail.jpg"
+image: ""
 description: "summary"
 draft: true
 ---
@@ -16,41 +16,41 @@ This approach now has a name: spec-driven development. And watching frameworks l
 
 ## Beyond Vibe Coding
 
-I'm deeply skeptical of "vibe coding" – that pattern of throwing a prompt at an AI, getting some code back, then iterating through one-off fix requests until something sort of works. I'm skeptical of it for the same reason I'm skeptical of unstructured development by humans. It feels productive in the moment but builds nothing lasting.
+I'm deeply skeptical of "vibe coding" - that pattern of throwing a prompt at an AI, getting some code back, then iterating through one-off fix requests until something sort of works. I'm skeptical of it for the same reason I'm skeptical of unstructured development by humans. It feels productive in the moment but builds nothing lasting.
 
-The problem with vibe coding isn't the AI – it's that we're keeping the wrong artifacts. When we prompt an AI and keep only the generated code, we're essentially keeping the compiled binary and throwing away the source. The prompt – the specification of our intent – that's the actual source code. The generated implementation is just one possible compilation of that intent.
+The problem with vibe coding isn't the AI - it's that we're keeping the wrong artifacts. When we prompt an AI and keep only the generated code, we're essentially keeping the compiled binary and throwing away the source. The prompt - the specification of our intent - that's the actual source code. The generated implementation is just one possible compilation of that intent.
 
 Sean Grove of OpenAI articulated this powerfully: specifications, not code, will become the primary artifact of programming in the AI era. A good specification can generate TypeScript, Rust, documentation, tutorials, even podcasts. The specification is universal, readable by technical and non-technical stakeholders alike. When someone from OpenAI and a product from GitHub are converging on the same insight, it's worth paying attention.
 
 ## The Real Work of Engineering
 
-I frequently remind code-curious non-engineers that programming is less than 20% of the job. The rest is thinking, planning, and communicating. Understanding users, distilling requirements, designing solutions, validating outcomes – this is where value lives. The actual syntax, the for loops and function declarations, that's just the final translation step.
+I frequently remind code-curious non-engineers that programming is less than 20% of the job. The rest is thinking, planning, and communicating. Understanding users, distilling requirements, designing solutions, validating outcomes - this is where value lives. The actual syntax, the for loops and function declarations, that's just the final translation step.
 
 Spec-driven development acknowledges this reality and reorganizes our work around it. When you write specifications first, you're focusing on the 80%+ that matters: What problem are we solving? What constraints do we have? What does success look like? How do we verify we've achieved it?
 
-Technology consistently leads us to new levels of abstraction. We climbed from machine code to assembly to C to Python, each time trading machine-level control for human-level expressiveness. But specifications might be the ultimate abstraction – pure intent, completely divorced from implementation details.
+Technology consistently leads us to new levels of abstraction. We climbed from machine code to assembly to C to Python, each time trading machine-level control for human-level expressiveness. But specifications might be the ultimate abstraction - pure intent, completely divorced from implementation details.
 
 ## A New Form of Programming
 
-We're witnessing the birth of model-based programming. Where traditional paradigms – imperative, declarative, functional – all assume deterministic, symbolic computation, model-based programming operates on patterns and approximations. It thrives in exactly the spaces where symbolic programming breaks down: understanding context, recognizing patterns, making aesthetic judgments.
+We're witnessing the birth of model-based programming. Where traditional paradigms - imperative, declarative, functional - all assume deterministic, symbolic computation, model-based programming operates on patterns and approximations. It thrives in exactly the spaces where symbolic programming breaks down: understanding context, recognizing patterns, making aesthetic judgments.
 
 This isn't replacing algorithmic thinking; it's adding a new tool to our architectural toolkit. Just as we choose between SQL and NoSQL based on data patterns, we can now choose between deterministic algorithms and model-based approaches based on whether we're dealing with rules or patterns.
 
-Specifications are the natural language for this hybrid world. When you write "the interface should feel welcoming and professional," you're not writing pseudocode – you're specifying a pattern for the model to recognize and match. The same specification that says "build a podcast website" can drive both symbolic computation (generate Next.js routes) and model-based computation (create appropriate copy, make design decisions).
+Specifications are the natural language for this hybrid world. When you write "the interface should feel welcoming and professional," you're not writing pseudocode - you're specifying a pattern for the model to recognize and match. The same specification that says "build a podcast website" can drive both symbolic computation (generate Next.js routes) and model-based computation (create appropriate copy, make design decisions).
 
 ## The Natural Convergence
 
-Software engineering and systems engineering are naturally converging, and it makes perfect sense. Both disciplines evolved to handle ever-increasing complexity with high costs of failure. Software hit the complexity wall early – Brooks was writing about it in "The Mythical Man-Month" in 1975. Systems engineering formalized similar responses to complexity in physical systems.
+Software engineering and systems engineering are naturally converging, and it makes perfect sense. Both disciplines evolved to handle ever-increasing complexity with high costs of failure. Software hit the complexity wall early - Brooks was writing about it in "The Mythical Man-Month" in 1975. Systems engineering formalized similar responses to complexity in physical systems.
 
 The influence has always been bidirectional. Object-oriented thinking gave systems engineers modular design principles. UML became SysML. Software architecture patterns influenced how we think about system architectures. The V-model itself, while often associated with systems engineering, has deep roots in software development methodologies.
 
-We're now at a scale where the distinction between "software system" and "system with software" is meaningless – everything is both. A modern car isn't a mechanical system with some software; it's a distributed computing platform that happens to move. A building isn't concrete and steel with smart features; it's a living system where HVAC, security, and lighting are all software-mediated and interconnected. Even "pure" software like a web app is really a complex system spanning browsers, servers, databases, CDNs, payment processors – each with their own hardware, network, and software layers.
+We're now at a scale where the distinction between "software system" and "system with software" is meaningless - everything is both. A modern car isn't a mechanical system with some software; it's a distributed computing platform that happens to move. A building isn't concrete and steel with smart features; it's a living system where HVAC, security, and lighting are all software-mediated and interconnected. Even "pure" software like a web app is really a complex system spanning browsers, servers, databases, CDNs, payment processors - each with their own hardware, network, and software layers.
 
 This inseparability is why spec-driven development feels inevitable. When everything is both software and system, you need a language that can describe computational and physical constraints, algorithms and architectures, user interfaces and hardware interfaces. Natural language specifications might be the only thing expressive enough to capture all these dimensions.
 
 ## How AI Dissolves False Trade-offs
 
-AI doesn't force this convergence – it incentivizes it by dissolving historical trade-offs. The documentation-versus-development tension has always been about opportunity cost. Every hour writing docs was an hour not coding, and docs went stale the moment code changed. But when the specification _generates_ the code, documentation isn't overhead – it's the actual development process. The spec stays fresh because it's the source, not a parallel artifact trying to track the "real" implementation.
+AI doesn't force this convergence - it incentivizes it by dissolving historical trade-offs. The documentation-versus-development tension has always been about opportunity cost. Every hour writing docs was an hour not coding, and docs went stale the moment code changed. But when the specification _generates_ the code, documentation isn't overhead - it's the actual development process. The spec stays fresh because it's the source, not a parallel artifact trying to track the "real" implementation.
 
 This completely reframes the value proposition. We've been in a three-way prisoner's dilemma where everyone's local optimum led to a globally suboptimal outcome:
 
@@ -58,37 +58,37 @@ This completely reframes the value proposition. We've been in a three-way prison
 - Product managers wanted specifications that actually drive development
 - Systems engineers wanted rigor without slowing anyone down
 
-SpecKit's explosive growth isn't just about a tool – it's a peace treaty. Everyone gets what they actually wanted all along. The product manager's "single source of truth" isn't some idealistic goal anymore; it's literally how the software gets built. The developer's need to iterate quickly isn't constrained by documentation; they iterate by refining the spec and regenerating.
+SpecKit's explosive growth isn't just about a tool - it's a peace treaty. Everyone gets what they actually wanted all along. The product manager's "single source of truth" isn't some idealistic goal anymore; it's literally how the software gets built. The developer's need to iterate quickly isn't constrained by documentation; they iterate by refining the spec and regenerating.
 
 For the first time, AI makes rigorous engineering practices actually faster than cowboy coding.[^1]
 
 ## The Pattern Is Already Emerging
 
-We're not waiting for this future – it's already taking shape. Users of tools like Cursor, Windsurf, and Codex are naturally developing specification-first workflows. They're building prompt libraries, maintaining context across sessions, and discovering that better specifications lead to better outputs. The tools themselves are evolving to support this pattern, with features designed to preserve and refine specifications rather than just generate code.
+We're not waiting for this future - it's already taking shape. Users of tools like Cursor, Windsurf, and Codex are naturally developing specification-first workflows. They're building prompt libraries, maintaining context across sessions, and discovering that better specifications lead to better outputs. The tools themselves are evolving to support this pattern, with features designed to preserve and refine specifications rather than just generate code.
 
-Even in adjacent domains, the same principles are emerging. DSPy (Declarative Self-improving Language Programs) from Stanford applies these exact patterns to ML engineering – you declare the task and metrics, and it optimizes the implementation automatically. Instead of hand-crafting prompts and chains, you specify what success looks like and let the system figure out how to achieve it. The convergence is striking: whether it's code generation or prompt engineering, we're moving from imperative to declarative, from "how" to "what," from implementation to specification.
+Even in adjacent domains, the same principles are emerging. DSPy (Declarative Self-improving Language Programs) from Stanford applies these exact patterns to ML engineering - you declare the task and metrics, and it optimizes the implementation automatically. Instead of hand-crafting prompts and chains, you specify what success looks like and let the system figure out how to achieve it. The convergence is striking: whether it's code generation or prompt engineering, we're moving from imperative to declarative, from "how" to "what," from implementation to specification.
 
-My own experience over the past nine months validates this shift. I've built multiple solutions supporting research, grading, content management, and generation – always insisting on proper tests and validation. The pattern holds consistently: better specifications produce better outcomes. More importantly, specifications outlive implementations. When requirements change or better models become available, I can regenerate from the spec rather than refactor code. The specification becomes a durable asset while implementations are increasingly ephemeral.
+My own experience over the past nine months validates this shift. I've built multiple solutions supporting research, grading, content management, and generation - always insisting on proper tests and validation. The pattern holds consistently: better specifications produce better outcomes. More importantly, specifications outlive implementations. When requirements change or better models become available, I can regenerate from the spec rather than refactor code. The specification becomes a durable asset while implementations are increasingly ephemeral.
 
 What's particularly powerful is how SDD naturally enforces best practices. When you have to specify test criteria upfront, testing becomes integral, not optional. The constitution becomes a quality gate that even the AI must respect. We're not lowering our standards; we're encoding them into the process itself.
 
 ## Where The Boundaries Are (For Now)
 
-Of course, this approach has limits. Ambiguous specifications still produce ambiguous results. Non-deterministic model outputs can make debugging challenging. Some problems – quick scripts, pure exploration – don't benefit from the overhead of formal specification.
+Of course, this approach has limits. Ambiguous specifications still produce ambiguous results. Non-deterministic model outputs can make debugging challenging. Some problems - quick scripts, pure exploration - don't benefit from the overhead of formal specification.
 
-But here's the crucial point: engineering has always been fundamentally about problem-solving, and that unifies all engineering disciplines. The garbage-in, garbage-out principle remains eternal – whether you're writing assembly or specifications, clarity and precision matter. SDD doesn't eliminate the need for engineering judgment; it moves it upstream where it can have more leverage.
+But here's the crucial point: engineering has always been fundamentally about problem-solving, and that unifies all engineering disciplines. The garbage-in, garbage-out principle remains eternal - whether you're writing assembly or specifications, clarity and precision matter. SDD doesn't eliminate the need for engineering judgment; it moves it upstream where it can have more leverage.
 
 Most current limitations will likely diminish over time as tools mature and practices standardize. What won't change is the engineer's core responsibility: understanding problems deeply and expressing solutions clearly.
 
 ## The Coming Wave
 
-Understanding how software is used to solve problems is becoming more important than knowing how to write code in any given syntax. Architectural knowledge – understanding when you need a cache, why you'd choose an event-driven architecture, how to structure data for scale – that's durable. Syntax is googleable.
+Understanding how software is used to solve problems is becoming more important than knowing how to write code in any given syntax. Architectural knowledge - understanding when you need a cache, why you'd choose an event-driven architecture, how to structure data for scale - that's durable. Syntax is googleable.
 
 This shift doesn't diminish the programmer's role; it elevates it. We're focusing on communicating intentions and values through specifications, thinking architecturally about problems, defining what success looks like before writing a single line of code.
 
 But here's what excites me most: this opens the door to a whole new breed of programmers. Think about all the domain experts who understood their fields deeply, could describe exactly what software should do, but bounced off programming because they didn't want to spend months learning where the semicolons go. The business analysts who could map out complex processes but couldn't translate that into nested for loops. The designers who could envision entire user experiences but couldn't wrangle CSS into compliance.
 
-We've been selecting for people who could tolerate – or even enjoyed – syntactic precision and debugging minutiae. But that filter has always been artificial. It selected for patience with compilers, not necessarily for system thinking or problem-solving ability.
+We've been selecting for people who could tolerate - or even enjoyed - syntactic precision and debugging minutiae. But that filter has always been artificial. It selected for patience with compilers, not necessarily for system thinking or problem-solving ability.
 
 These new programmers won't be building toy applications. With AI handling implementation and experienced engineers setting up the architectures and constitutions, they can build production-grade systems. They bring the one thing AI can't: deep, contextual understanding of actual problems worth solving. The nurse who actually knows what the medical software should do can now build it. The teacher who understands classroom dynamics can create the educational tools.
 
@@ -104,9 +104,9 @@ The specification is becoming both the source and the contract. Version-controll
 
 The tools are emerging. The patterns are crystallizing. We're witnessing a migration to a systems engineering mindset, enabled by spec-driven development, incentivized by AI. The question isn't whether to adopt this approach, but how quickly we can shift our thinking from code-first to specification-first.
 
-Specifications are the source code for AI-assisted development, just as source code is to compiled binaries. By capturing intentions in specifications first, we can iterate faster, maintain consistency, and enable true collaboration between all stakeholders – human and AI alike.
+Specifications are the source code for AI-assisted development, just as source code is to compiled binaries. By capturing intentions in specifications first, we can iterate faster, maintain consistency, and enable true collaboration between all stakeholders - human and AI alike.
 
-Those who master this shift won't just write better software – they'll unlock entirely new categories of people who can solve problems with software. And that might be the biggest paradigm shift of all.
+Those who master this shift won't just write better software - they'll unlock entirely new categories of people who can solve problems with software. And that might be the biggest paradigm shift of all.
 
 
-[^1]: "Cowboy coding" is industry slang for that style of programming where you jump straight into coding without much planning, testing, or documentation – just you and your editor, figuring it out as you go. Like a Wild West gunslinger who doesn't wait for backup.
+[^1]: "Cowboy coding" is industry slang for that style of programming where you jump straight into coding without much planning, testing, or documentation - just you and your editor, figuring it out as you go. Like a Wild West gunslinger who doesn't wait for backup.

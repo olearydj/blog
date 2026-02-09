@@ -1,0 +1,143 @@
+---
+title: "Claude Code Permissions and Sandboxing"
+author: "Dan O'Leary"
+date: "2026-02-02"
+categories: [claude-code, security]
+description: "Balancing autonomy, security, and workflow speed"
+draft: false
+---
+
+I've had "configure Claude Code permissions properly" on my list for a while. The defaults work, but every session starts with a flurry of "allow this?" prompts. I wanted less babysitting *and* more security - and it turns out those aren't opposed. You just have to understand how the pieces fit together.
+
+## The Three Layers
+
+Claude Code has three layers of access control:
+
+### Permission rules
+
+These let you allow, ask, or deny specific tool patterns. They live in `.claude/settings.json` (project) or `~/.claude/settings.json` (global). Deny is checked first, then ask, then allow. Pattern syntax: `Bash(git *)` matches git commands, `Read(**/*.key)` blocks key files.
+
+### Permission modes
+
+These set the baseline. `acceptEdits` auto-approves file changes but still prompts for Bash - good for speeding up editing without giving away the store.
+
+### Sandboxing
+
+This provides OS-level isolation. Writes are limited to the current directory, network access is restricted to whitelisted domains. The key setting: `autoAllowBashIfSandboxed`. When enabled, sandboxed commands run without prompting.
+
+These layers interact in non-obvious ways. I spent more time debugging their interface than configuring any of them independently.
+
+## How They Fit Together
+
+The sandbox changes the strategy. With `autoAllowBashIfSandboxed` enabled, you don't need allow rules for common commands - the sandbox itself is the allow list. Focus shifts to what you want to *block* (secrets, destructive patterns) and what you want to *review* (commits, pushes).
+
+I read through [Flatt Security's research](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/) and [Backslash's write-up](https://www.backslash.security/blog/claude-code-security-best-practices) while working through this. Permission rules have known bypasses and quirks - useful for workflow, but the sandbox is the real security boundary.
+
+## Getting There Wasn't Straightforward
+
+My first pass at a config looked clean on paper but broke in practice. Most of the problems weren't sandbox bugs or permission bugs - they were poorly documented interactions between the two. A few examples:
+
+Path syntax is quietly counterintuitive. In permission rules, a single leading slash (`/some/path/...`) is *relative to the settings file location*, not an absolute path. Your rule silently matches nothing. The fix: double leading slash (`//some/path/...`) denotes an absolute path. No error message tells you this. Credit to [@tomdale](https://github.com/anthropics/claude-code/issues/22628#issuecomment-3839467079) for pointing me in the right direction. This is now [documented](https://code.claude.com/docs/en/permissions), but it wasn't when I hit it.
+
+`excludedCommands` doesn't bypass the sandbox. Despite the documentation, excluded commands still run sandboxed first. They only retry unsandboxed after failure - and only if `allowUnsandboxedCommands: true`. Setting that defeats the purpose of a targeted exclusion, since it applies to everything.
+
+`additionalDirectories` requires full paths. No tilde expansion. Use `/Users/yourname/.local/bin`, not `~/.local/bin`.
+
+Once I understood these, the configuration clicked.
+
+## My Configuration
+
+Here's what I run in `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read(//path/to/.uv-cache/**)",
+      "Edit(//path/to/.uv-cache/**)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/*.key)",
+      "Read(**/*.pem)",
+      "Read(**/*credentials*)",
+      "Read(**/*secret*)",
+      "Bash(sudo *)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(pip *)"
+    ],
+    "ask": [
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "api.github.com",
+        "*.githubusercontent.com",
+        "pypi.org",
+        "*.pythonhosted.org",
+        "*.npmjs.org"
+      ]
+    },
+    "excludedCommands": ["docker"],
+    "additionalDirectories": [
+      "/path/to/projects",
+      "/Users/yourname/.local/bin",
+      "/Users/yourname/.config"
+    ]
+  }
+}
+```
+
+The logic:
+
+- `allow` grants read/write to the uv cache (note the `//` prefix for absolute paths). Everything else is handled by the sandbox.
+- `deny` blocks secrets, credentials, destructive git operations, and `pip` (I use `uv`).
+- `ask` prompts before commits and pushes - the two operations I always want to review.
+- `defaultMode: acceptEdits` lets Claude write files freely. The sandbox constrains *where*.
+- `autoAllowBashIfSandboxed` eliminates prompts for sandboxed commands. This is the setting that makes the whole thing feel fast.
+- `additionalDirectories` grants write access beyond the working directory. Add paths for your project root, scripts, and config directories.
+- `network.allowedDomains` whitelists only what's needed: GitHub, PyPI, npm. Everything else is blocked.
+
+## Sandbox Limits
+
+The sandbox also imposes some hard limits worth knowing about:
+
+### `.git` is blocked outside the working directory
+
+The sandbox blocks `.git` access broadly - not just the repository directory, but `.git` marker files anywhere. This breaks tools like `uv`, whose cache uses `.git` marker files to prevent indexing, causing `uv run` to panic. It also prevents `git clone` into non-project directories. The workaround is to grant the uv cache path via `allow` rules (as shown above) and, when `uv run` still fails, use the venv Python directly (`/path/to/.venv/bin/python`).
+
+### Heredocs are blocked
+
+Bash heredoc syntax (`<< EOF`) fails in the sandbox. The shell needs to create a temp file for the here document, and the sandbox blocks it - even with `TMPDIR` pointed at an allowed path. This is a real loss. Heredocs are one of Claude Code's most natural patterns for generating multi-line config files, scripts, and templates in a single command. Instead, Claude has to write to a file first, then execute it. It works, but adds friction to what should be a one-step operation.
+
+### Symlinks outside the working directory
+
+Can't create symlinks pointing to paths like `~/.local/bin`, even with `additionalDirectories` set. You have to create these manually.
+
+These are sandbox-level constraints, not configuration issues - no amount of settings changes will fix them. You just learn the workarounds.
+
+## The Result
+
+Sessions now start clean. No prompt flurry. Claude reads, writes, and runs commands freely within the sandbox. Prompts are rare - mostly commits, pushes, and the occasional sandbox edge case. Deny rules catch the things I never want Claude touching. The sandbox catches everything else.
+
+The configuration surface area is small once you understand it. The documentation doesn't quite get you there yet - but it will probably improve as the sandbox matures. For now, this works.
+
+## Resources
+
+- [Claude Code Permissions](https://code.claude.com/docs/en/permissions)
+- [Claude Code Settings](https://code.claude.com/docs/en/settings)
+- [Claude Code Sandboxing](https://code.claude.com/docs/en/sandboxing)
+- [Pwning Claude Code in 8 Different Ways](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/)
+- [Claude Code Security Best Practices](https://www.backslash.security/blog/claude-code-security-best-practices)

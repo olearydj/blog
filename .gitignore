@@ -16,3 +16,4 @@ __pycache__/
 
 
 **/*.quarto_ipynb
+docs/sessions/

@@ -5,7 +5,7 @@ date: "2025-10-10"
 categories: [TIL, tools, presentations, quarto]
 description: "How I finally got crisp, properly formatted PDFs from my Reveal.js presentations"
 image: ""
-draft: false
+draft: true
 ---
 
 ## The Problem
@@ -14,7 +14,7 @@ I've been using Quarto with Reveal.js for presentations, and while they look gre
 
 ## The Solution: Decktape
 
-Enter [Decktape](https://github.com/astefanutti/decktape) - a headless Chrome tool specifically designed to convert HTML presentations to PDF. And it's **brilliant**.
+Enter [Decktape](https://github.com/astefanutti/decktape) - a headless Chrome tool specifically designed to convert HTML presentations to PDF. And it's brilliant.
 
 ### Install
 
