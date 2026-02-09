@@ -9,7 +9,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/olearydj/blog
+        href: https://github.com/olearydj
       - icon: twitter
         href: https://twitter.com/antisimplistic
 format:
