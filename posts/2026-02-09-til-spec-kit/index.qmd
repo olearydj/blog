@@ -1,0 +1,93 @@
+---
+title: "TIL: The Spec-Kit Workflow for AI-Assisted Feature Planning"
+author: "Dan O'Leary"
+date: "2026-02-09"
+categories: [TIL, tools, claude-code, workflow]
+description: "Separating planning inputs from generated spec outputs for repeatable, AI-assisted feature design"
+image: ""
+draft: true
+---
+
+## The Problem
+
+I needed a repeatable process for planning features with AI assistance. The naive approach -- dumping everything into a single chat session -- doesn't scale. You lose context between sessions, can't iterate on prompts, and end up with generated artifacts mixed in with your source-of-truth planning docs. I wanted the planning *inputs* (what I'm building and what I want the AI to produce) separated from the *outputs* (the formal specs, plans, and task lists the AI generates).
+
+## The Solution: Spec-Kit
+
+[Spec-kit](https://github.com/olearydj/spec-kit) is a set of slash commands for Claude Code that generate structured project artifacts -- specs, plans, task breakdowns, data models, and more -- from focused prompts. The key insight isn't the tool itself, it's the **two-folder workflow** that emerged around it.
+
+### The Two-Folder Pattern
+
+```
+project/
+  docs/spec-kit/          # INPUTS: your thinking (gitignored)
+    backlog.md            # Global priorities and tech debt
+    001-scope.md          # Feature description for sprint 001
+    001-specify.md        # Prompt for /speckit.specify
+    001-plan.md           # Prompt for /speckit.plan
+    001-tasks.md          # Prompt for /speckit.tasks
+    spec-kit-guide.md     # Meta-documentation on the process
+
+  specs/001-feature/      # OUTPUTS: generated artifacts (gitignored)
+    spec.md
+    plan.md
+    tasks.md
+    research.md
+    data-model.md
+    quickstart.md
+    checklists/
+    contracts/
+```
+
+Inputs are hand-written (often with AI help). Outputs are machine-generated. The separation is the whole point.
+
+### The Workflow
+
+1. **Maintain a global backlog** (`backlog.md`): accumulated priorities, tech debt, feature ideas
+2. **Extract a sprint scope**: pull the next feature out of the backlog into `XXX-scope.md`
+3. **Write prompts**: craft `XXX-specify.md`, `XXX-plan.md`, `XXX-tasks.md` -- these are the instructions you'll feed to spec-kit slash commands
+4. **Run spec-kit in a separate session**: the slash commands consume your prompts and generate formal artifacts into `specs/XXX-name/`
+5. **Iterate**: refine prompts, re-run, compare outputs
+
+### Why Separate Sessions?
+
+The prompt-writing session and the spec-generation session are intentionally different. Writing prompts is collaborative and exploratory -- you're figuring out what you want. Running spec-kit is mechanical -- you're feeding well-crafted inputs to get structured outputs. Mixing them muddies both.
+
+## Why This Works
+
+- **Prompts are artifacts**: by writing them to files, you can version, iterate, and reuse them -- not lose them in chat history
+- **Inputs vs. outputs stay clean**: your thinking (docs/spec-kit/) never gets confused with the AI's output (specs/)
+- **Reproducible**: re-run the same prompts against an updated scope and compare results
+- **Scales across projects**: the pattern is project-agnostic; drop the same folder structure anywhere
+- **Gitignore-friendly**: both folders are internal design history, not distributed with the project
+
+## Resources
+
+- [spec-kit on GitHub](https://github.com/olearydj/spec-kit)
+
+---
+
+::: {.callout-note collapse="true"}
+## Internal references (for developing this post)
+
+Example project with the full pattern:
+
+- `/casa/dev/sylla-builder/docs/spec-kit/` (gitignored; visible in git history at commit `26ec6f6`)
+- Git commit that reorganized the pattern: "Reorganize spec-kit: rename backlog->scope, add global backlog"
+- Git commit that gitignored it: `1a768b6` "Gitignore docs/ and specs/ -- internal design history, not distributed"
+
+Projects with generated spec output:
+
+- `/casa/dev/canvas-ledger/specs/`
+- `/casa/dev/sandbox-runtime/specs/`
+- `/casa/dev/sk-test/specs/`
+- `/casa/dev/sylla-builder/specs/`
+
+Things to flesh out later:
+
+- Show a real `XXX-specify.md` prompt (redacted if needed)
+- Show what the generated `spec.md` looks like
+- Screenshot of the folder structure
+- Discuss the `/speckit.specify`, `/speckit.plan`, `/speckit.tasks` slash commands in more detail
+- Link to a longer "spec-driven development" post if one exists (there is one at `2025-09-23-spec-driven-dev`)
+:::
