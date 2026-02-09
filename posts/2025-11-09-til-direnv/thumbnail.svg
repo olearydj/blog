@@ -1,14 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
-  <rect width="800" height="400" fill="#2D2D2D"/>
-  <!-- Large terminal prompt -->
-  <text x="60" y="100" font-family="Menlo, monospace" font-size="28" fill="#E8A87C" opacity="0.6">$</text>
-  <text x="100" y="100" font-family="Menlo, monospace" font-size="28" fill="#E8A87C">cd my-project</text>
-  <!-- direnv output -->
-  <text x="60" y="160" font-family="Menlo, monospace" font-size="22" fill="#C2571A">direnv: loading .envrc</text>
-  <text x="60" y="200" font-family="Menlo, monospace" font-size="22" fill="#C2571A" opacity="0.7">direnv: export +SECRET_KEY</text>
-  <text x="60" y="240" font-family="Menlo, monospace" font-size="22" fill="#C2571A" opacity="0.5">direnv: export +API_TOKEN</text>
-  <!-- Second prompt -->
-  <text x="60" y="320" font-family="Menlo, monospace" font-size="28" fill="#E8A87C" opacity="0.6">$</text>
-  <text x="100" y="320" font-family="Menlo, monospace" font-size="28" fill="#E8A87C">cd ~</text>
-  <text x="60" y="370" font-family="Menlo, monospace" font-size="22" fill="#C2571A" opacity="0.4">direnv: unloading</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#2D2D2D"/>
+  <!-- Folder shape -->
+  <path d="M180 80 L180 60 L260 60 L280 80" fill="none" stroke="#C2571A" stroke-width="3"/>
+  <rect x="180" y="80" width="240" height="130" rx="6" fill="none" stroke="#C2571A" stroke-width="3"/>
+  <!-- Dots inside folder (secrets) -->
+  <circle cx="240" cy="140" r="8" fill="#C2571A" opacity="0.7"/>
+  <circle cx="300" cy="140" r="8" fill="#C2571A" opacity="0.7"/>
+  <circle cx="360" cy="140" r="8" fill="#C2571A" opacity="0.7"/>
+  <!-- Down arrows from folder -->
+  <line x1="240" y1="225" x2="240" y2="270" stroke="#C2571A" stroke-width="3"/>
+  <polyline points="230,258 240,275 250,258" fill="none" stroke="#C2571A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="300" y1="225" x2="300" y2="270" stroke="#C2571A" stroke-width="3"/>
+  <polyline points="290,258 300,275 310,258" fill="none" stroke="#C2571A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="360" y1="225" x2="360" y2="270" stroke="#C2571A" stroke-width="3"/>
+  <polyline points="350,258 360,275 370,258" fill="none" stroke="#C2571A" stroke-width="3" stroke-linecap="round"/>
+  <!-- Up arrow (unload) on the right -->
+  <line x1="480" y1="270" x2="480" y2="100" stroke="#E8A87C" stroke-width="3" opacity="0.4"/>
+  <polyline points="470,112 480,95 490,112" fill="none" stroke="#E8A87C" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
 </svg>
