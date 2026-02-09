@@ -3,7 +3,7 @@ project:
 
 website:
   description: "A blog built with Quarto"
-  site-url: https://olearydj.github.io/blog
+  site-url: https://antisimplistic.com
   title: "Antisimplistic Blog"
   navbar:
     right:
