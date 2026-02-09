@@ -4,21 +4,20 @@ author: "Dan O'Leary"
 date: "2025-11-02"
 categories: [TIL, jupyter, markdown]
 description: "My workflow for IPYNB development with LLMs using Markdown"
-image: ""
 draft: false
 ---
 
 ## The Problem
 
-I leverage LLMs like Claude and Cursor when generating lecture materials. They accelerate my work and help improve the end product with better sample code, etc. But all of those tools still struggle when creating / editing Jupyter notebooks, which is my medium of choice for this work. They can do it, but it is often a slow, cumbersome, more error-prone process. They often resort to writing Python scripts to generate JSON that the `ipynb` format is based on. Not ideal.
+I leverage LLMs like Claude and Cursor when generating lecture materials. They accelerate my work and help improve the end product with better sample code, etc. But all of those tools still struggle when creating / editing Jupyter notebooks, which is my medium of choice for this work. They can do it, but it is often a slow, cumbersome, more error-prone process. They sometimes resort to writing Python scripts to generate JSON that the `ipynb` format is based on. It is rapidly improving but not ideal.
 
-But they know markdown really well, so I went looking for a `md` to `ipynb` converter, and found... [Jupytext](https://jupytext.readthedocs.io/)!
+But they *do* know markdown really well, so I went looking for a `md` to `ipynb` converter, and found... [Jupytext](https://jupytext.readthedocs.io/)!
 
-I'm now able to easily round-trip markdown to ipynb and back, iteratively collaborating with my LLM of choice.
+I'm now able to easily round-trip markdown to ipynb and back, iteratively collaborating with my LLM of choice (#claude-boi).
 
 ## What is JupyText?
 
-Jupytext is a sort of swiss army knife for Jupyter notebooks. It converts them to and from plain text formats like Markdown, Python scripts, and R Markdown. It's bidirectional and structure-preserving - unlike `nbconvert` (which is a one-way trip), or Pandoc (which doesn't understand notebook cell semantics). Think of it as filling the gap between notebook-first tools (Jupyter) and text-first tools (Quarto, RMarkdown, your text editor). 
+Jupytext is a sort of swiss army knife for Jupyter notebooks. It converts them to and from plain text formats like Markdown, Python scripts, and R Markdown. It's bidirectional and structure-preserving - unlike `nbconvert` (which is a one-way trip), or Pandoc (which can convert notebooks but doesn't support the MyST format or paired file syncing). Think of it as filling the gap between notebook-first tools (Jupyter) and text-first tools (Quarto, RMarkdown, your text editor). 
 
 ### Installation
 
@@ -28,12 +27,14 @@ For use as a CLI-only tool, [uvx](https://docs.astral.sh/uv/guides/tools/) is al
 
 You can start at any point in this process.
 
-1. AI generates `lecture.md`
+1. Generate `lecture.md`
 2. Convert: `jupytext --to ipynb lecture.md`
 3. Edit/execute in Jupyter
 4. Convert back: `jupytext lecture.ipynb --to md:myst`
 5. Send updated `.md` to AI for refinements
 6. Repeat
+
+With @sec-syncing set up, step 4 is handled automatically.
 
 ## The Format
 
@@ -49,14 +50,10 @@ jupytext:
   text_representation:
     extension: .md
     format_name: myst
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
 ---
 ```
 
-Why MyST[^1]? It's markdown-native and explicitly distinguishes executable code cells (`{code-cell}`) from markdown code blocks, preventing AI confusion.
+Why MyST[^1]? It's markdown-native and explicitly distinguishes executable code cells (`{code-cell}`) from markdown code blocks, preventing AI confusion. You can include other information here, like which IPYNB kernel to use, but I find the four lines above are sufficient.
 
 ### Code Cells
 
@@ -73,13 +70,13 @@ df = pd.DataFrame({'x': [1, 2, 3]})
 
 ### Force Cell Boundaries
 
-Use `+++` on its own line to force cell boundaries. I prefer to do this before and after all headers to put them in their own cell. This is because Jupyter's cell folding does not hide body text in the folded cell, just those under it.
+Use `+++` on its own line to force cell boundaries. I prefer to do this before and after all headers to put them in their own cell. This is because JupyterLab's heading collapse does not hide body text in the same cell as the heading, just cells below it.
 
 ## My AI Prompt Template
 
 When asking an AI to generate jupytext-ready content, I'll include something like this to specify Jupytext related details.
 
-```
+```text
 Format requirements:
 
 - Use MyST-flavored jupytext with this frontmatter:
@@ -88,38 +85,32 @@ Format requirements:
     text_representation:
       extension: .md
       format_name: myst
-  kernelspec:
-    display_name: Python 3
-    language: python
-    name: python3
   ---
 
 Differentiate code that should be executable (have a run button) from those that
 are only documentation (python formatted code blocks in markdown cells) by adding
 `{code-cell} ipython3` after the opening triple-backticks on any code block.
 
-Also, please apply the following rules, just because I like it this way:
-
-- Use +++ BEFORE and AFTER ALL headers to put each in a separate cell
-- Do NOT use **bold** formatting in list item descriptors
-- Include a blank line before ALL bulleted/numbered lists and code blocks
+Also, please use +++ BEFORE and AFTER ALL headers to put each in a separate cell
 ```
 
-This gives me clean, immediately-convertible markdown, and enforces some of my personal markdown styling preferences.
+Other formatting preferences (no bold in lists, blank lines before code blocks, etc.) are handled by a [Claude Code rules file](/posts/2026-01-02-til-claude-code-instructions/) that auto-loads when editing markdown.
+
+This gives me clean, immediately-convertible markdown.
 
 ## Converting with Jupytext
 
 Manual conversion is as easy as...
 
 ```bash
-# Markdown to notebook
-jupytext --to ipynb lecture.md
+# Markdown to notebook (--update preserves existing cell outputs)
+jupytext --to ipynb --update lecture.md
 
 # Notebook back to markdown (for AI refinement)
 jupytext --to md:myst lecture.ipynb
 ```
 
-## Syncing MD and IPYNB
+## Syncing MD and IPYNB {#sec-syncing}
 
 If you want to get fancy, do the following...
 
@@ -130,7 +121,9 @@ jupytext --set-formats md:myst,ipynb lecture.ipynb
 
 After that every time you save either file in Jupyter, both are generated. Perfect for the round-trip workflow.
 
-For this to work you'll need to have Jupytext installed in the same environment as Jupyter itself runs from. Pick your poison, `pip`, `conda`, or `uv` to update your venv accordingly.
+For sync-on-save to work, Jupytext must be installed as a Jupyter server extension - not just as a CLI tool. Install it in the same environment as Jupyter itself. Pick your poison, `pip`, `conda`, or `uv` to update your venv accordingly.
+
+In practice, I set up syncing on every lecture project now and rarely run manual conversions.
 
 ## Resources
 

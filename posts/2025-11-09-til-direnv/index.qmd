@@ -4,7 +4,6 @@ author: "Dan O'Leary"
 date: "2025-11-09"
 categories: [TIL, shell, devops]
 description: "Auto-loading environment variables without global pollution"
-image: ""
 draft: false
 ---
 
@@ -17,7 +16,7 @@ commands. I didn't want to:
 histories)
 - Write wrapper scripts/aliases that set it (adds complexity)
 - Set it globally in `~/.zshrc` (always loaded, pollutes environment)
-- Store it in `.env` (doesn't load for terminal commands)
+- Store it in `.env` (unused until explicitly loaded by an application or script)
 
 I wanted project-specific secrets that auto-load when I enter the directory
 and disappear when I leave. That's [direnv](https://direnv.net/).
@@ -44,6 +43,7 @@ source ~/.zshrc
 
 ```bash
 cd my-project
+# Note: this puts the secret in shell history - use an editor for real credentials
 echo 'export ADMIN_TOKEN="my_super_secure_token"' > .envrc
 ```
 
@@ -70,8 +70,9 @@ echo $ADMIN_TOKEN  # (empty)
 `direnv` won't auto-run untrusted `.envrc` files - you must explicitly direnv
 allow each one after reviewing its contents.
 
-> [!WARNING]
-> Always add `.envrc` and `.env` to `.gitignore` - **never commit secrets**.
+::: {.callout-warning}
+Always add `.envrc` and `.env` to `.gitignore` - *never* commit secrets.
+:::
 
 ### Common Use Cases
 
@@ -85,6 +86,12 @@ export DATABASE_URL="postgresql://admin:my_super_secure_password@localhost/mydb"
 export FLASK_ENV="development"
 ```
 
+::: {.callout-tip}
+For a stronger approach that eliminates plaintext secrets entirely, see [1Password CLI for Developer Secrets](/posts/2026-02-09-til-1password-cli/) - `op read` slots right into `.envrc` files.
+:::
+
 ## Resources
-- https://direnv.net/
-- https://direnv.net/docs/installation.html
+
+- [direnv](https://direnv.net/)
+- [direnv installation](https://direnv.net/docs/installation.html)
+- [direnv stdlib](https://direnv.net/man/direnv-stdlib.1.html) (`layout python`, `dotenv`, `PATH_add`, and more)

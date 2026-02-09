@@ -1,0 +1,152 @@
+---
+title: "TIL: 1Password CLI for Developer Secrets"
+author: "Dan O'Leary"
+date: "2026-02-09"
+categories: [TIL, shell, devops, python]
+description: "Replacing plaintext secret files with `op read` - from shell scripts to Python apps to systemd services"
+draft: true
+---
+
+## The Problem
+
+I had a file called `r2vars` in a project root with plaintext Cloudflare R2 credentials:
+
+```bash
+export R2_ACCOUNT_ID=abc123
+export R2_ACCESS_KEY_ID=def456
+export R2_SECRET_ACCESS_KEY=ghi789
+export STORAGE_BACKEND=r2
+```
+
+Scripts referenced it as `source r2vars && uv run python scripts/some_script.py`. It worked, but the file was a liability - one bad `.gitignore` away from leaking credentials, invisible to rotation policies, and impossible to audit.
+
+I was already using 1Password for personal secrets. Turns out their CLI (`op`) slots right into existing workflows with minimal friction.
+
+## The Solution: `op read`
+
+The [1Password CLI](https://developer.1password.com/docs/cli/) lets you read secrets by reference path. The format is `op://Vault/Item/field`.
+
+```bash
+# One-off secret injection
+export ANTHROPIC_API_KEY=$(op read "op://Dev/Anthropic/credential")
+```
+
+On first use in a session, `op` prompts for biometric auth (Touch ID on macOS). After that, secrets flow without interruption.
+
+### Shell Scripts: Wrapper Pattern
+
+For scripts needing multiple secrets, a thin wrapper replaces `source r2vars`:
+
+```bash
+#!/bin/bash
+# scripts/with-r2.sh -- inject R2 credentials, then run whatever follows
+export R2_ACCOUNT_ID=$(op read "op://Dev/Cloudflare-R2/account-id")
+export R2_ACCESS_KEY_ID=$(op read "op://Dev/Cloudflare-R2/access-key-id")
+export R2_SECRET_ACCESS_KEY=$(op read "op://Dev/Cloudflare-R2/secret-access-key")
+export STORAGE_BACKEND=r2
+exec "$@"
+```
+
+```bash
+# Usage
+scripts/with-r2.sh uv run python scripts/check_missing_students.py
+```
+
+No plaintext files. Secrets exist only in process memory for the duration of the command.
+
+### Python Apps: Provider Abstraction
+
+For a Python CLI tool, I built a secret provider that tries 1Password first and falls back to environment variables. The key piece is a provider that shells out to `op read`:
+
+```python
+class OnePasswordSecretProvider(SecretProvider):
+    def __init__(self, op_reference: str) -> None:
+        self.op_reference = op_reference
+
+    def get_token(self) -> str:
+        result = subprocess.run(
+            ["op", "read", self.op_reference],
+            capture_output=True, text=True, check=False,
+        )
+        if result.returncode != 0:
+            raise SecretProviderError(
+                f"op read failed: {result.stderr.strip()}"
+            )
+        return result.stdout.strip()
+
+    def is_available(self) -> bool:
+        return bool(self.op_reference) and shutil.which("op") is not None
+```
+
+Configuration stores the *reference path*, never the secret:
+
+```toml
+# ~/.config/myapp/config.toml
+secret_provider = "1password"
+op_reference = "op://Dev/Canvas/credential"
+```
+
+A convenience function chains providers -- try 1Password, fall back to `$CANVAS_API_TOKEN`:
+
+```python
+def get_token(provider="1password", op_reference="") -> str:
+    providers = [
+        OnePasswordSecretProvider(op_reference),
+        EnvironmentSecretProvider(),  # reads CANVAS_API_TOKEN
+    ]
+    for p in providers:
+        if p.is_available():
+            try:
+                return p.get_token()
+            except SecretProviderError:
+                continue
+    raise SecretProviderError("No token available from any provider.")
+```
+
+### Headless Services: Service Accounts
+
+For always-on services (a Discord bot on a Linux server, for example), 1Password offers [service accounts](https://developer.1password.com/docs/service-accounts/). The service account token goes in the systemd unit's environment, and the service calls `op read` at runtime just like the interactive case. Each service account is scoped to a single vault, limiting blast radius if compromised.
+
+## Why This Works
+
+- No plaintext secrets on disk: the `r2vars` file is gone. Nothing to accidentally commit.
+- Single source of truth: rotate a credential in 1Password and every script picks it up immediately.
+- Auditable: 1Password logs every access. You know who read what and when.
+- Graceful degradation: the provider pattern means CI and production can still use env vars while local dev uses 1Password.
+- Biometric gating: Touch ID on macOS means secrets require physical presence - not just filesystem access.
+
+## Resources
+
+- [1Password CLI docs](https://developer.1password.com/docs/cli/)
+- [Secret reference syntax](https://developer.1password.com/docs/cli/secret-references/)
+- [Service accounts](https://developer.1password.com/docs/service-accounts/)
+- [direnv TIL](/posts/2025-11-09-til-direnv/) (the precursor to this workflow)
+
+---
+
+::: {.callout-note collapse="true"}
+## Internal references
+
+Sources found on this machine during the Feb 9 2026 codelab session:
+
+Shell usage (`op read` inline):
+
+- `~/.config/scripts/summarize-session:107` -- Python `subprocess.run(["op", "read", "op://Dev/Anthropic/credential"])`
+- `/Volumes/Casa/dev/dema-llm/docs/sessions/backfill-all.sh:137` -- `export ANTHROPIC_API_KEY=$(op read "op://Dev/Anthropic/credential")`
+
+Python provider abstraction (canvas-ledger):
+
+- `/casa/dev/canvas-ledger/src/cl/config/secrets.py` -- full `SecretProvider` ABC, `OnePasswordSecretProvider`, `EnvironmentSecretProvider`, `get_canvas_token()` with fallback chain
+- `/casa/dev/canvas-ledger/src/cl/config/settings.py:38-39` -- `secret_provider` and `op_reference` config fields
+- `/casa/dev/canvas-ledger/src/cl/cli/config_cmd.py` -- CLI init with `--secret-provider=1password --op-reference=op://...`
+- `/casa/dev/canvas-ledger/tests/unit/test_config.py` -- 10+ tests covering both providers
+
+Service account pattern (moltbot/clawdbot):
+
+- `/Volumes/Casa/obsidian/new_vault/moltbot-setup.md:184-218` -- systemd service account setup, vault scoping rationale
+- `/Volumes/Casa/obsidian/new_vault/agent-sessions/general/2026-01-27-ddf71a25/2026-01-27-2041-segment-01.md` -- hardening session, defense-in-depth philosophy
+
+The plaintext file that prompted this:
+
+- `/Volumes/Casa/dev/codelab/r2vars` -- three Cloudflare R2 credentials, `source`d by recovery scripts and monitoring cheatsheet
+:::

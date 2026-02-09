@@ -4,7 +4,6 @@ author: "Dan O'Leary"
 date: "2025-10-26"
 categories: [tools, presentations, quarto]
 description: "Setting up TeX for Pandoc/Quarto on a new Mac"
-image: ""
 draft: false
 ---
 
@@ -12,28 +11,25 @@ draft: false
 
 I regularly use Quarto and pandoc for converting markdown to PDF, but just got a new Mac. Time to set up the TeX ecosystem properly from scratch.
 
-## The Setup Strategy
-
-### Install BasicTeX via Homebrew
+## Installing BasicTeX
 
 ```bash
 brew install --cask basictex
 ```
 
-**Why BasicTeX instead of MacTeX?**
+Why BasicTeX instead of MacTeX?
 
-- **Size**: 100MB vs 4GB
-- **Sufficient**: Has everything needed for pandoc/Quarto PDF generation
-- **Focused**: Avoids GUI apps and specialized packages I don't need
+- Size: ~90MB vs 4GB
+- Sufficient: provides the TeX engines and package manager needed for pandoc/Quarto
+- Focused: avoids GUI apps and specialized packages I don't need
 
-**Why Homebrew instead of Quarto's TinyTeX?**
+Why Homebrew instead of Quarto's TinyTeX?
 
-- **Unified management**: `brew upgrade` updates everything
-- **System-wide**: Both pandoc and Quarto can use the same installation
-- **No duplication**: Single ~100MB install vs. multiple TeX distributions
-- **PATH simplicity**: Homebrew handles it automatically
+- System-wide: both pandoc and Quarto share the same installation
+- No duplication: single install vs. multiple TeX distributions
+- PATH simplicity: Homebrew handles it automatically
 
-### Initial Setup
+After installation, refresh your PATH and update the package manager:
 
 ```bash
 # Refresh PATH to find new TeX binaries
@@ -47,28 +43,54 @@ sudo tlmgr update --all
 sudo tlmgr option repository ctan
 ```
 
-### Install Essential Packages
+::: {.callout-note}
+`brew upgrade` updates the BasicTeX distribution itself (released annually). Individual TeX packages are updated separately with `sudo tlmgr update --all`.
+:::
 
-BasicTeX is minimal by design. Install what pandoc needs for syntax highlighting, code formatting, and code block line wrapping:
+## Adding Packages
+
+BasicTeX is minimal by design. You will need to install additional packages as you go. Start with what pandoc needs for syntax highlighting and code block line wrapping:
 
 ```bash
 sudo tlmgr install framed fvextra
 ```
 
-## Pandoc Configuration for Professional PDFs
+You will likely hit missing-package errors as your documents grow more complex. They look like this:
 
-### Use xelatex, Not pdflatex
-
-Always use **xelatex** as the PDF engine:
-
-```bash
---pdf-engine=xelatex
+```text
+! LaTeX Error: File 'bookmark.sty' not found.
 ```
 
-**Why?**
-- Native Unicode support (no special configuration for international characters, emoji, box-drawing characters)
-- Better font handling on macOS
-- Handles modern markdown content without breaking
+The `.sty` filename tells you what to install. The fix is always the same:
+
+```bash
+sudo tlmgr install bookmark
+```
+
+Common additions include `bookmark`, `upquote`, `xurl`, and `microtype`. Install them as errors arise rather than trying to anticipate everything up front.
+
+## Pandoc Configuration
+
+### Use lualatex, Not pdflatex
+
+Use `lualatex` as the PDF engine:
+
+```bash
+--pdf-engine=lualatex
+```
+
+Why?
+
+- Native Unicode support (Latin Extended, box-drawing characters, common symbols)
+- System font access on macOS
+- Better microtypography support via the `microtype` package
+- Recommended by the LaTeX Project for all new documents
+
+::: {.callout-note}
+TeX engines handle Latin scripts and common symbols well, but struggle with CJK, Arabic, and emoji. If your documents need broad Unicode coverage, consider [Typst](https://typst.app/) as a PDF engine instead - pandoc supports it via `--pdf-engine=typst`, and it handles emoji and full Unicode natively.
+:::
+
+`xelatex` also handles Unicode and system fonts, but `lualatex` is the current standard and what Quarto defaults to as of v1.8.
 
 ### Code Block Line Wrapping
 
@@ -84,57 +106,82 @@ Create `header.tex` for automatic code wrapping:
 }
 ```
 
-**Why this matters:** Long commands, URLs, or code lines will overflow page margins without this. This makes code blocks wrap intelligently without breaking syntax highlighting.
+Without this, long commands, URLs, or code lines overflow page margins. This wraps them while preserving syntax highlighting.
 
 ### Complete Pandoc Command
 
 ```bash
 pandoc document.md -o document.pdf \
-  --pdf-engine=xelatex \
+  --pdf-engine=lualatex \
   --highlight-style=tango \
   -V geometry:margin=1in \
   -V fontsize=11pt \
   -V colorlinks=true \
   -V linkcolor=blue \
   -V urlcolor=blue \
+  -V mainfont="Palatino" \
   -V monofont="Menlo" \
   --include-in-header=header.tex
 ```
 
-**Design choices:**
-- **xelatex**: Unicode support
-- **tango**: Clean, professional syntax highlighting (alternatives: pygments, kate)
-- **1in margins**: Standard, readable
-- **11pt font**: More readable than default 10pt
-- **Colored links**: Better UX than boxed links
-- **Menlo monospace**: Native macOS font with excellent Unicode coverage
-- **header.tex**: Enables code wrapping
+Design choices:
+
+- `lualatex`: Unicode and system font support
+- `Palatino`: ships with macOS, immediately distinguishable from the default LaTeX look. Alternatives: Georgia, Baskerville, Charter
+- `tango`: clean syntax highlighting (alternatives: pygments, kate, espresso)
+- 1in margins: standard, readable
+- 11pt font: more readable than default 10pt
+- Colored links: better UX than boxed links
+- Menlo monospace: native macOS font with good Unicode coverage
+- `header.tex`: enables code wrapping
 
 For common conversions, save this as an executable script or alias.
+
+## Quarto Configuration
+
+For Quarto projects, the same settings go in YAML front matter instead of command-line flags:
+
+```yaml
+format:
+  pdf:
+    pdf-engine: lualatex
+    highlight-style: tango
+    mainfont: "Palatino"
+    monofont: "Menlo"
+    fontsize: 11pt
+    geometry: margin=1in
+    colorlinks: true
+    linkcolor: blue
+    urlcolor: blue
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+          breaklines,
+          breakanywhere,
+          breaksymbol=,
+          commandchars=\\\{\}
+        }
+```
+
+Quarto defaults to `lualatex` as of v1.8, so the `pdf-engine` line is optional but explicit.
 
 ## Troubleshooting
 
 ```bash
 # Check TeX is found
-which xelatex pdflatex
-# Should show: /Library/TeX/texbin/xelatex
+which lualatex
+# Should show: /Library/TeX/texbin/lualatex
 
-# Verify pandoc sees it
-pandoc --version
-# Should list xelatex in PDF engines
+# Check engine version
+lualatex --version
 
 # Quarto should auto-detect it
 quarto check
-# Should show: Tex: (detected)
 ```
 
-## The Result
+## Resources
 
-This setup produces professional PDFs with:
-- Proper Unicode rendering (international characters, symbols)
-- Syntax-highlighted code that doesn't overflow
-- Clickable, colored links
-- Clean, readable typography
-- Fast rendering (xelatex is efficient)
-
-And everything stays updated with a simple `brew upgrade`.
+- [Quarto PDF Engines](https://quarto.org/docs/output-formats/pdf-engine.html)
+- [Quarto PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) (YAML configuration reference)
+- [TUG BasicTeX](https://www.tug.org/mactex/morepackages.html)
