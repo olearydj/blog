@@ -4,6 +4,7 @@ author: "Dan O'Leary"
 date: "2026-01-02"
 categories: [TIL, claude-code, tools]
 description: "Where to put project conventions, style guides, and automation in Claude Code"
+image: thumbnail.svg
 draft: false
 ---
 

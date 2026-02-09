@@ -4,6 +4,7 @@ author: "Dan O'Leary"
 date: "2026-02-02"
 categories: [claude-code, security]
 description: "Balancing autonomy, security, and workflow speed"
+image: thumbnail.svg
 draft: false
 ---
 

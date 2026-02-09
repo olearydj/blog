@@ -4,6 +4,7 @@ author: "Dan O'Leary"
 date: "2025-11-09"
 categories: [TIL, shell, devops]
 description: "Auto-loading environment variables without global pollution"
+image: thumbnail.svg
 draft: false
 ---
 

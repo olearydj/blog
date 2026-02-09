@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#2D2D2D"/>
+  <!-- Folder -->
+  <path d="M300 130 L300 110 L360 110 L375 130" fill="none" stroke="#C2571A" stroke-width="2"/>
+  <rect x="300" y="130" width="200" height="120" rx="4" fill="none" stroke="#C2571A" stroke-width="2"/>
+  <!-- .envrc label -->
+  <text x="400" y="198" text-anchor="middle" font-family="Menlo, monospace" font-size="18" fill="#E8A87C">.envrc</text>
+  <!-- Arrows radiating out -->
+  <line x1="400" y1="270" x2="400" y2="310" stroke="#C2571A" stroke-width="2"/>
+  <line x1="340" y1="270" x2="300" y2="310" stroke="#C2571A" stroke-width="2" opacity="0.6"/>
+  <line x1="460" y1="270" x2="500" y2="310" stroke="#C2571A" stroke-width="2" opacity="0.6"/>
+  <!-- Env var dots -->
+  <circle cx="400" cy="330" r="6" fill="#C2571A"/>
+  <circle cx="290" cy="330" r="6" fill="#C2571A" opacity="0.6"/>
+  <circle cx="510" cy="330" r="6" fill="#C2571A" opacity="0.6"/>
+</svg>
