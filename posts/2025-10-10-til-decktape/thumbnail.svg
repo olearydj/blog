@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#2D2D2D"/>
+  <!-- Slide stack (back) -->
+  <rect x="175" y="65" width="260" height="165" rx="8" fill="#3D3D3D"/>
+  <!-- Slide stack (middle) -->
+  <rect x="185" y="55" width="260" height="165" rx="8" fill="#4A4A4A"/>
+  <!-- Slide (front) -->
+  <rect x="195" y="45" width="260" height="165" rx="8" fill="#C2571A"/>
+  <!-- Arrow -->
+  <line x1="330" y1="240" x2="330" y2="270" stroke="#C2571A" stroke-width="10" stroke-linecap="round"/>
+  <polyline points="310,258 330,278 350,258" fill="none" stroke="#C2571A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- PDF icon (small rectangle below) -->
+  <rect x="305" y="282" width="50" height="12" rx="3" fill="#C2571A" fill-opacity="0.6"/>
+</svg>

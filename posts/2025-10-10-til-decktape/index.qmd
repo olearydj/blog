@@ -3,20 +3,34 @@ title: "TIL: Decktape for High-Quality PDF Exports from Reveal.js"
 author: "Dan O'Leary"
 date: "2025-10-10"
 categories: [TIL, tools, presentations, quarto]
-description: "How I finally got crisp, properly formatted PDFs from my Reveal.js presentations"
-image: ""
-draft: true
+description: "Getting crisp, properly formatted PDFs from Reveal.js presentations for student handouts"
+image: thumbnail.png
+draft: false
 ---
 
 ## The Problem
 
-I've been using Quarto with Reveal.js for presentations, and while they look great in the browser, getting them into PDF format has always been... frustrating. Browser print-to-PDF works, but the formatting is often wonky. Quarto's built-in PDF export is fine but loses some of the reveal.js magic.
+I needed PDF versions of my Reveal.js slide decks - for student handouts and accessibility. The slides look great in the browser, but getting them into PDF is surprisingly painful.
+
+Reveal.js has a built-in export: append `?print-pdf` to the URL, then use Chrome's print dialog. In practice, this means manually setting landscape orientation, zero margins, and enabling background graphics every time. Miss one setting and the output is broken. Even when you get it right, slides overlap, content splits after titles instead of fitting the page, and it only works reliably in Chrome.
+
+Quarto doesn't help either - there's no `quarto render --to pdf` for revealjs format. The official guidance is the same manual browser workflow. There's an [open issue](https://github.com/quarto-dev/quarto-cli/issues/4677) requesting better tooling, filed under "Future" with no timeline.
+
+I needed something automatable that captures slides as they actually appear.
 
 ## The Solution: Decktape
 
-Enter [Decktape](https://github.com/astefanutti/decktape) - a headless Chrome tool specifically designed to convert HTML presentations to PDF. And it's brilliant.
+[Decktape](https://github.com/astefanutti/decktape) takes a different approach entirely. Instead of relying on a print stylesheet, it drives a headless Chrome instance, navigates through each slide, and captures them individually as PDF pages. What the browser renders is what you get.
 
 ### Install
+
+No install required - `npx` runs it directly (like `uvx` for Python tools):
+
+```bash
+npx decktape <url> output.pdf
+```
+
+If you use it often enough to want it permanent:
 
 ```bash
 npm install -g decktape
@@ -24,40 +38,54 @@ npm install -g decktape
 
 ### Use
 
-```bash
-# Start your presentation
-quarto preview presentation.qmd
+Point it at any URL serving a presentation:
 
-# In another terminal, convert to PDF
-decktape http://localhost:XXXX/presentation.html output.pdf
+```bash
+decktape https://example.com/slides output.pdf
 ```
 
-That's it. Decktape renders each slide exactly as it appears in the browser, then combines them into a crisp PDF.
+Decktape auto-detects Reveal.js (and other frameworks) so you don't need to specify a plugin. No print dialog, no manual settings.
+
+For local development with Quarto:
+
+```bash
+# Start your presentation (note the port in the output)
+quarto preview presentation.qmd
+
+# In another terminal
+decktape http://localhost:4567/presentation.html output.pdf
+```
 
 ## Why It's Better
 
-- High fidelity: Slides look exactly like they do in the browser
-- Handles animations: Captures fragments and builds correctly
-- Works with Mermaid: Diagrams render perfectly
-- Custom styling preserved: All your CSS comes through
-- Professional output: No weird page breaks or formatting issues
+- Captures exactly what the browser renders - styling, margins, and aspect ratio are preserved
+- Scriptable: no manual print dialog, works in CI
+- Control over output resolution via `--size` (the print stylesheet gives you no such option)
+- Works in headless environments where there's no browser to click through
 
-Where has this been all my life?!
-
-## Bonus: Options
+## Useful Options
 
 ```bash
-# Custom page size
-decktape --size 1920x1080 http://localhost:XXXX/presentation.html output.pdf
+# Specify output resolution (default is 1280x720)
+decktape --size 1920x1080 http://localhost:4567/presentation.html output.pdf
 
-# Pause between slides (for heavy animations)
-decktape --pause 1000 http://localhost:XXXX/presentation.html output.pdf
+# Add pause between slides for heavy renders (Mermaid diagrams, etc.)
+decktape --pause 2000 http://localhost:4567/presentation.html output.pdf
 
-# Specify slide range
-decktape --slides 1-10 http://localhost:XXXX/presentation.html output.pdf
+# Export specific slides
+decktape --slides 1-10 http://localhost:4567/presentation.html output.pdf
 ```
+
+::: {.callout-note}
+Fragments (incremental builds) are collapsed by default - each slide renders with all fragments visible. To get one page per fragment step, append `?fragments=true` to the URL.
+:::
+
+## Beyond Your Own Slides
+
+Decktape works on any URL serving a supported presentation framework - not just your own. Useful for archiving conference talks, saving training materials, or capturing content that's hard to get otherwise.
 
 ## Resources
 
 - [Decktape GitHub](https://github.com/astefanutti/decktape)
-- [Quarto Reveal.js Guide](https://quarto.org/docs/presentations/revealjs/)
+- [Quarto Reveal.js presenting guide](https://quarto.org/docs/presentations/revealjs/presenting.html) (includes the manual PDF export workflow)
+- [Quarto issue #4677](https://github.com/quarto-dev/quarto-cli/issues/4677) - native PDF export tooling request
