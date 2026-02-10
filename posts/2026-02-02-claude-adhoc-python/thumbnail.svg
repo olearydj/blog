@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#2D2D2D"/>
+  <!-- Container box -->
+  <rect x="170" y="40" width="260" height="220" rx="16" fill="#3D3D3D"/>
+  <!-- Python logo: top half -->
+  <path d="M300 80 Q260 80 260 120 L260 150 L300 150 L300 135 Q300 125 315 125 L335 125 Q365 125 365 105 Q365 80 335 80 Z" fill="#C2571A"/>
+  <circle cx="290" cy="100" r="8" fill="#2D2D2D"/>
+  <!-- Python logo: bottom half -->
+  <path d="M300 220 Q340 220 340 180 L340 150 L300 150 L300 165 Q300 175 285 175 L265 175 Q235 175 235 195 Q235 220 265 220 Z" fill="#C2571A" fill-opacity="0.6"/>
+  <circle cx="310" cy="200" r="8" fill="#2D2D2D"/>
+</svg>

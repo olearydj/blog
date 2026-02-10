@@ -4,8 +4,8 @@ author: "Dan O'Leary"
 date: "2026-02-02"
 categories: [claude-code, python, uv]
 description: "Isolating ad-hoc Python tasks from system and project environments"
-image: ""
-draft: true
+image: thumbnail.png
+draft: false
 ---
 
 ## The Problem
@@ -32,6 +32,7 @@ brew install uv
 - Fast: installs packages in seconds, not minutes
 - Modern: handles both package management and environment isolation
 - Simple: one tool instead of virtualenv + pip + pyenv
+- Flex: all the cool kids use it 😎
 
 ### Project Setup
 
@@ -43,7 +44,7 @@ cd /casa/dev/claude-code
 uv init
 ```
 
-The `pyproject.toml` declares common dependencies:
+The `pyproject.toml` declares whatever dependencies your agent might need:
 
 ```toml
 [project]
@@ -78,6 +79,8 @@ dependencies = [
     "pytest",
 ]
 ```
+
+Add these with `uv add <package>` or just ask your robot to do it. 🤖
 
 ### Shell Script
 
@@ -146,19 +149,17 @@ uv run --project /casa/dev/claude-code python -c "import pdfplumber; ..."
 ```
 
 ::: {.callout-warning}
-## Sandbox Conflict with uv
+## If You Use the Sandbox
 
-If you've [enabled Claude Code's sandbox](/posts/2026-02-02-claude-code-permissions/), the approaches above won't work. The uv cache contains `.git` marker files (to prevent git from indexing it), and the sandbox blocks all `.git` access - causing `uv` commands to fail with "Operation not permitted."
+Everything above works great until you enable [Claude Code's sandbox](/posts/2026-02-02-claude-code-permissions/). The sandbox blocks `.git` access broadly - not just repositories, but `.git` marker files anywhere on the filesystem. The uv cache uses these markers to prevent git from indexing it, so `uv run` panics with "Operation not permitted" and takes the wrapper script down with it.
 
-Workaround: have Claude use the venv's Python interpreter directly:
+The workaround: update your `CLAUDE.md` to point Claude at the venv Python directly:
 
 ```bash
-/casa/dev/claude-code/.venv/bin/python -c "import pandas; ..."
+/path/to/adhoc/.venv/bin/python script.py
 ```
 
-This bypasses `uv run` entirely. You'll need to install packages manually (`uv add <package>`), but once installed, Claude can use them. Update your `CLAUDE.md` instructions accordingly.
-
-This is tracked upstream: [anthropics/claude-code#22620](https://github.com/astral-sh/uv/issues/16820)
+This bypasses `uv run` entirely. Packages are still managed with `uv add` - you just skip the runtime wrapper. The warning message from the shell script is lost, but the `CLAUDE.md` instructions carry the same signal.
 :::
 
 ## What I Didn't Do
@@ -185,4 +186,4 @@ uv sync --upgrade
 ## Resources
 
 - [uv documentation](https://docs.astral.sh/uv/)
-- [Claude Code memory docs](https://docs.anthropic.com/en/docs/claude-code/memory)
+- [Claude Code memory docs](https://code.claude.com/docs/en/memory)
