@@ -4,7 +4,8 @@ author: "Dan O'Leary"
 date: "2026-02-09"
 categories: [TIL, shell, devops, python]
 description: "Replacing plaintext secret files with `op read` - from shell scripts to Python apps to systemd services"
-draft: true
+image: thumbnail.png
+draft: false
 ---
 
 ## The Problem
@@ -17,6 +18,8 @@ export R2_ACCESS_KEY_ID=def456
 export R2_SECRET_ACCESS_KEY=ghi789
 export STORAGE_BACKEND=r2
 ```
+
+Plaintext secrets, BAD! 😖
 
 Scripts referenced it as `source r2vars && uv run python scripts/some_script.py`. It worked, but the file was a liability - one bad `.gitignore` away from leaking credentials, invisible to rotation policies, and impossible to audit.
 
@@ -31,7 +34,7 @@ The [1Password CLI](https://developer.1password.com/docs/cli/) lets you read sec
 export ANTHROPIC_API_KEY=$(op read "op://Dev/Anthropic/credential")
 ```
 
-On first use in a session, `op` prompts for biometric auth (Touch ID on macOS). After that, secrets flow without interruption.
+On first use in a session, `op` prompts for biometric auth (Touch ID on macOS). After that, secrets flow without interruption. Biometric unlock requires the 1Password desktop app with [app integration enabled](https://developer.1password.com/docs/cli/get-started/#turn-on-the-1password-desktop-app-integration).
 
 ### Shell Scripts: Wrapper Pattern
 
@@ -105,7 +108,7 @@ def get_token(provider="1password", op_reference="") -> str:
 
 ### Headless Services: Service Accounts
 
-For always-on services (a Discord bot on a Linux server, for example), 1Password offers [service accounts](https://developer.1password.com/docs/service-accounts/). The service account token goes in the systemd unit's environment, and the service calls `op read` at runtime just like the interactive case. Each service account is scoped to a single vault, limiting blast radius if compromised.
+For always-on services (a Discord bot on a Linux server or the ever-popular 🦞 ClawdBot 🦞, for example), 1Password offers [service accounts](https://developer.1password.com/docs/service-accounts/). The service account token goes in the systemd unit's environment, and the service calls `op read` at runtime just like the interactive case. Each service account's vault access is chosen at creation time and immutable afterward - scope it to a single vault to limit blast radius if compromised.
 
 ## Why This Works
 
@@ -122,31 +125,3 @@ For always-on services (a Discord bot on a Linux server, for example), 1Password
 - [Service accounts](https://developer.1password.com/docs/service-accounts/)
 - [direnv TIL](/posts/2025-11-09-til-direnv/) (the precursor to this workflow)
 
----
-
-::: {.callout-note collapse="true"}
-## Internal references
-
-Sources found on this machine during the Feb 9 2026 codelab session:
-
-Shell usage (`op read` inline):
-
-- `~/.config/scripts/summarize-session:107` -- Python `subprocess.run(["op", "read", "op://Dev/Anthropic/credential"])`
-- `/Volumes/Casa/dev/dema-llm/docs/sessions/backfill-all.sh:137` -- `export ANTHROPIC_API_KEY=$(op read "op://Dev/Anthropic/credential")`
-
-Python provider abstraction (canvas-ledger):
-
-- `/casa/dev/canvas-ledger/src/cl/config/secrets.py` -- full `SecretProvider` ABC, `OnePasswordSecretProvider`, `EnvironmentSecretProvider`, `get_canvas_token()` with fallback chain
-- `/casa/dev/canvas-ledger/src/cl/config/settings.py:38-39` -- `secret_provider` and `op_reference` config fields
-- `/casa/dev/canvas-ledger/src/cl/cli/config_cmd.py` -- CLI init with `--secret-provider=1password --op-reference=op://...`
-- `/casa/dev/canvas-ledger/tests/unit/test_config.py` -- 10+ tests covering both providers
-
-Service account pattern (moltbot/clawdbot):
-
-- `/Volumes/Casa/obsidian/new_vault/moltbot-setup.md:184-218` -- systemd service account setup, vault scoping rationale
-- `/Volumes/Casa/obsidian/new_vault/agent-sessions/general/2026-01-27-ddf71a25/2026-01-27-2041-segment-01.md` -- hardening session, defense-in-depth philosophy
-
-The plaintext file that prompted this:
-
-- `/Volumes/Casa/dev/codelab/r2vars` -- three Cloudflare R2 credentials, `source`d by recovery scripts and monitoring cheatsheet
-:::

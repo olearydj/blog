@@ -114,7 +114,7 @@ Without this, long commands, URLs, or code lines overflow page margins. This wra
 ```bash
 pandoc document.md -o document.pdf \
   --pdf-engine=lualatex \
-  --highlight-style=tango \
+  --syntax-highlighting=tango \
   -V geometry:margin=1in \
   -V fontsize=11pt \
   -V colorlinks=true \
