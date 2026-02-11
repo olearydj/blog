@@ -148,18 +148,21 @@ Or invoke uv directly:
 uv run --project /casa/dev/claude-code python -c "import pdfplumber; ..."
 ```
 
-::: {.callout-warning}
-## If You Use the Sandbox
+::: {.callout-note}
+## Sandbox Compatibility
 
-Everything above works great until you enable [Claude Code's sandbox](/posts/2026-02-02-claude-code-permissions/). The sandbox blocks `.git` access broadly - not just repositories, but `.git` marker files anywhere on the filesystem. The uv cache uses these markers to prevent git from indexing it, so `uv run` panics with "Operation not permitted" and takes the wrapper script down with it.
+If you use [Claude Code's sandbox](/posts/2026-02-02-claude-code-permissions/), the uv cache is outside the working directory and needs explicit permission. Add your cache path to `~/.claude/settings.json`:
 
-The workaround: update your `CLAUDE.md` to point Claude at the venv Python directly:
-
-```bash
-/path/to/adhoc/.venv/bin/python script.py
+```json
+"allow": [
+  "Read(//path/to/.uv-cache/**)",
+  "Edit(//path/to/.uv-cache/**)"
+]
 ```
 
-This bypasses `uv run` entirely. Packages are still managed with `uv add` - you just skip the runtime wrapper. The warning message from the shell script is lost, but the `CLAUDE.md` instructions carry the same signal.
+Use `//` for absolute paths - a single `/` is relative to the settings file. Adjust the path to match your `$UV_CACHE_DIR`.
+
+Also: early versions of `uv` (before v0.9.29) panicked inside the sandbox due to a blocked macOS system API. If you hit "Attempted to create a NULL object", update uv: `uv self update`.
 :::
 
 ## What I Didn't Do

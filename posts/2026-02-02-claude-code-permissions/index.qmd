@@ -103,7 +103,7 @@ Here's what I run in `~/.claude/settings.json`:
 
 The logic:
 
-- `allow` grants read/write to the uv cache (note the `//` prefix for absolute paths). Everything else is handled by the sandbox.
+- `allow` grants read/write to the uv cache so sandboxed commands can access it (note the `//` prefix for absolute paths). Everything else is handled by the sandbox.
 - `deny` blocks secrets, credentials, destructive git operations, and `pip` (I use `uv`).
 - `ask` prompts before commits and pushes - the two operations I always want to review.
 - `defaultMode: acceptEdits` lets Claude write files freely. The sandbox constrains *where*.
@@ -117,7 +117,7 @@ The sandbox also imposes some hard limits worth knowing about:
 
 ### `.git` is blocked outside the working directory
 
-The sandbox blocks `.git` access broadly - not just the repository directory, but `.git` marker files anywhere. This breaks tools like `uv`, whose cache uses `.git` marker files to prevent indexing, causing `uv run` to panic. It also prevents `git clone` into non-project directories. The workaround is to grant the uv cache path via `allow` rules (as shown above) and, when `uv run` still fails, use the venv Python directly (`/path/to/.venv/bin/python`).
+The sandbox blocks `.git` access broadly - not just the repository directory, but `.git` marker files anywhere. This prevents `git clone` into non-project directories and can affect tools whose caches contain `.git` marker files. Granting read/write access to specific cache paths via `allow` rules (as shown above) resolves this.
 
 ### Heredocs are blocked
 
