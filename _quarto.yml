@@ -29,3 +29,6 @@ format:
     theme:
       - cosmo
       - custom.scss
+    include-in-header:
+      - text: |
+          <script defer src="https://cloud.umami.is/script.js" data-website-id="c9802eff-4b9f-4c9c-acd2-5072c22d9eab"></script>
