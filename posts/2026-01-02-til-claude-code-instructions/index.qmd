@@ -29,6 +29,10 @@ Claude Code has four mechanisms for giving it instructions: `CLAUDE.md`, skills,
 
 ## Rules: The Missing Piece
 
+::: {.callout-note}
+As of Feb 10, 2026, path-based rules only trigger when Claude *reads* a matching file, not when it writes one. Creating a new `.md` file without first reading one means your rules aren't in context. A `PreToolUse` hook on `Write` can work around this, but in practice Claude reads markdown often enough that the rules are usually loaded. See [#23478](https://github.com/anthropics/claude-code/issues/23478).
+:::
+
 Rules live in `.claude/rules/*.md` and have a key feature: path matching.
 
 ```yaml
