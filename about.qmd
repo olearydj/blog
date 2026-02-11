@@ -9,10 +9,15 @@ about:
     - icon: twitter
       text: Twitter
       href: https://twitter.com/antisimplistic
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/djoleary
 ---
 
-I'm Dan O'Leary - a recovering entrepreneur, second-career academic, and relentless tinkerer. After 22 years building games, I now teach product development, data science, and machine learning at Auburn University.
+I'm Dan O'Leary - a recovering entrepreneur, second-career academic, and relentless tinkerer. After 25 years building games and interactive products at companies I built and ran (n-Space, GUNSTRUCTION), I now teach product development, data science, and machine learning at Auburn University.
 
-This blog documents what I learn along the way. Many posts are TILs — small, specific discoveries from actual work sessions. Some are longer pieces about how I think about development, AI tooling, and the craft of teaching technical subjects.
+This blog documents what I learn along the way. Many posts are TILs - small, specific discoveries from actual work sessions. Some are longer pieces about how I think about development, AI tooling, and the craft of teaching technical subjects.
+
+I'm especially interested in how AI-assisted development tools change the way we work, and how it shifts what building things actually looks like. Many of the posts here come from real sessions using coding agents (esp. Claude Code), and they focus on the friction, the workarounds, and the patterns that emerge from daily use.
 
 The name *Terminally Curious* is both a confession and a job description.

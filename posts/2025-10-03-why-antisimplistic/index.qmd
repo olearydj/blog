@@ -3,7 +3,6 @@ title: "Why Antisimplistic"
 author: "Dan O'Leary"
 date: "2025-10-03"
 categories: [about, meta]
-image: ""
 description: "The origin story of a 30-year-old handle and the philosophy behind it"
 draft: true
 ---

@@ -1,5 +1,8 @@
 project:
   type: website
+  resources:
+    - robots.txt
+    - llms.txt
 
 website:
   description: "Thoughts on AI-assisted development, tools, and the craft of teaching with code"
@@ -20,10 +23,14 @@ website:
   navbar:
     right:
       - about.qmd
+      - icon: rss
+        href: index.xml
+        aria-label: "RSS Feed"
       - icon: github
         href: https://github.com/olearydj
       - icon: twitter
         href: https://twitter.com/antisimplistic
+
 format:
   html:
     theme:
@@ -32,3 +39,28 @@ format:
     include-in-header:
       - text: |
           <script defer src="https://cloud.umami.is/script.js" data-website-id="c9802eff-4b9f-4c9c-acd2-5072c22d9eab"></script>
+          <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Antisimplistic Blog",
+            "alternateName": "Terminally Curious",
+            "description": "Thoughts on AI-assisted development, tools, and the craft of teaching with code",
+            "url": "https://antisimplistic.com",
+            "author": {
+              "@type": "Person",
+              "name": "Dan O'Leary",
+              "url": "https://antisimplistic.com/about.html",
+              "jobTitle": "Assistant Professor",
+              "affiliation": {
+                "@type": "Organization",
+                "name": "Auburn University"
+              },
+              "sameAs": [
+                "https://github.com/olearydj",
+                "https://twitter.com/antisimplistic",
+                "https://www.linkedin.com/in/djoleary"
+              ]
+            }
+          }
+          </script>

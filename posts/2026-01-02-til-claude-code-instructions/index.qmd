@@ -2,6 +2,7 @@
 title: "TIL: Claude Code's Instruction Mechanisms"
 author: "Dan O'Leary"
 date: "2026-01-02"
+date-modified: "2026-02-10"
 categories: [TIL, claude-code, tools]
 description: "Where to put project conventions, style guides, and automation in Claude Code"
 image: thumbnail.png
@@ -112,3 +113,4 @@ project/CLAUDE.local.md           # Local overrides (gitignored)
 - [Claude Code memory](https://code.claude.com/docs/en/memory) (CLAUDE.md, rules, auto memory)
 - [Claude Code skills](https://code.claude.com/docs/en/skills)
 - [Claude Code hooks](https://code.claude.com/docs/en/hooks)
+- [Claude Code Permissions and Sandboxing](/posts/2026-02-02-claude-code-permissions/) (the other half of the configuration story)

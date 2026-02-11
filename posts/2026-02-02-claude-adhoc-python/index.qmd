@@ -113,7 +113,7 @@ Key design choices:
 
 ### Claude Code Instructions
 
-Add to your global `~/.config/claude/CLAUDE.md`:
+Add to your global `~/.config/claude/CLAUDE.md` (see [Claude Code's Instruction Mechanisms](/posts/2026-01-02-til-claude-code-instructions/) for how `CLAUDE.md` and other config mechanisms work):
 
 ```markdown
 ## Ad-hoc Python

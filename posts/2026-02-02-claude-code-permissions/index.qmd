@@ -142,3 +142,4 @@ The configuration surface area is small once you understand it. The documentatio
 - [Claude Code Sandboxing](https://code.claude.com/docs/en/sandboxing)
 - [Pwning Claude Code in 8 Different Ways](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/)
 - [Claude Code Security Best Practices](https://www.backslash.security/blog/claude-code-security-best-practices)
+- [Claude Code's Instruction Mechanisms](/posts/2026-01-02-til-claude-code-instructions/) (CLAUDE.md, skills, rules, and hooks)

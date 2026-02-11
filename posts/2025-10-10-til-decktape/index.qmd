@@ -89,3 +89,4 @@ Decktape works on any URL serving a supported presentation framework - not just 
 - [Decktape GitHub](https://github.com/astefanutti/decktape)
 - [Quarto Reveal.js presenting guide](https://quarto.org/docs/presentations/revealjs/presenting.html) (includes the manual PDF export workflow)
 - [Quarto issue #4677](https://github.com/quarto-dev/quarto-cli/issues/4677) - native PDF export tooling request
+- [Clean TeX Setup on macOS](/posts/2025-10-26-tex-setup/) (for document PDFs instead of presentation PDFs)

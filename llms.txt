@@ -1,0 +1,34 @@
+# Antisimplistic Blog
+
+> A personal technical blog covering AI-assisted development, developer tools, and the craft of teaching with code. Posts are primarily TILs (Today I Learned) - small, specific discoveries from actual work sessions - plus longer pieces on development philosophy and workflows.
+
+## About the Author
+
+Dan O'Leary is a recovering entrepreneur, second-career academic, and relentless tinkerer. After 25 years building games and interactive products at companies he built and ran (n-Space, GUNSTRUCTION), he now teaches product development, data science, and machine learning at Auburn University.
+
+- Site: https://antisimplistic.com
+- GitHub: https://github.com/olearydj
+- LinkedIn: https://www.linkedin.com/in/djoleary
+- Twitter: https://twitter.com/antisimplistic
+
+## Posts
+
+- [Claude Code Permissions and Sandboxing](https://antisimplistic.com/posts/2026-02-02-claude-code-permissions/): Balancing autonomy, security, and workflow speed - permission rules, permission modes, and OS-level sandboxing in Claude Code
+- [A Controlled Python Environment for Claude Code](https://antisimplistic.com/posts/2026-02-02-claude-adhoc-python/): Isolating ad-hoc Python tasks from system and project environments using uv
+- [TIL: 1Password CLI for Developer Secrets](https://antisimplistic.com/posts/2026-02-09-til-1password-cli/): Replacing plaintext secret files with op read - from shell scripts to Python apps to systemd services
+- [TIL: Claude Code's Instruction Mechanisms](https://antisimplistic.com/posts/2026-01-02-til-claude-code-instructions/): Where to put project conventions, style guides, and automation - CLAUDE.md, skills, rules, and hooks
+- [TIL: direnv for Project-Specific Secrets](https://antisimplistic.com/posts/2025-11-09-til-direnv/): Auto-loading environment variables without global pollution
+- [TIL: Jupytext + MyST for MD to Jupyter Notebooks](https://antisimplistic.com/posts/2025-11-02-til-jupytext/): Round-trip workflow for IPYNB development with LLMs using Markdown
+- [Clean TeX Setup on macOS](https://antisimplistic.com/posts/2025-10-26-tex-setup/): Setting up TeX for Pandoc and Quarto on a new Mac with BasicTeX and lualatex
+- [TIL: Decktape for High-Quality PDF Exports from Reveal.js](https://antisimplistic.com/posts/2025-10-10-til-decktape/): Getting crisp, properly formatted PDFs from Reveal.js presentations for student handouts
+
+## Topics
+
+- Claude Code: permissions, sandboxing, instruction mechanisms (CLAUDE.md, skills, rules, hooks), ad-hoc Python environments
+- Developer tools: direnv, 1Password CLI, uv, Decktape, Jupytext
+- Document tooling: TeX/LaTeX, Pandoc, Quarto, Typst, Reveal.js
+- AI-assisted development workflows and philosophy
+
+## Feed
+
+RSS: https://antisimplistic.com/index.xml

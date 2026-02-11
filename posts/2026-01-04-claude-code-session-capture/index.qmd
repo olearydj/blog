@@ -274,3 +274,123 @@ The summaries surface decisions and patterns that would otherwise be buried in m
 - [Claude Code Hooks Documentation](https://docs.anthropic.com/en/docs/claude-code/hooks)
 - [summarize-session script](https://github.com/dmarx/dema-llm/blob/main/scripts/summarize-session) (TODO)
 - [JSONL Schema Documentation](https://github.com/dmarx/dema-llm/blob/main/docs/sessions/JSONL-SCHEMA.md) (TODO)
+
+## Review Notes (Feb 2026)
+
+::: {.callout-note title="Editorial notes - remove before publishing" collapse="true"}
+
+### Factual Issues to Fix
+
+Hook location: Post shows hook in `.claude/settings.json` (project-level) and script at `.claude/hooks/pre-compact-summary.sh`. Actual setup is *global* - hook in `~/.claude/settings.json`, script at `~/.claude/hooks/pre-compact-summary.sh`. The global setup captures sessions across all 16+ projects automatically. Post should reflect this.
+
+Session folder naming: Post shows `{date}-session-{short-id}` but actual folders are `{date}-{short-id}` (no "session-" prefix).
+
+Output location: Post shows output to `docs/sessions/` within the project. Actual setup writes to a centralized Obsidian vault (`/Volumes/Casa/obsidian/new_vault/agent-sessions/{project}/`) and creates a `docs/sessions` symlink back. This centralized design is worth describing.
+
+JSONL entry types: Post lists `summary` as a type. Actual summarizer script references `compact_boundary` entries and `isCompactSummary` content. Verify which is current - the schema may have evolved.
+
+Summarizer script link: Points to `dmarx/dema-llm` which is someone else's repo. Actual script is at `~/.config/scripts/summarize-session` (1064-line Python script using `uv run --script` shebang with `litellm`).
+
+### Incomplete Sections
+
+- "Problem" section is just `...`
+- "Solution" section opening is truncated
+- Multiple `(TODO)` markers for links and installation instructions
+- Setup checklist step 4 says `(TODO: installation instructions)`
+
+### Hooks Documentation Validation (Feb 2026)
+
+14 hook events total. PreCompact confirmed - receives `trigger` (manual/auto) and `custom_instructions` fields in addition to common fields (`session_id`, `transcript_path`, `cwd`, `permission_mode`). PreCompact *cannot block* compaction (exit 2 just shows stderr). No `customSummary` or `additionalContext` output fields.
+
+For re-injecting context *after* compaction, docs recommend `SessionStart` hook with `compact` matcher (not PreCompact).
+
+### Landscape - Alternatives and Related Tools
+
+The approaches fall into roughly these categories, from lightweight to heavyweight:
+
+| Category | Approach | Persistence | Complexity |
+|----------|----------|-------------|------------|
+| Manual | Write `plan.md` / scratchpad before `/clear` | File-based | Low |
+| Built-in | CLAUDE.md hierarchy + Session Memory | Automatic | Low |
+| Skill-based | `/handoff`, `/pickup`, `/wipe` commands | File-based | Medium |
+| Scratchpad | napkin, planning-with-files | Per-repo markdown | Medium |
+| Session tracking | claude-sessions, handoff JSON files | Timestamped logs | Medium |
+| MCP memory | memory-keeper, memory-mcp, mcp-memory-service | Vector/graph DB | Medium-High |
+| Memory bank | claude-code-memory-bank, claude-mem, super-claude-kit | Structured markdown | Medium-High |
+| Codebase context | claude-context (Zilliz), repomix | Vector search index | High |
+| Full framework | Continuous-Claude-v3 | Hooks + ledgers + vectors | Very High |
+
+Key community tools:
+
+- [claude-code-handoff](https://github.com/nlashinsky/claude-code-handoff) - `/handoff` saves session context to JSON; `/pickup` reconstructs in new session
+- [napkin](https://github.com/blader/napkin) - persistent scratchpad (`.claude/napkin.md`) the agent writes to during work; tracks mistakes, corrections, patterns
+- [planning-with-files](https://github.com/OthmanAdi/planning-with-files) - Manus-style persistent markdown planning with `task_plan.md`, `findings.md`, `progress.md`
+- [claude-code-memory-bank](https://github.com/hudrazine/claude-code-memory-bank) - adapted from Cline Memory Bank methodology
+- [claude-mem](https://github.com/thedotmack/claude-mem) - auto-captures, compresses with AI, injects relevant context into future sessions
+- [mcp-memory-service](https://github.com/doobidoo/mcp-memory-service) - semantic search + AI embeddings for persistent context
+- [memory-mcp](https://github.com/yuvalsuede/memory-mcp) - two-tier memory: CLAUDE.md loads instantly, deep store searchable mid-conversation
+- [Continuous-Claude-v3](https://github.com/parcadei/Continuous-Claude-v3) - 30 hooks, 32 agents, 109 skills, claims 95% token savings
+- [awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code) - curated list of skills, hooks, commands, plugins
+
+Built-in session memory (since ~Feb 2026): Claude auto-writes to `~/.claude/projects/{project}/{session}/session-memory/summary.md`. Triggers after ~10K tokens, updates every ~5K tokens or 3 tool calls. This pipeline captures richer, browsable summaries and predates that feature, but they're complementary.
+
+Key blog posts and references:
+
+- [Context Engineering for Coding Agents - Martin Fowler / Birgitta Boeckeler](https://martinfowler.com/articles/exploring-gen-ai/context-engineering-coding-agents.html)
+- [Effective context engineering for AI agents - Anthropic Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- [Claude Code Decoded: The Handoff Protocol - Black Dog Labs](https://blackdoglabs.io/blog/claude-code-decoded-handoff-protocol)
+- [How I Use Every Claude Code Feature - Shrivu Shankar](https://blog.sshh.io/p/how-i-use-every-claude-code-feature)
+
+GitHub feature requests (showing demand for this):
+
+- [Session Handoff / Continuity Support (#11455)](https://github.com/anthropics/claude-code/issues/11455)
+- [Native session persistence and context continuity (#18417)](https://github.com/anthropics/claude-code/issues/18417)
+- [Persistent Memory Between Sessions (#14227)](https://github.com/anthropics/claude-code/issues/14227)
+- [Context loss without warning breaks trust (#13171)](https://github.com/anthropics/claude-code/issues/13171)
+
+### Dicklesworthstone / Jeffrey Emanuel Ecosystem
+
+[GitHub profile](https://github.com/Dicklesworthstone) - 152 repos, 1.8k followers. Building a comprehensive multi-agent development platform.
+
+CASS (Coding Agent Session Search) - [coding_agent_session_search](https://github.com/Dicklesworthstone/coding_agent_session_search) (450 stars): The closest comparable to this pipeline. A Rust TUI that indexes Claude Code JSONL transcripts (plus 10 other agents) into a unified searchable knowledge base. Sub-60ms full-text search with optional semantic (MiniLM embeddings). Three modes: lexical (BM25), semantic (vector), hybrid (RRF). Multi-machine support via SSH + rsync. Key difference: CASS is search-first (query raw transcripts); this pipeline is summary-first (LLM distills each segment). Complementary approaches.
+
+| | This pipeline | CASS |
+|---|---|---|
+| Approach | Summary-first (LLM distills each segment) | Search-first (full-text + semantic index) |
+| Trigger | Automatic on compaction | On-demand query |
+| Output | Browsable markdown summaries | Interactive TUI with BM25/vector search |
+| Multi-agent | Claude Code only | 11+ agents (Cursor, Codex, Aider, etc.) |
+| Dependencies | Python + litellm | Rust binary, optional embeddings |
+
+[MCP Agent Mail](https://github.com/Dicklesworthstone/mcp_agent_mail) (1.7k stars): Agent-to-agent messaging with persistent threads, file reservations (advisory locks), and searchable archives. Different problem (multi-agent coordination) but shares the "context shouldn't be ephemeral" philosophy.
+
+[Beads Viewer](https://github.com/Dicklesworthstone/beads_viewer) (1.2k stars): Steve Yegge's graph-aware task management for coding agents. Tasks have dependency graphs with PageRank/betweenness metrics. Has "robot modes" outputting structured JSON for AI consumption. Interesting as a destination for the decisions and next steps that session summaries extract.
+
+[Agent Flywheel](https://agent-flywheel.com/): The maximalist approach - a 13-step wizard provisioning a dedicated 64GB VPS with Claude Code + Codex + Gemini CLI, 30+ tools, and all the above wired together. $440-656/month. The "full-time AI development team" end of the spectrum.
+
+### Positioning
+
+This pipeline's sweet spot:
+
+```text
+Simple ────────────────────────────────────────── Complex
+
+CLAUDE.md    /handoff    This pipeline    CASS    Agent Flywheel
+scratchpad   skills      (auto-capture    (search  (multi-agent
+                         + summarize)     index)   VPS platform)
+```
+
+The lightest approach that's fully automatic. Everything simpler requires manual action; everything more complex requires significant infrastructure.
+
+### Recommendations
+
+1. Write the Problem section - frame around the moment you realized compaction was eating context and you couldn't reconstruct what happened
+2. Update code examples to match actual setup (global hook, centralized Obsidian output with symlinks, correct folder naming)
+3. Add a brief landscape section - position between "just use CLAUDE.md" and "install a vector database"
+4. Address built-in session memory - even a callout noting they're complementary
+5. Resolve or remove the `dmarx/dema-llm` links - put the summarizer in your own repo or inline essentials
+6. Verify JSONL schema against actual summarizer script (entry types may have evolved)
+7. Consider trimming JSONL schema details - the segment insight and hook setup are the valuable parts; schema could be a separate post/appendix
+
+:::
+

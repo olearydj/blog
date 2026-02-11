@@ -2,6 +2,7 @@
 title: "Clean TeX Setup on macOS"
 author: "Dan O'Leary"
 date: "2025-10-26"
+date-modified: "2026-02-09"
 categories: [tools, presentations, quarto]
 description: "Setting up TeX for Pandoc/Quarto on a new Mac"
 image: thumbnail.png
@@ -186,3 +187,4 @@ quarto check
 - [Quarto PDF Engines](https://quarto.org/docs/output-formats/pdf-engine.html)
 - [Quarto PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html) (YAML configuration reference)
 - [TUG BasicTeX](https://www.tug.org/mactex/morepackages.html)
+- [Decktape for PDF Exports from Reveal.js](/posts/2025-10-10-til-decktape/) (for presentation handouts instead of documents)

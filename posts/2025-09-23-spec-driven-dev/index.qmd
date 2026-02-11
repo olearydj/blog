@@ -3,8 +3,7 @@ title: "Spec-Driven Development"
 author: "Dan O'Leary"
 date: "2025-09-23"
 categories: [sdd, codegen, dev]
-image: ""
-description: "summary"
+description: "Why specifications - not code - are becoming the primary artifact of programming in the AI era"
 draft: true
 ---
 

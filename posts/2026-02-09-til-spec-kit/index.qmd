@@ -4,7 +4,6 @@ author: "Dan O'Leary"
 date: "2026-02-09"
 categories: [TIL, tools, claude-code, workflow]
 description: "Separating planning inputs from generated spec outputs for repeatable, AI-assisted feature design"
-image: ""
 draft: true
 ---
 
