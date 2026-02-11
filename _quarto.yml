@@ -7,6 +7,16 @@ website:
   title: "Antisimplistic Blog"
   open-graph: true
   twitter-card: true
+  comments:
+    giscus:
+      repo: olearydj/blog
+      category: "Comments"
+      mapping: pathname
+      reactions-enabled: true
+      input-position: top
+      theme:
+        light: light
+        dark: dark_dimmed
   navbar:
     right:
       - about.qmd
