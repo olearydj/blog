@@ -4,6 +4,7 @@ author: "Dan O'Leary"
 date: "2026-03-13"
 categories: [tmux, shell]
 description: "A small script that tints your tmux pane when new output arrives while you're reading scrollback"
+image: thumbnail.jpg
 draft: true
 ---
 
