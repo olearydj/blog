@@ -1,0 +1,95 @@
+---
+title: "tmux Scroll Alert: Know When New Output Arrives While You're Scrolled Back"
+author: "Dan O'Leary"
+date: "2026-03-13"
+categories: [tmux, shell]
+description: "A small script that tints your tmux pane when new output arrives while you're reading scrollback"
+draft: true
+---
+
+## The Problem
+
+You're running something in tmux — a build, a test suite, an agent CLI. While it's working, you scroll back to review earlier output. The yellow copy-mode indicator appears, you find what you're looking for, and then... you sit there. Waiting. The command finished two minutes ago, but you're staring at frozen scrollback with no way to know.
+
+This happens to me regularly with agent CLIs like Claude Code and Codex. They run for a while, produce output, and I scroll back to check something. The copy-mode indicator tells me *where* I am in the buffer but nothing about whether the buffer has grown since I started reading. I scroll back to *near* the end of the buffer and wonder what is taking so long.
+
+## Why Not `monitor-activity`?
+
+tmux has built-in activity monitoring. You can enable `monitor-activity` and use the `alert-activity` hook to detect output:
+
+```bash
+set -g monitor-activity on
+set-hook -g alert-activity 'if -F "#{pane_in_mode}" "selectp -P bg=#330000"'
+```
+
+This works for quiet commands. But agent CLIs have spinners and progress indicators that constantly write to the terminal, triggering the alert immediately — before any real output arrives. `monitor-activity` can't distinguish a spinner updating the same line from ten lines of actual results.
+
+## The Fix: Poll `history_size`
+
+The key insight: **spinners overwrite the current line** (using `\r` and ANSI escapes), but **real output adds new lines** to the scrollback buffer. tmux tracks this as `history_size`.
+
+A small script can snapshot `history_size` when you enter copy mode, then poll for growth. Spinner noise doesn't register. Only real new lines do.
+
+### The script
+
+```bash
+#!/bin/bash
+# tmux-scroll-alert — tints pane background when new output
+# arrives while you're scrolled back in copy mode.
+# Usage: tmux-scroll-alert <pane_id>
+
+PANE="$1"
+
+# Only run for copy-mode, not tree-mode, command-mode, etc.
+MODE=$(tmux display-message -p -t "$PANE" '#{pane_mode}')
+[ "$MODE" = "copy-mode" ] || exit 0
+
+INITIAL=$(tmux display-message -p -t "$PANE" '#{history_size}')
+
+while true; do
+    # Exit if pane left copy mode or pane is gone
+    IN_MODE=$(tmux display-message -p -t "$PANE" '#{pane_in_mode}' 2>/dev/null) || break
+    [ "$IN_MODE" = "0" ] && break
+
+    CURRENT=$(tmux display-message -p -t "$PANE" '#{history_size}')
+    if [ "$((CURRENT - INITIAL))" -ge 5 ]; then
+        tmux select-pane -t "$PANE" -P bg=#330000
+        break
+    fi
+
+    sleep 1
+done
+```
+
+Save this somewhere in your `$PATH` (e.g., `~/.local/bin/tmux-scroll-alert`) and make it executable.
+
+The threshold of 5 lines reduces the sensitivity of the detector. Adjust to taste.
+
+### The tmux config
+
+Add this to your `tmux.conf`:
+
+```bash
+# Detect new output while scrolled back in copy mode
+# Uses history_size polling to ignore spinner noise (only real new lines trigger it)
+set-hook -g pane-mode-changed 'if -F "#{pane_in_mode}" \
+  "run-shell -b \"~/.local/bin/tmux-scroll-alert #{pane_id}\"" \
+  "selectp -P bg=default"'
+```
+
+The `pane-mode-changed` hook does double duty:
+
+- **Entering copy mode** (`pane_in_mode` is true): launches the polling script in the background
+- **Exiting copy mode** (`pane_in_mode` is false): resets the pane background to default
+
+## How It Feels
+
+When it works, it's subtle but effective. You scroll back, read through some output, and if something new lands in the buffer — the pane gets a faint red tint. You know immediately that there's new content below. Exit copy mode (press `q`) and the tint clears.
+
+No plugins required. Just a hook, a script, and a format variable that was already there.
+
+## Limitations
+
+- **Polling interval is 1 second.** You could lower it, but the tradeoff is more `tmux display-message` calls. In practice, 1 second is fine — you're reading, not racing.
+- **The tint is per-pane, not per-line.** You won't know *where* the new output starts. Scroll to the bottom to find it.
+- **`history_size` only grows when lines scroll off the visible area.** If the new output fits within the visible portion of the pane (below your scroll position), it still grows history — but edge cases with very short output may not hit the threshold.
