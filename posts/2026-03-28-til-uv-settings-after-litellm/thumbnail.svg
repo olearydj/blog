@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <rect width="600" height="300" fill="#2D2D2D"/>
+  <!-- Shield outline -->
+  <path d="M300 60 L380 95 L380 180 Q380 240 300 265 Q220 240 220 180 L220 95 Z" fill="none" stroke="#C2571A" stroke-width="3"/>
+  <!-- X mark (blocked version) -->
+  <line x1="272" y1="140" x2="328" y2="196" stroke="#C2571A" stroke-width="3" stroke-linecap="round"/>
+  <line x1="328" y1="140" x2="272" y2="196" stroke="#C2571A" stroke-width="3" stroke-linecap="round"/>
+</svg>
