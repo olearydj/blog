@@ -1,0 +1,81 @@
+---
+title: "TIL: uv Settings I Changed after LiteLLM"
+author: "Dan O'Leary"
+date: "2026-03-28"
+categories: [TIL, python, security, devops]
+description: "Two uv settings that would have blocked the litellm compromise - and cost nothing in daily workflow"
+image: thumbnail.png
+draft: false
+---
+
+## The Problem
+
+On March 24, 2026, an attacker ([TeamPCP](https://www.sonatype.com/blog/compromised-litellm-pypi-package-delivers-multi-stage-credential-stealer)) compromised the CI/CD pipeline of [litellm](https://github.com/BerriAI/litellm), a popular Python LLM proxy library with ~3.4 million daily downloads. They stole the PyPI publishing token via a poisoned [Trivy GitHub Action](https://blog.gitguardian.com/trivys-march-supply-chain-attack-shows-where-secret-exposure-hurts-most/) and published two backdoored versions - v1.82.7 and v1.82.8 - directly to PyPI.
+
+The payload was aggressive: credential harvesting (SSH keys, cloud creds, API keys, K8s tokens), AES-encrypted exfiltration to a C2 domain, and a persistent backdoor polling for further instructions. The malicious versions were live for about three hours before PyPI quarantined them.
+
+I use litellm in several projects. I hadn't updated recently, so I wasn't hit - but "I was lucky" is not a security posture.
+
+## The Defense: Two Lines in `uv.toml`
+
+uv has two settings that, combined, make this class of attack much harder to land.
+
+Matt Harrison ([@\_\_mharrison\_\_](https://x.com/__mharrison__/status/2037621081771745388) - the most Pythonic handle on the platform) pointed out that uv's `exclude-newer` setting is a natural defense here. I took it a step further with a second setting.
+
+### 1. Dependency Cooldown
+
+```toml
+# ~/.config/uv/uv.toml
+exclude-newer = "3 days"
+```
+
+This tells uv to ignore any package version released in the last three days during dependency resolution. The litellm attack lasted three *hours* - a 3-day buffer catches that easily, while keeping you close enough to current releases that legitimate security patches aren't blocked for long.
+
+The tradeoff is real: if a CVE fix drops today, you can't install it until Wednesday. But for most projects, a 3-day lag on new versions is invisible in practice.
+
+*How it works under the hood:* when you run `uv lock`, uv calculates a concrete timestamp (now minus 3 days) and writes *that* into `uv.lock`. It doesn't re-evaluate the window on every `uv sync` - only on the next resolution (`uv lock --upgrade`, `uv add`, etc.).
+
+### 2. Version Exclusion
+
+```toml
+# ~/.config/uv/uv.toml
+constraint-dependencies = [
+  "litellm!=1.82.7,!=1.82.8",
+]
+```
+
+`constraint-dependencies` lets you globally blacklist known-compromised versions. Unlike `override-dependencies`, constraints only apply when the package is already in the dependency graph - they won't force-install anything. Think of it as a blocklist for versions you never want resolved, even accidentally.
+
+This may seem a bit redundant, but it's also permanent protection against these specific versions. The cooldown window eventually passes; the constraint doesn't.
+
+### The Full Config
+
+```toml
+# ~/.config/uv/uv.toml
+python-preference = "only-managed"
+exclude-newer = "3 days"
+constraint-dependencies = [
+  "litellm!=1.82.7,!=1.82.8",
+]
+```
+
+Setting this in `~/.config/uv/uv.toml` applies it globally across all projects. No per-project changes needed.
+
+`python-preference = "only-managed"` predates the LiteLLM attack, but serves a similar purpose - reducing surface area while providing more control and reproducibility. It tells uv to only use Python versions that uv itself installed, ignoring anything else on the system (Homebrew, conda, stale virtualenvs). One tool manages the toolchain, no surprises.
+
+## What This Doesn't Cover
+
+This is defense-in-depth, not a silver bullet:
+
+- *Long-running compromises* that survive past the cooldown window won't be caught.
+- *Lockfiles are your real protection.* If you're not running `uv lock --upgrade` or `uv add`, you're already pinned to known versions. The cooldown only matters during resolution.
+- *Dependency confusion and typosquatting* are different attack vectors entirely.
+- *The 3-day window is arbitrary.* It's a bet that the community will catch and yank most hot compromises within 72 hours. The litellm attack validates that bet; a more patient attacker might not.
+
+## Resources
+
+- [Sonatype: Compromised litellm PyPI Package](https://www.sonatype.com/blog/compromised-litellm-pypi-package-delivers-multi-stage-credential-stealer)
+- [Snyk: How a Poisoned Security Scanner Became the Key to Backdooring LiteLLM](https://snyk.io/articles/poisoned-security-scanner-backdooring-litellm/)
+- [GitGuardian: Trivy's March Supply Chain Attack](https://blog.gitguardian.com/trivys-march-supply-chain-attack-shows-where-secret-exposure-hurts-most/)
+- [uv: Dependency resolution settings](https://docs.astral.sh/uv/reference/settings/)
+
