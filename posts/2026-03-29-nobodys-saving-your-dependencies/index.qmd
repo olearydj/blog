@@ -32,9 +32,9 @@ Even granting that the versions are now unreachable from PyPI proper, "very unli
 
 The likelihood of accidentally resolving a known-compromised litellm version today is low. The impact - credential exfiltration across SSH keys, cloud provider tokens, Kubernetes configs, and CI secrets, plus a persistent backdoor polling for further instructions - is catastrophically high. When likelihood is low and impact is catastrophic, the standard engineering response *isn't to rely on circumstance*. It's to *delegate the risk to a control*.
 
-PyPI deletion only controls PyPI. Corporate package mirrors - Artifactory, Nexus, AWS CodeArtifact - may have cached the wheel during the exposure window and won't automatically honor a deletion upstream. Local `uv` and `pip` caches on developer machines can retain the wheel indefinitely. A `requirements.txt` or `pyproject.toml` with an explicit `==1.82.7` pin will still resolve against a cached or mirrored copy regardless of PyPI's current state. And the litellm versions were fully deleted - but full deletion is the exception, not the rule. It requires PyPI admin intervention and isn't something maintainers can do themselves.
+PyPI deletion only controls PyPI. Corporate package mirrors like Artifactory, Nexus, and AWS CodeArtifact may have cached the wheel during the exposure window and won't automatically honor an upstream deletion. That's the clearest residual risk and a well-documented concern: pinned dependencies can still resolve from a mirrored copy even after PyPI itself has removed the release. Local `uv` and `pip` caches are another reason not to treat PyPI deletion as a magic eraser, though this is less of a risk.
 
-The standard maintainer response is to yank, and yanking is reversible by design. [PEP 592 explicitly states](https://peps.python.org/pep-0592/#specification) that the yanked attribute "is not immutable once set, and may be rescinded in the future." PyPI's Warehouse implementation supports un-yanking as a first-class operation. A future maintainer account compromise - the same kind of compromise that started this whole incident - could un-yank a version that was previously flagged bad. For the next compromised package that gets yanked but not deleted, explicit pins will still resolve.
+The litellm versions were fully deleted, but full deletion is the exception. The standard response on PyPI is to yank the offending release, an action that is reversible by design. [PEP 592 explicitly states](https://peps.python.org/pep-0592/#specification) that the yanked attribute "is not immutable once set, and may be rescinded in the future." PyPI's Warehouse implementation supports un-yanking as a first-class operation. A future maintainer account compromise - the same kind of compromise that started this whole incident - could un-yank a version that was previously flagged bad. For the next compromised package that gets yanked but not deleted, explicit pins will still resolve.
 
 None of these are likely scenarios. But "unlikely" is doing a lot of work in an argument whose entire premise is that supply chain attacks don't happen.
 
@@ -55,4 +55,3 @@ I greatly respect what PyPI does and think the litellm response was handled abou
 > Explicit is better than implicit.
 >
 > — [The Zen of Python](https://peps.python.org/pep-0020/)
-
