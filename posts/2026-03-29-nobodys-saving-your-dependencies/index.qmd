@@ -1,0 +1,58 @@
+---
+title: "Nobody's Coming to Save Your Dependencies"
+author: "Dan O'Leary"
+date: "2026-03-29"
+categories: [python, security, opinion]
+description: "Why I still recommend constraint-dependencies for litellm - even after PyPI deleted the compromised versions"
+image: thumbnail.png
+draft: false
+---
+
+*A follow-up to [TIL: uv Settings I Changed after LiteLLM](../2026-03-28-til-uv-settings-after-litellm/index.qmd).*
+
+After my last post, a couple of commenters pushed back on recommendation 2 - the `constraint-dependencies` entry blocking litellm 1.82.7 and 1.82.8. The argument, paraphrased: PyPI pulled those versions, so they're no longer installable. The constraint is unnecessary work defending against something that can't happen.
+
+I appreciate their opinion and it's not an unreasonable position to take. PyPI's security response to the litellm incident was genuinely fast - the malicious versions were live for only about three hours before quarantine, and the maintainers rotated credentials and engaged [Google's Mandiant](https://github.com/BerriAI/litellm/issues/24518) for forensics. That's not nothing. If you believe PyPI's remediation is sufficient and permanent, a redundant constraint looks like noise.
+
+But after careful consideration and further research, I think their view is too narrow on both the technical facts and the risk reasoning.
+
+## What "Pulled" Actually Means
+
+"Pulled" isn't a PyPI term, and that vagueness obscures something important. Looking across incident reports from the litellm compromise, the same versions get described as [*quarantined*, *yanked*](https://futuresearch.ai/blog/litellm-pypi-supply-chain-attack/), and [*permanently deleted*](https://github.com/BerriAI/litellm/issues/24518) - sometimes in the same thread, because the state changed multiple times over several hours.
+
+These are meaningfully different things. PyPI's yank mechanism, defined in [PEP 592](https://peps.python.org/pep-0592/), is a soft removal. Yanked versions disappear from general resolution - `pip install litellm` won't touch them - but they remain installable if explicitly requested by exact pin: `litellm==1.82.7` will still resolve a yanked version. That's intentional. Yanking exists precisely so that maintainers can flag a bad release without breaking downstream projects that have already pinned to it.
+
+Hard deletion by a PyPI administrator is different - that makes a version truly unreachable from the index. Based on the [litellm team's own communications](https://github.com/BerriAI/litellm/issues/24518) and [third-party analysis](https://thecybersecguru.com/news/litellm-supply-chain-attack/), permanent deletion did eventually happen for 1.82.7 and 1.82.8. As of this writing, both versions return 404 on the PyPI JSON API and are completely absent from the [Simple API index](https://pypi.org/simple/litellm/). Gone as if they never existed. But deletion happened *after* quarantine and *after* yanking, as a later escalation.
+
+The practical upshot: "PyPI pulled it" is not a precise claim, and the level of protection it implies depends on exactly which action was taken, when, and from which index you're resolving. The constraint sidesteps all of that ambiguity.
+
+## The Risk Math
+
+Even granting that the versions are now unreachable from PyPI proper, "very unlikely to happen" is not the same as "cannot happen." Risk has two dimensions: likelihood and impact.
+
+The likelihood of accidentally resolving a known-compromised litellm version today is low. The impact - credential exfiltration across SSH keys, cloud provider tokens, Kubernetes configs, and CI secrets, plus a persistent backdoor polling for further instructions - is catastrophically high. When likelihood is low and impact is catastrophic, the standard engineering response *isn't to rely on circumstance*. It's to *delegate the risk to a control*.
+
+PyPI deletion only controls PyPI. Corporate package mirrors - Artifactory, Nexus, AWS CodeArtifact - may have cached the wheel during the exposure window and won't automatically honor a deletion upstream. Local `uv` and `pip` caches on developer machines can retain the wheel indefinitely. A `requirements.txt` or `pyproject.toml` with an explicit `==1.82.7` pin will still resolve against a cached or mirrored copy regardless of PyPI's current state. And the litellm versions were fully deleted - but full deletion is the exception, not the rule. It requires PyPI admin intervention and isn't something maintainers can do themselves.
+
+The standard maintainer response is to yank, and yanking is reversible by design. [PEP 592 explicitly states](https://peps.python.org/pep-0592/#specification) that the yanked attribute "is not immutable once set, and may be rescinded in the future." PyPI's Warehouse implementation supports un-yanking as a first-class operation. A future maintainer account compromise - the same kind of compromise that started this whole incident - could un-yank a version that was previously flagged bad. For the next compromised package that gets yanked but not deleted, explicit pins will still resolve.
+
+None of these are likely scenarios. But "unlikely" is doing a lot of work in an argument whose entire premise is that supply chain attacks don't happen.
+
+The constraint is the control. As I noted in my [correction to the original post](../2026-03-28-til-uv-settings-after-litellm/index.qmd), `constraint-dependencies` only works at the project level in `pyproject.toml` - not in global `uv.toml`. That means adding it to each project that depends on litellm, which is more friction than I originally suggested. But it's still a one-line addition per project, and it doesn't slow down resolution or complicate your workflow once it's there. The argument against it amounts to: *you don't have to*. That's true right up until it isn't.
+
+## The Swiss Cheese
+
+James Reason's [Swiss cheese model](https://en.wikipedia.org/wiki/Swiss_cheese_model) of accident causation describes safety as a stack of imperfect layers - each one has holes, but when the holes don't align, incidents don't get through. The failure mode isn't any single layer failing; it's multiple layers failing simultaneously, holes lined up in a row.
+
+![The Swiss cheese model of accident causation. Multiple defensive layers each have holes; an incident occurs when the holes align.](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Swiss_cheese_model_textless.svg/500px-Swiss_cheese_model_textless.svg.png)
+
+PyPI's quarantine is one layer. Admin deletion is another. Your lockfile is another. Your corporate mirror's policies are another. Your teammate's awareness of the incident is another. None of these layers is perfect, and none of them knows about the others. The `constraint-dependencies` entry is a thin, cheap layer that you fully control. It doesn't need PyPI to have done the right thing. It doesn't need your mirror to have honored the yank metadata. It doesn't need your teammate to have noticed the incident. It just blocks the versions, unconditionally, every time `uv` resolves.
+
+The goal of defense-in-depth isn't to address threats that are certain. It's to close gaps that are cheap to close - because you never know in advance which holes are going to line up.
+
+I greatly respect what PyPI does and think the litellm response was handled about as well as it could have been given the circumstances. But "they handled it well" and "I should rely on them handling it" are different conclusions. I'd rather keep that layer in my own hands.
+
+> Explicit is better than implicit.
+>
+> — [The Zen of Python](https://peps.python.org/pep-0020/)
+

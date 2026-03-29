@@ -1,0 +1,95 @@
+---
+title: "From User to Contributor: Debugging Claude Code's Sandbox"
+author: "Dan O'Leary"
+date: "2026-02-10"
+categories: [claude-code, open-source, macos, sandbox]
+description: "Three dead ends, one real bug, and a PR — using Claude Code to fix Claude Code"
+draft: true
+---
+
+<!-- STUB: Notes and sources for a future post -->
+
+## Narrative Arc
+
+### Act 1 — 0 for 3 (Feb 2)
+
+Investigated three GitHub issues attributed to sandbox-runtime bugs. Created specs, plans, research docs for each. Careful code analysis revealed all three were Claude Code integration layer issues, not sandbox-runtime. "Three strikes with no code changes."
+
+- Issue #22620: `.git` marker file blocking — sandbox-runtime already handles `.git` correctly
+- Issue #22109: Noisy stderr output — Claude Code's wrapper, not the sandbox
+- Issue #22628: Edit permissions don't grant Bash write access — Claude Code hardcodes restrictions
+
+Key insight: sandbox-runtime's codebase was correct all along. The problems were in how Claude Code consumed it.
+
+### Act 2 — The Community Breakthrough (Feb 3)
+
+Tom Dale's comment on #22628 revealed the `//` path syntax for absolute paths in settings.json. Single `/` is relative to the settings file, not absolute. Rules silently matched nothing. No error message tells you this.
+
+The fix was configuration, not code. Updated docs, closed issues, posted comments.
+
+### Act 3 — An Actual Bug (Feb 10)
+
+A new comment about Linux bubblewrap glob issues led to investigating "intermittent" uv failures. Session transcript analysis revealed it wasn't intermittent — sandbox on = panic, sandbox off = success. The `.git` fix from Act 2 was a red herring solving a different (real) problem.
+
+Root cause: `uv`'s `system-configuration` Rust crate calls `SCDynamicStoreCreate()` to detect network proxy settings. The Seatbelt profile's deny-default mach-lookup policy blocks IPC to `configd`. The crate panics on the resulting NULL instead of handling it gracefully.
+
+Fix: one line added to the mach-lookup allowlist in `macos-sandbox-utils.ts`.
+
+PR: <https://github.com/anthropics/sandbox-runtime/pull/129>
+
+Plot twist: discovered the upstream fix already shipped in uv v0.9.29 (Feb 3, 2026). The sandbox fix is still valuable — other tools will hit the same wall — but honest disclosure changed the framing from "critical fix" to "ecosystem improvement."
+
+## Themes
+
+### Using the tool to fix the tool
+
+- Claude Code investigated its own sandbox issues
+- Session log analysis distinguished "intermittent" from "deterministic"
+- CC created the minimal repro, implemented the fix, wrote the test, drafted the PR
+- The meta irony of the sandbox blocking uv access during investigation of sandbox blocking uv access
+
+### Lowering the barrier to contribution
+
+- "I'm new to this kind of thing" → PR with CVE research, minimal repro, security trade-off analysis
+- CC handled: codebase exploration, test patterns, git workflow, PR formatting, security research
+- Human handled: judgment calls, testing the repro, reviewing the security analysis, pushing through sandbox limitations
+
+### Honest failures make it real
+
+- Three dead ends before finding something fixable
+- Red herrings (`.git` vs configd, "intermittent" vs deterministic)
+- `uv --version` too simple for repro (doesn't trigger Tokio runtime)
+- Upstream fix made the PR less critical — and that's disclosed in the PR
+- CI "failure" was a billing issue, not a test failure
+
+## Key Technical Details
+
+- macOS Seatbelt profiles with deny-default mach-lookup
+- `com.apple.SystemConfiguration.configd` — provides `SCDynamicStore` API access
+- `SCDynamicStore` is NOT read-only: supports read, write, and notification operations
+- CVE-2025-43413: Apple tightened sandbox profiles around this attack surface
+- Fix chain: `system-configuration` v0.7.0 → `hyper-util` v0.1.20 → `uv` v0.9.29
+- Two separate issues conflated: filesystem cache access (`//` path fix) vs mach-lookup denial (configd fix)
+
+## Sources
+
+### Session notes
+- `docs/sessions/2026-02-02-78d5efcf/` — 3 segments, initial investigation (3 issues, 0 code fixes)
+- `docs/sessions/2026-02-03-a5ec9471/` — Tom Dale's `//` path syntax revelation
+- `docs/sessions/2026-02-10-ff338948/` — configd discovery, fix, PR
+
+### GitHub
+- [PR #129: Allow configd mach-lookup](https://github.com/anthropics/sandbox-runtime/pull/129)
+- [Issue #22628: uv sandbox failures](https://github.com/anthropics/claude-code/issues/22628)
+- [PR #108: Harden mach-lookup list (removed trustd.agent)](https://github.com/anthropics/sandbox-runtime/pull/108)
+- [Tom Dale's comment on path syntax](https://github.com/anthropics/claude-code/issues/22628#issuecomment-3839467079)
+
+### Related blog posts
+- [A Controlled Python Environment for Claude Code](/posts/2026-02-02-claude-adhoc-python/)
+- [Claude Code Permissions and Sandboxing](/posts/2026-02-02-claude-code-permissions/)
+
+### External
+- [CVE-2025-43413](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-43413) — network info leakage via SystemConfiguration sandbox gaps
+- [Pwning Claude Code in 8 Different Ways](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/) — Flatt Security research on permission bypasses
+- [system-configuration crate](https://crates.io/crates/system-configuration) — Mullvad-maintained Rust bindings for macOS SystemConfiguration
+- [uv PR #17829](https://github.com/astral-sh/uv/pull/17829) — upstream fix updating hyper-util

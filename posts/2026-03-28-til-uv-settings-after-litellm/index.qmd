@@ -8,6 +8,8 @@ image: thumbnail.png
 draft: false
 ---
 
+*This article was updated on 3/29/26 to correct an error in the second recommendation and to cross-link it to another article elaborating on my justification for the same.*
+
 ## The Problem
 
 On March 24, 2026, an attacker ([TeamPCP](https://www.sonatype.com/blog/compromised-litellm-pypi-package-delivers-multi-stage-credential-stealer)) compromised the CI/CD pipeline of [litellm](https://github.com/BerriAI/litellm), a popular Python LLM proxy library with ~3.4 million daily downloads. They stole the PyPI publishing token via a poisoned [Trivy GitHub Action](https://blog.gitguardian.com/trivys-march-supply-chain-attack-shows-where-secret-exposure-hurts-most/) and published two backdoored versions - v1.82.7 and v1.82.8 - directly to PyPI.
@@ -37,31 +39,49 @@ The tradeoff is real: if a CVE fix drops today, you can't install it until Wedne
 
 ### 2. Version Exclusion
 
+::: {.callout-important}
+This article originally stated that `constraint-dependencies` could be set in the global `~/.config/uv/uv.toml`. That's wrong - [uv only reads `constraint-dependencies`](https://docs.astral.sh/uv/reference/settings/#constraint-dependencies) from the `pyproject.toml` at the workspace root, and ignores it in all `uv.toml` files. The content below is updated to reflect that limitation.
+:::
+
 ```toml
-# ~/.config/uv/uv.toml
+# pyproject.toml (per-project, at workspace root)
+[tool.uv]
 constraint-dependencies = [
   "litellm!=1.82.7,!=1.82.8",
 ]
 ```
 
-`constraint-dependencies` lets you globally blacklist known-compromised versions. Unlike `override-dependencies`, constraints only apply when the package is already in the dependency graph - they won't force-install anything. Think of it as a blocklist for versions you never want resolved, even accidentally.
+`constraint-dependencies` lets you block known-compromised versions. Unlike `override-dependencies`, constraints only apply when the package is already in the dependency graph - they won't force-install anything. Think of it as a blocklist for versions you never want resolved, even accidentally.
 
 This may seem a bit redundant, but it's also permanent protection against these specific versions. The cooldown window eventually passes; the constraint doesn't.
 
-### The Full Config
+The downside: this is a per-project setting. uv only reads `constraint-dependencies` from the `pyproject.toml` at the workspace root, so you'll need to add it to each project that depends on litellm. Not as convenient as a global toggle, but arguably worth the thirty seconds.
+
+::: {.callout-note}
+This recommendation got some pushback claiming "not required" and "unnecessary work for something that can never happen." I took the claim seriously, did some research, and wrote up [my reasoning](../2026-03-29-nobodys-saving-your-dependencies/index.qmd) for why I still think it's worth it.
+:::
+
+### The Full Picture
+
+Global config (`~/.config/uv/uv.toml`):
 
 ```toml
-# ~/.config/uv/uv.toml
 python-preference = "only-managed"
 exclude-newer = "3 days"
+```
+
+Per-project config (`pyproject.toml`):
+
+```toml
+[tool.uv]
 constraint-dependencies = [
   "litellm!=1.82.7,!=1.82.8",
 ]
 ```
 
-Setting this in `~/.config/uv/uv.toml` applies it globally across all projects. No per-project changes needed.
-
 `python-preference = "only-managed"` predates the LiteLLM attack, but serves a similar purpose - reducing surface area while providing more control and reproducibility. It tells uv to only use Python versions that uv itself installed, ignoring anything else on the system (Homebrew, conda, stale virtualenvs). One tool manages the toolchain, no surprises.
+
+The global settings apply across all projects with no per-project changes. `constraint-dependencies` requires a `pyproject.toml` entry in each relevant project.
 
 ## What This Doesn't Cover
 

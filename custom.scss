@@ -82,6 +82,12 @@ p code, li code {
   background-color: #F5F2EE;
 }
 
+// Callout body inherits base font
+div.callout-body-container.callout-body p {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+}
+
 // Sidebar categories
 #quarto-margin-sidebar .quarto-listing-category-title {
   color: #2D2D2D;
