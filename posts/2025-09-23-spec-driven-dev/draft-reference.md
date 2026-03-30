@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # The Specification Is the Source Code: Why AI Is Pushing Software Development Toward Systems Engineering
 
 I've been bullish on AI collaboration for solving problems with software from the start. Not because I think AI will replace programmers, but because I've watched something more interesting emerge: a fundamental shift in what programming actually is. After nine months of using chatbots and agentic systems to develop software, I've noticed I spend my time differently. I develop an understanding of the problem, a strategy for solving it, an architecture aligned with it, and an implementation based on those foundations, with tests to validate the results.
