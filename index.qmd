@@ -1,14 +1,30 @@
 ---
-title: "Terminally Curious"
-listing:
-  contents: "posts/**/*.qmd"
-  feed: true
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: "Antisimplistic"
+subtitle: "Precise. Testable. Teachable."
+about:
+  template: solana
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/olearydj
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/djoleary
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/antisimplistic
 ---
 
+Lecturer in Industrial and Systems Engineering at Auburn University. Recovering entrepreneur, second-career academic, relentless tinkerer. After 25 years building games and interactive products at companies I built and ran (n-Space, GUNSTRUCTION), I now teach product development, data science, and machine learning.
+
+## On this site
+
+### Articles
+
+- [Terminally Curious Blog](/blog.html) - Writing on DS/ML, AI-assisted development, tools, and teaching
+- [Why Antisimplistic?](/posts/2025-10-03-why-antisimplistic/) - The name and philosophy behind it
+- [About](/about.html) - More about me
+
+## Publications
+
+- [PhD Dissertation (HTML)](/dissertation/) - Augmented vs. Traditional Instruction in Manufacturing Assembly: An Affordance-Based, Multi-Modal Assessment of Learning, Recall, and Retention (2024)

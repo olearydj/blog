@@ -3,12 +3,13 @@ project:
   resources:
     - robots.txt
     - llms.txt
+    - dissertation/**
 
 website:
   draft-mode: gone
   description: "Thoughts on AI-assisted development, tools, and the craft of teaching with code"
   site-url: https://antisimplistic.com
-  title: "Antisimplistic Blog"
+  title: "Antisimplistic"
   open-graph: true
   twitter-card: true
   comments:
@@ -23,9 +24,11 @@ website:
         dark: dark_dimmed
   navbar:
     right:
+      - text: Blog
+        href: blog.qmd
       - about.qmd
       - icon: rss
-        href: index.xml
+        href: blog.xml
         aria-label: "RSS Feed"
       - icon: github
         href: https://github.com/olearydj
@@ -52,7 +55,7 @@ format:
               "@type": "Person",
               "name": "Dan O'Leary",
               "url": "https://antisimplistic.com/about.html",
-              "jobTitle": "Assistant Professor",
+              "jobTitle": "Lecturer",
               "affiliation": {
                 "@type": "Organization",
                 "name": "Auburn University"
