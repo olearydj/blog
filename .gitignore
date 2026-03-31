@@ -1,7 +1,9 @@
 /.quarto/
 /_site/
 *.html
+!dissertation/**/*.html
 *.pdf
+!dissertation/**/*.pdf
 
 # If using R
 .Rproj.user
