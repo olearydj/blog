@@ -22,11 +22,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Fetch dissertation HTML
-        run: |
-          git clone --depth 1 https://github.com/olearydj/au_diss.git /tmp/diss
-          cp -R /tmp/diss/snapshots/v1.1/html dissertation/
-
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
