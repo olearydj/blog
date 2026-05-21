@@ -1,0 +1,96 @@
+---
+title: "TIL: Inspect Codex Context with `prompt-input`"
+author: "Dan O'Leary"
+date: "2026-05-21"
+categories: [TIL, codex, tools, workflow]
+image: thumbnail.png
+description: "Using `codex debug prompt-input` to see how Codex assembles model-visible context"
+draft: false
+---
+
+## The Problem
+
+I recently spent a few minutes trying to figure out whether Codex was reading a global `AGENTS.md` instruction. That debugging path was not very interesting by itself. The useful thing I learned was that Codex has a command for inspecting the exact prompt input it assembles before a session starts.
+
+That is valuable beyond this one problem. When working with agentic coding tools, a lot of confusion comes from treating "context" as a vague cloud around the model. `codex debug prompt-input` makes that context concrete.
+
+## The Command
+
+Run:
+
+```bash
+codex debug prompt-input "test context visibility"
+```
+
+The command renders the model-visible prompt input as JSON. It shows the developer instructions, available tools and skills, loaded `AGENTS.md` content, environment context, and the prompt you supplied on the command line. It is not asking the model to solve the prompt. It is showing what Codex would put in front of the model.
+
+That makes it useful for debugging, but also for learning. You can see how global and project instructions are combined, what metadata Codex adds, and which parts of your local environment are represented in the actual request.
+
+## Sanitized Output
+
+Here is the shape of the output, with paths and private text removed:
+
+```json
+[
+  {
+    "type": "message",
+    "role": "developer",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "<permissions instructions>..."
+      },
+      {
+        "type": "input_text",
+        "text": "<skills_instructions>..."
+      },
+      {
+        "type": "input_text",
+        "text": "<plugins_instructions>..."
+      }
+    ]
+  },
+  {
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "# AGENTS.md instructions for /path/to/project\n\n..."
+      },
+      {
+        "type": "input_text",
+        "text": "<environment_context>...</environment_context>"
+      }
+    ]
+  },
+  {
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "test context visibility"
+      }
+    ]
+  }
+]
+```
+
+## Why It Matters
+
+The utility of this should be obvious for anyone interested in context engineering, agentic systems, etc. Also, for debugging your setup. Instead of wondering whether Codex loaded a file, merged project instructions, noticed the current working directory, or included a particular tool description, you can inspect the assembled input directly.
+
+It also helps explain why some instructions work differently than expected. "The model never saw it" and "the model saw it but did something else" are completely different situations. `prompt-input` helps you find that fork in the road quickly.
+
+## Caveats
+
+Do not paste raw `prompt-input` output into public issues or blog posts. It can include local paths, private project instructions, enabled tools, and other context you may not intend to share.
+
+Also, the command tells you what Codex can see, not what it will do. A visible instruction can still be vague, lower priority than another instruction, or impossible to satisfy in the current turn lifecycle.
+
+Inside a sandboxed Codex session, the command may need permission because it reads Codex configuration and renders startup context. In a normal terminal, the help text is straightforward:
+
+```bash
+codex debug prompt-input --help
+```
