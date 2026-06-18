@@ -12,6 +12,8 @@ I kept rebuilding the same little secret resolver.
 
 The first version was not a package. It was just a helper tucked into whatever script needed it that week. Try 1Password first. If that fails, try an environment variable. Do not print the token. Do not write it to disk. Report enough provenance that I can see whether a command used `op` or an env var, but never report the value.
 
+This grew out of the same habit I wrote about in [1Password CLI for Developer Secrets](../2026-02-09-til-1password-cli/index.qmd): keep the secret in the password manager, and let local tooling hold only the reference path and the runtime value.
+
 That pattern showed up in enough local CLIs that the copies started to drift. Each one had the same basic shape, but slightly different names, error messages, and fallback behavior. Not broken, exactly, but ad hoc in the way local tooling gets when it grows from real use instead of a design doc.
 
 So I pulled it out into a small package: [`secretpath`](https://pypi.org/project/secretpath/).
@@ -73,7 +75,7 @@ Resolved service from env:SERVICE_API_KEY.
 
 That source label has turned out to be useful. It is safe enough for logs and run records, and it answers the question I actually care about: where did this credential come from?
 
-There is also a small `direnv` helper:
+There is also a small `direnv` helper, which is a cleaner version of the project-local pattern from [direnv for Project-Specific Secrets](../2025-11-09-til-direnv/index.qmd):
 
 ```bash
 sp direnv init service backup
