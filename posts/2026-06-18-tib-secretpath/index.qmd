@@ -5,7 +5,7 @@ date: "2026-06-18"
 categories: [TIB, python, shell, devops]
 description: "A tiny 1Password-first secret resolver for local automation"
 image: thumbnail.png
-draft: true
+draft: false
 ---
 
 I kept rebuilding the same little secret resolver.
