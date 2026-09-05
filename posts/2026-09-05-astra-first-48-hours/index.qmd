@@ -198,6 +198,8 @@ My response is to raise the ambition of what I try while keeping verification at
 
 Open [Waterloo](https://waterloo-guard-meets-the-line.vercel.app/) and change perspective, or inspect [the rover's revision request](https://x.com/Alpha10six/status/2096261751389978640). Choose an example close to something you understand well enough to judge, and consider what you would ask it to do next.
 
+For more examples, browse the [full demonstration catalog](../2026-09-05-astra-demonstration-catalog/index.qmd), a summary table of all 82 demonstrations, experiments, and evaluations.
+
 ---
 
 *Sources and scope: This article draws on a Codex-assisted survey of 72 candidates from 504 unique captured posts, followed by targeted searches, including CAD, anatomy, and Thornwake. Selection emphasized breadth, evidence, difficulty, and practical interest. Some applications were opened and selected interactions checked; most claims about production, cost, completeness, and accuracy remain the creators' accounts. This was not a controlled model comparison or a set of independently reproduced projects. The linked sources provide the fuller evidence, including benchmark protocols and qualifications. Images are application screenshots or frames from the attributed creators' demonstrations. Capturing a frame does not independently validate the project.*

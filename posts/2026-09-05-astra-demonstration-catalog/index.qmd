@@ -1,0 +1,115 @@
+---
+title: "Astra Demonstrations: The Full Catalog"
+author: "Dan O'Leary"
+date: "2026-09-05"
+categories: [AI, agents]
+description: "A compact catalog of 82 Astra demonstrations, experiments, and evaluations, grouped by category."
+image: ../2026-09-05-astra-first-48-hours/waterloo.png
+draft: false
+toc: false
+---
+
+This is the companion to [Astra's First 48 Hours](../2026-09-05-astra-first-48-hours/index.qmd): 82 demonstrations, experiments, and evaluations, grouped by category. It includes the original 72 candidates and ten later additions, including CAD projects, Thornwake, and examples of limitations. The main article develops the findings; this table is for finding something to explore.
+
+Descriptions summarize the creators' accounts and the evidence available on September 5, 2026. Inclusion is not independent validation, and this is not a ranking. Related projects by the same creator remain identified separately. Additional live-demo and code links are included where located.
+
+::: {.catalog-table}
+| Category | Demo / creator | What's interesting | Links |
+|---|---|---|---|
+| History and architecture | Waterloo: The Guard meets the line · danshipper | Makes a Waterloo encounter explorable through viewpoints and a timeline, with notes separating sources from interpretation. | [Original](https://x.com/danshipper/status/2095880567313092770) · [Explore](https://waterloo-guard-meets-the-line.vercel.app/) |
+| History and architecture | Library of Alexandria / Mouseion · emollick | Connects an imagined ancient city to readable texts while distinguishing surviving works from lost or fragmentary ones. | [Original](https://x.com/emollick/status/2095601539066777748) · [Explore](https://alexandria-mouseion.netlify.app/) · [Code](https://github.com/emollick/alexandria-mouseion) |
+| History and architecture | Boullée's unbuilt Newton cenotaph · emollick | Turns sketches of an unbuilt monument into a narrated spatial walkthrough, making its scale easier to imagine. | [Original](https://x.com/emollick/status/2096270461122347131) |
+| History and architecture | Geobukseon turtle-ship cinematic · Creator post | Connects a turtle ship's interior to a naval encounter inspired by Yi's campaigns; historical fidelity remains unestablished. | [Original](https://x.com/i/status/2096241698925916633) |
+| History and architecture | Duomo cathedral scene · kristel_tech | Reconstructs a cathedral in Blender with editable camera and rendering work. | [Original](https://x.com/kristel_tech/status/2096282340913717537) |
+| History and architecture | Palace of Fine Arts in Blender · sharifshameem | Reconstructs the Palace of Fine Arts in Blender, making architectural form available for spatial inspection. | [Original](https://x.com/sharifshameem/status/2095653641164329143) |
+| Worlds and interactive visualization | Void Explorer: procedural planetary landings · truthyvalue | Connects spaceflight to planetary exploration, with an account of rendering scale, physics, and visual iteration. | [Original](https://x.com/truthyvalue/status/2096291942091153563) · [Build account](https://developers.openai.com/blog/how-to-build-games-with-astra) |
+| Worlds and interactive visualization | Manhattan in Unreal Engine · mattshumer_ | Sustains a large, drivable Manhattan build in Unreal over roughly a week; existing assets and substantial compute are disclosed. | [Original](https://x.com/mattshumer_/status/2095609734845927525) · [Build account](https://somethingbig.ai/a) |
+| Worlds and interactive visualization | ABYSSAL: living deep · emollick | Adds procedural marine behavior to an underwater environment, giving exploration activity beyond static scenery. | [Original](https://x.com/emollick/status/2095673885605630429) · [Code](https://github.com/emollick/abyssal-living-deep) |
+| Worlds and interactive visualization | Van Gogh's Town · petergostev | Interprets six Van Gogh paintings as a shared walkable town; related to the same creator's Gogh Strike. | [Original](https://x.com/petergostev/status/2095776685807346105) · [Explore](https://van-goghs-town.surge.sh/) |
+| Worlds and interactive visualization | VRChat beach world · pichikyo | Builds a beach world for VRChat, including collisions and optimization; baking remained unfinished. | [Original](https://x.com/pichikyo/status/2096285284178788612) |
+| Worlds and interactive visualization | Garden City from a reference image · JHereM | Turns a reference image into an explorable Garden City, extending a flat visual into a place. | [Original](https://x.com/JHereM/status/2096284195517596099) |
+| Worlds and interactive visualization | Museum of bad marketing ideas · ecomchasedimond | Makes an editorial collection of bad marketing ideas into a walkable museum. | [Original](https://x.com/ecomchasedimond/status/2096285235961045307) |
+| Worlds and interactive visualization | Personal house walkthrough · SebastianRoehl | Creates a walkthrough of a personal house, making domestic space easier to inspect in 3D. | [Original](https://x.com/SebastianRoehl/status/2096290770017984785) |
+| Worlds and interactive visualization | Screenshot-to-explorable world · yungcontent | Turns a screenshot into an explorable world, with unseen areas necessarily involving invention. | [Original](https://x.com/yungcontent/status/2096291179843440952) |
+| Worlds and interactive visualization | Shanghai Bund from one photograph · yiyangleex | Uses a single Shanghai photograph as the starting point for a Blender-to-Godot walkthrough. | [Original](https://x.com/yiyangleex/status/2096290966550544893) |
+| Worlds and interactive visualization | Rainy bear world · BubuStd | Builds an atmospheric rainy world featuring a bear; a game objective is not established. | [Original](https://x.com/BubuStd/status/2096253137510347082) |
+| Worlds and interactive visualization | Exploded human anatomy · ashebytes | Separates the body into a reported 2,234 modeled pieces so viewers can inspect internal organization; anatomical accuracy is unverified. | [Original](https://x.com/ashebytes/status/2096221988763173186) |
+| CAD and fabrication | Dual-GB10 enclosure test coupons · mr_r0b0t | Takes an electronics enclosure through repeated revisions and small physical fit tests before committing to a full print. | [Original](https://x.com/mr_r0b0t/status/2096266507839824353) |
+| CAD and fabrication | Onshape robot with selected sensors · Alpha10six | Revises sensor mounts, component placement, and ventilation in an existing Onshape assembly through an agent-built connector. | [Original](https://x.com/Alpha10six/status/2096261751389978640) |
+| CAD and fabrication | Image-to-CAD construction · wieslawsoltes | Reconstructs a CAD model from an image, exploring a route from visual reference to geometry. | [Original](https://x.com/wieslawsoltes/status/2096290662412947597) |
+| CAD and fabrication | NS6400 model train · Creator on Reddit | Adapts a locomotive body to an existing chassis, with reported revisions for snap-fits, lighting, and printing. | [Original](https://www.reddit.com/r/codex/comments/1w7rvgr/astra_just_built_my_sscale_model_train_in_onshape/) |
+| CAD and fabrication | Aurora TF-01 turbofan · Adam | Shows a cutaway engine assembly with 140 instances and motion controls; dimensional revision behavior remains untested. | [Original](https://x.com/adamdotnew/status/2096053889141489669) |
+| CAD and fabrication | SO-101 arm · MakerMatters | Exposes an articulated assembly and mechanism controls in WebCAD, making relationships between moving parts inspectable. | [Original](https://x.com/MakerMatters/status/2096262183281692918) |
+| CAD and fabrication | FreeCAD scooter redesign · heecheee | Brings iterative mechanical design into an open-source CAD application; constraint preservation is unresolved. | [Original](https://x.com/heecheee/status/2096179696245629412) |
+| Games | Gogh Strike · petergostev | Turns painters into rival crews in a town with a coherent painted style; the available build uses bots, not online multiplayer. | [Original](https://x.com/petergostev/status/2096013280519016608) · [Play](https://gogh-strike.surge.sh/) · [Code](https://github.com/petergpt/gogh-strike) |
+| Games | Zork in 3D · emollick | Translates a text adventure into a navigable world with inventory, a journal, and treasure tracking. | [Original](https://x.com/emollick/status/2096047660662722620) · [Play](https://zork-underground-empire.netlify.app/) |
+| Games | VECTOR RUSH antigravity racer · AIDREAMMAN | Builds an antigravity racer with Godot and Blender and exposes the source for inspection. | [Original](https://x.com/AIDREAMMAN/status/2096284215126229146) · [Code](https://github.com/ToBeWin/vector-rush) |
+| Games | AETHER / The Far Shore · clankenluben | Presents a survival/MMO project with a public build; working multiplayer and concurrency remain untested. | [Original](https://x.com/clankenluben/status/2096288449259069747) |
+| Games | Lumen Echo Game Boy ROM · LumenMythTech | Targets Game Boy hardware, making its limited memory and display part of the development challenge. | [Original](https://x.com/LumenMythTech/status/2096292333318717859) |
+| Games | FTL-like game with agent self-play · SIGKITTEN | Claims to build and play its own game, suggesting a feedback loop between implementation and testing. | [Original](https://x.com/SIGKITTEN/status/2095647833797824735) |
+| Games | Fortnite as a text adventure · emollick | Recasts Fortnite as a text adventure, translating its action into a different medium. | [Original](https://x.com/emollick/status/2096071878427234309) |
+| Games | One More Vine · bennash | Builds a four-level Pitfall-style game around a compact, recognizable platforming brief. | [Original](https://x.com/bennash/status/2096282758930645170) |
+| Games | RPGJS and Tiled multiplayer project · rpgjs_dev | Uses RPGJS and the Tiled map editor to develop a multiplayer project on top of an existing framework. | [Original](https://x.com/rpgjs_dev/status/2096260456654516486) |
+| Games | Battle of Alesia RTS · IvanCaceres | Uses the Battle of Alesia as a real-time strategy setting; multiplayer is described as planned. | [Original](https://x.com/IvanCaceres/status/2096290464177500414) |
+| Games | Minecraft meets Rimworld prototype · TheAtticWizard | Combines Minecraft-like construction with Rimworld-style survival and strategy in a prototype. | [Original](https://x.com/TheAtticWizard/status/2096283462781055047) |
+| Games | Nine-year-old's racing game · suganthan | Shows a parent helping a nine-year-old make a racing game, widening participation in game creation. | [Original](https://x.com/suganthan/status/2096286445434708416) |
+| Games | PS1-style Beyblade game · skirano | Builds a Beyblade game with a deliberately requested PS1 visual style. | [Original](https://x.com/skirano/status/2095595936701419637) |
+| Games | Unity physics platformer · spencerclarkdev | Builds a physics platformer in Unity, testing the coordination of movement, collisions, and level design. | [Original](https://x.com/spencerclarkdev/status/2096267800398500327) |
+| Games | Whale Rush multiplayer FPS · vikings_ace | Helps finish an existing multiplayer FPS project; the earlier codebase should not be attributed to Astra. | [Original](https://x.com/vikings_ace/status/2096288397136732186) |
+| Games | Thornwake · Meng To | Combines procedural scenery, coherent game interfaces, and combat, then recreates the project in Blender for a trailer. | [Original](https://x.com/MengTo/status/2096213835460084184) |
+| Science and simulation | Fly brain and nerve cord in a browser · mehrantsi | Integrates brain and nerve-cord data and ports an existing fly simulation into the browser; biological fidelity is unestablished. | [Original](https://x.com/mehrantsi/status/2096282317148885453) |
+| Science and simulation | Orbital rendezvous and docking · Creator post | Models spacecraft rendezvous and docking with explicit guidance and success criteria. | [Original](https://x.com/i/status/2096225621303042258) |
+| Science and simulation | Trackmania physics rebuilt for the browser · achepta_tm | Rebuilds Trackmania driving physics for the browser, creating a behavioral target beyond plausible animation. | [Original](https://x.com/achepta_tm/status/2096258619574513880) |
+| Science and simulation | Agent-inhabited civilization · mattshumer_ | Populates an Unreal environment with agent-driven inhabitants, making their actions part of the experiment. | [Original](https://x.com/mattshumer_/status/2095596175705399482) |
+| Science and simulation | MaleCNS fly connectome in Minecraft · evnsnclr | Connects a reported 166,700-neuron fly dataset to movement in Minecraft; this is early development, not verified whole-brain emulation. | [Original](https://x.com/evnsnclr/status/2095975490708291948) |
+| Science and simulation | Jet Factory V2 · konstantinsaifo | Depicts machine cycles and a returning tug to make manufacturing and transport flow visible. | [Original](https://x.com/konstantinsaifo/status/2096260471020011981) |
+| Science and simulation | Cell motility and stress-response sandbox · tsuname | Exposes stresses and gradients as controls for exploring cell movement; predictive biological validity is unestablished. | [Original](https://x.com/tsuname/status/2096283873214956016) |
+| Science and simulation | Spatial inference from dog-bark audio · literallydenis | Explores spatial inference from dog-bark audio; the creator explicitly says it is not yet a 3D map. | [Original](https://x.com/literallydenis/status/2095989219390844985) |
+| Science and simulation | BMX race physics · Im_IrushiK | Produces BMX racing motion as a physics-animation experiment; numerical fidelity is unchecked. | [Original](https://x.com/Im_IrushiK/status/2096280064019353891) |
+| Film and music | Synth composition and arrangement in Ableton · skirano | Creates synthesized instruments, musical parts, and an editable arrangement inside Ableton. | [Original](https://x.com/skirano/status/2095595942544089525) |
+| Film and music | A Room Made of Replies · SkyeSharkie | Combines a film with reported changes to its production tools, extending the agent's role into the creative workflow. | [Original](https://x.com/SkyeSharkie/status/2096276401204936939) |
+| Film and music | Piano waltz with synchronized 3D pianist · higgsfield_ai | Pairs a composed waltz with a 3D pianist whose finger movements are claimed to follow the notes. | [Original](https://x.com/higgsfield_ai/status/2096292350180163648) |
+| Film and music | 1980s action figures from video · neurofoo | Transforms video into an action-figure aesthetic; the creator points out a visible inconsistency in an ear. | [Original](https://x.com/neurofoo/status/2096287401177960882) |
+| Film and music | INCEPTION title sequence · lepadphone | Uses architectural imagery and animated typography to pursue a recognizable cinematic style; music is excluded from Astra's contribution. | [Original](https://x.com/lepadphone/status/2096285071192035406) |
+| Film and music | One-minute animated film pipeline · catalogicalism | Produces a one-minute animated film through an existing AI production pipeline. | [Original](https://x.com/catalogicalism/status/2096286887388553268) |
+| Film and music | Western cinematic in Blender · TopviewAIhq | Builds a Western cinematic in Blender, with the creator reporting an editable scene rather than only a finished video. | [Original](https://x.com/TopviewAIhq/status/2096252019329716464) |
+| Film and music | DaVinci Resolve editing workflow · argofowl | Handles cuts, captions, and bad-take removal in an editing application, but reportedly fails at color correction. | [Original](https://x.com/argofowl/status/2096284502192721938) |
+| Film and music | Wireframe motion sequence · Cupang1997 | Produces a wireframe motion sequence with Flova, combining code and existing creative tooling. | [Original](https://x.com/Cupang1997/status/2096291647927792037) |
+| Film and music | Backrooms film · Duncan Trussell | Uses fluorescent rooms, staging, and an unsettling figure to develop an atmospheric Blender film. | [Original](https://x.com/duncantrussell/status/2096003511104508411) |
+| Education | T-cell explainer by Derya Unutmaz · DeryaTR_ | An immunologist directs an audiovisual T-cell explanation using generated imagery, narration, and code-based video tools. | [Original](https://x.com/DeryaTR_/status/2095659170661904804) |
+| Interfaces and product design | Parallax Desk head-tracked windows · outscape | Uses head position to change the apparent depth and overlap of desktop windows. | [Original](https://x.com/outscape/status/2096286659566309605) · [Try](https://parallax-desk.uhgall.chatgpt.site) |
+| Interfaces and product design | 3D iPod-shaped Codex thread app · skirano | Makes Codex conversations browsable through a familiar 3D iPod-shaped interface. | [Original](https://x.com/skirano/status/2095648379455861054) |
+| Interfaces and product design | Portrait painted in 9,216 Google Sheets cells · velvet_shark | Paints a portrait into 9,216 spreadsheet cells, demonstrating coordinated edits inside an existing application. | [Original](https://x.com/velvet_shark/status/2096284077150114303) |
+| Interfaces and product design | Codex Micro 3D device animation · skirano | Builds and animates a 3D device from an image, connecting product reference to motion. | [Original](https://x.com/skirano/status/2095595932335170031) |
+| Interfaces and product design | Video recreated as interactive code · skirano | Recreates a reference video as an interactive card-customization interface, turning shown behavior into editable code. | [Original](https://x.com/skirano/status/2095595938534351231) |
+| Interfaces and product design | iPhone Flip product page · ashen_one | Combines generated imagery and Blender work in a product page for a fictional folding iPhone. | [Original](https://x.com/ashen_one/status/2096291729540517937) |
+| Interfaces and product design | Jarvis desktop companion · ucsandman | Combines screen sharing with a desktop companion and small applications; reliability and privacy behavior were not reviewed. | [Original](https://x.com/ucsandman/status/2096291423142244437) |
+| Interfaces and product design | Adonis animated landing page · ElieAsaade | Connects Blender animation to a landing page, carrying 3D production into a website. | [Original](https://x.com/ElieAsaade/status/2096292362490433796) |
+| Interfaces and product design | Autonomously refreshed data graphics · Nonfon420 | Refreshes data graphics with reported autonomy; the underlying data correctness was not audited. | [Original](https://x.com/Nonfon420/status/2096287840468447240) |
+| Reasoning and evaluations | FrontierMath Erdős: formally checked new results · Epoch AI researchers | Produces formally checked solutions to two of 68 open problems under the benchmark protocol; additional runs bring the unique total to five. | [Report](https://epoch.ai/latest/announcing-frontiermath-erdos) · [Paper](https://epoch.ai/files/frontiermath-erdos.pdf) · [Proofs](https://github.com/epoch-research/LeanOpenProblems) |
+| Reasoning and evaluations | BabaIsBench puzzle solving · pmigdal | Solves 15 Baba Is You Lake levels through a text interface, reasoning about rules that can themselves change. | [Original](https://x.com/pmigdal/status/2096253047030657199) · [Evaluation](https://quesma.com/benchmarks/babaisbench/) |
+| Reasoning and evaluations | Solving a creator's grid puzzle · LoicBoursin | Solves a creator's grid puzzle with a process clip; the claimed human speed comparison is not controlled. | [Original](https://x.com/LoicBoursin/status/2096284293152567637) |
+| Reasoning and evaluations | Production rewrite evaluation · Every | Tests work on an established software system; Astra trails the human references, with differing follow-up conditions complicating comparisons. | [Report](https://every.to/benchmarks/senior-engineer-benchmark) |
+| Reasoning and evaluations | Allocator implementation difficulties · Victor Taelin | Reports difficulty converting a diagnosis into a solution under real constraints, exposing a limit beyond impressive demonstrations. | [Original](https://x.com/VictorTaelin/status/2096273196412498057) |
+| Reasoning and evaluations | Research-taste experiment · Ethan Mollick | Reports technically competent but uninteresting research choices, separating execution skill from judgment about worthwhile work. | [Original](https://x.com/emollick/status/2095717185200988439) |
+| Software and personal knowledge | Personal archive becomes a living wiki · emollick | Turns personal correspondence, calendars, and writing into a maintained wiki and recurring briefings; the artifact is private. | [Original](https://x.com/emollick/status/2095606622055760159) |
+| Software and personal knowledge | Hazumi News database migration · jrzscodes | Migrates an existing application from Supabase to Cloudflare D1, tackling infrastructure maintenance rather than a new demo. | [Original](https://x.com/jrzscodes/status/2096284357610610836) |
+| 3D modeling and visualization | Bottle schematics to Blender beauty shots · fffabs | Turns bottle schematics into presentation renders, connecting technical drawings to product communication. | [Original](https://x.com/fffabs/status/2096284491677376763) |
+| 3D modeling and visualization | Floor plan to architectural render · higgsfield_ai | Uses a floor plan to produce an architectural visualization; dimensional fidelity is not established. | [Original](https://x.com/higgsfield_ai/status/2096284092593758631) |
+| 3D modeling and visualization | Blender model comparison · Bac0nGreen02 | Compares Blender modeling output while candidly showing that the result still resembles assembled primitives. | [Original](https://x.com/Bac0nGreen02/status/2096289084960620940) |
+| 3D modeling and visualization | Ender Dragon in Spline · adonis_singh | Builds a recognizable Ender Dragon in Spline; the model is not yet rigged for animation. | [Original](https://x.com/adonis_singh/status/2096284224537907508) |
+
+:::
+
+```{=html}
+<style>
+.catalog-table {overflow-x:auto; margin:1.5rem 0;}
+.catalog-table table {min-width:760px; font-size:.9rem;}
+.catalog-table th:nth-child(1) {width:16%;}
+.catalog-table th:nth-child(2) {width:24%;}
+.catalog-table th:nth-child(3) {width:44%;}
+.catalog-table th:nth-child(4) {width:16%;}
+.catalog-table td {vertical-align:top; padding:.65rem .5rem;}
+.catalog-table tbody tr:nth-child(even) {background:rgba(127,127,127,.045);}
+</style>
+```
