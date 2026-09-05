@@ -1,0 +1,18 @@
+.demo-gallery { margin: 2rem 0 2.5rem; max-width:100%; }
+.gallery-toolbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.75rem; font-size:.82rem; color:var(--bs-secondary-color,#595959); }
+.gallery-toolbar>div { display:flex; gap:.4rem; flex-shrink:0; }
+.gallery-toolbar button, .demo-lightbox button { border:1px solid #888; border-radius:.35rem; background:var(--bs-body-bg,#fff); color:var(--bs-body-color,#222); min-width:44px; min-height:44px; font-size:1.2rem; }
+.gallery-toolbar button:disabled { opacity:.35; }
+.gallery-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 0 .8rem; scrollbar-width:thin; }
+.gallery-track figure { flex:0 0 250px; width:250px; margin:0; scroll-snap-align:start; }
+.gallery-track img { display:block; width:100%; height:155px; object-fit:contain; background:#e9e8e4; border-radius:.4rem; }
+.gallery-track figcaption { margin-top:.5rem; font-size:.85rem; line-height:1.35; text-align:left; }
+.gallery-track figcaption span { display:block; margin-top:.2rem; font-size:.75rem; color:var(--bs-secondary-color,#595959); }
+.demo-enlarge { display:block; }
+.demo-enlarge:focus-visible, .gallery-track:focus-visible, .demo-gallery button:focus-visible { outline:3px solid #b75a22; outline-offset:3px; }
+.demo-lightbox { border:0; border-radius:.5rem; padding:1rem; width: min(1200px,94vw); max-width:94vw; max-height:94dvh; background:var(--bs-body-bg,#fff); color:var(--bs-body-color,#222); }
+.demo-lightbox::backdrop { background:rgba(0,0,0,.85); }
+.demo-lightbox header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.7rem; }
+.demo-lightbox img { display:block; width:100%; height:auto; max-height:78dvh; object-fit:contain; }
+@media(max-width:600px) { .gallery-track figure { flex-basis:76vw; width:76vw; } .gallery-track img { height:180px; } .gallery-toolbar { align-items:flex-start; } }
+@media print { .gallery-track { display:grid; grid-template-columns:repeat(2,1fr); overflow:visible; } .gallery-track figure { width:auto; } .gallery-toolbar button { display:none; } }

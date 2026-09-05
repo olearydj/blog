@@ -1,0 +1,26 @@
+<dialog class="demo-lightbox" aria-label="Enlarged demonstration image">
+<header><span id="demo-image-caption"></span><button type="button" aria-label="Close enlarged image">×</button></header>
+<img alt="">
+</dialog>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+ const dialog=document.querySelector('.demo-lightbox');
+ let opener;
+ document.querySelectorAll('.demo-enlarge').forEach(link=>link.addEventListener('click',event=>{
+  event.preventDefault(); event.stopImmediatePropagation(); opener=link;
+  dialog.querySelector('img').src=link.href;
+  dialog.querySelector('img').alt=link.querySelector('img').alt;
+  dialog.querySelector('span').textContent=link.dataset.caption;
+  dialog.showModal(); dialog.querySelector('button').focus();
+ }));
+ dialog.querySelector('button').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('close',()=>opener?.focus());
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+ document.querySelectorAll('.demo-gallery').forEach(gallery=>{
+  const track=gallery.querySelector('.gallery-track'); const buttons=gallery.querySelectorAll('button');
+  const update=()=>{buttons[0].disabled=track.scrollLeft<2;buttons[1].disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2;};
+  buttons.forEach(button=>button.addEventListener('click',()=>track.scrollBy({left:Number(button.dataset.step)*(track.querySelector('figure').getBoundingClientRect().width+16),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})));
+  track.addEventListener('scroll',update,{passive:true});new ResizeObserver(update).observe(track);update();
+ });
+});
+</script>
