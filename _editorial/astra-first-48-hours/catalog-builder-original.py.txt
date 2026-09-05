@@ -1,0 +1,161 @@
+import json,re
+from pathlib import Path
+root=Path('/casa/archive/twitter')
+rows=json.loads((root/'store/research/gpt6-demos/20260905T174033Z/candidates.json').read_text())
+descriptions='''Takes an electronics enclosure through repeated revisions and small physical fit tests before committing to a full print.
+Revises sensor mounts, component placement, and ventilation in an existing Onshape assembly through an agent-built connector.
+Turns bottle schematics into presentation renders, connecting technical drawings to product communication.
+Uses a floor plan to produce an architectural visualization; dimensional fidelity is not established.
+Reconstructs a CAD model from an image, exploring a route from visual reference to geometry.
+Compares Blender modeling output while candidly showing that the result still resembles assembled primitives.
+Builds a recognizable Ender Dragon in Spline; the model is not yet rigged for animation.
+An immunologist directs an audiovisual T-cell explanation using generated imagery, narration, and code-based video tools.
+Creates synthesized instruments, musical parts, and an editable arrangement inside Ableton.
+Combines a film with reported changes to its production tools, extending the agent's role into the creative workflow.
+Pairs a composed waltz with a 3D pianist whose finger movements are claimed to follow the notes.
+Transforms video into an action-figure aesthetic; the creator points out a visible inconsistency in an ear.
+Uses architectural imagery and animated typography to pursue a recognizable cinematic style; music is excluded from Astra's contribution.
+Produces a one-minute animated film through an existing AI production pipeline.
+Builds a Western cinematic in Blender, with the creator reporting an editable scene rather than only a finished video.
+Handles cuts, captions, and bad-take removal in an editing application, but reportedly fails at color correction.
+Produces a wireframe motion sequence with Flova, combining code and existing creative tooling.
+Turns painters into rival crews in a town with a coherent painted style; the available build uses bots, not online multiplayer.
+Translates a text adventure into a navigable world with inventory, a journal, and treasure tracking.
+Builds an antigravity racer with Godot and Blender and exposes the source for inspection.
+Presents a survival/MMO project with a public build; working multiplayer and concurrency remain untested.
+Targets Game Boy hardware, making its limited memory and display part of the development challenge.
+Claims to build and play its own game, suggesting a feedback loop between implementation and testing.
+Recasts Fortnite as a text adventure, translating its action into a different medium.
+Builds a four-level Pitfall-style game around a compact, recognizable platforming brief.
+Uses RPGJS and the Tiled map editor to develop a multiplayer project on top of an existing framework.
+Uses the Battle of Alesia as a real-time strategy setting; multiplayer is described as planned.
+Combines Minecraft-like construction with Rimworld-style survival and strategy in a prototype.
+Shows a parent helping a nine-year-old make a racing game, widening participation in game creation.
+Builds a Beyblade game with a deliberately requested PS1 visual style.
+Builds a physics platformer in Unity, testing the coordination of movement, collisions, and level design.
+Helps finish an existing multiplayer FPS project; the earlier codebase should not be attributed to Astra.
+Makes a Waterloo encounter explorable through viewpoints and a timeline, with notes separating sources from interpretation.
+Connects an imagined ancient city to readable texts while distinguishing surviving works from lost or fragmentary ones.
+Turns sketches of an unbuilt monument into a narrated spatial walkthrough, making its scale easier to imagine.
+Connects a turtle ship's interior to a naval encounter inspired by Yi's campaigns; historical fidelity remains unestablished.
+Reconstructs a cathedral in Blender with editable camera and rendering work.
+Reconstructs the Palace of Fine Arts in Blender, making architectural form available for spatial inspection.
+Connects spaceflight to planetary exploration, with an account of rendering scale, physics, and visual iteration.
+Sustains a large, drivable Manhattan build in Unreal over roughly a week; existing assets and substantial compute are disclosed.
+Adds procedural marine behavior to an underwater environment, giving exploration activity beyond static scenery.
+Interprets six Van Gogh paintings as a shared walkable town; related to the same creator's Gogh Strike.
+Builds a beach world for VRChat, including collisions and optimization; baking remained unfinished.
+Turns a reference image into an explorable Garden City, extending a flat visual into a place.
+Makes an editorial collection of bad marketing ideas into a walkable museum.
+Creates a walkthrough of a personal house, making domestic space easier to inspect in 3D.
+Turns a screenshot into an explorable world, with unseen areas necessarily involving invention.
+Uses a single Shanghai photograph as the starting point for a Blender-to-Godot walkthrough.
+Builds an atmospheric rainy world featuring a bear; a game objective is not established.
+Uses head position to change the apparent depth and overlap of desktop windows.
+Makes Codex conversations browsable through a familiar 3D iPod-shaped interface.
+Paints a portrait into 9,216 spreadsheet cells, demonstrating coordinated edits inside an existing application.
+Builds and animates a 3D device from an image, connecting product reference to motion.
+Recreates a reference video as an interactive card-customization interface, turning shown behavior into editable code.
+Combines generated imagery and Blender work in a product page for a fictional folding iPhone.
+Combines screen sharing with a desktop companion and small applications; reliability and privacy behavior were not reviewed.
+Connects Blender animation to a landing page, carrying 3D production into a website.
+Refreshes data graphics with reported autonomy; the underlying data correctness was not audited.
+Produces formally checked solutions to two of 68 open problems under the benchmark protocol; additional runs bring the unique total to five.
+Solves 15 Baba Is You Lake levels through a text interface, reasoning about rules that can themselves change.
+Solves a creator's grid puzzle with a process clip; the claimed human speed comparison is not controlled.
+Integrates brain and nerve-cord data and ports an existing fly simulation into the browser; biological fidelity is unestablished.
+Models spacecraft rendezvous and docking with explicit guidance and success criteria.
+Rebuilds Trackmania driving physics for the browser, creating a behavioral target beyond plausible animation.
+Populates an Unreal environment with agent-driven inhabitants, making their actions part of the experiment.
+Connects a reported 166,700-neuron fly dataset to movement in Minecraft; this is early development, not verified whole-brain emulation.
+Depicts machine cycles and a returning tug to make manufacturing and transport flow visible.
+Exposes stresses and gradients as controls for exploring cell movement; predictive biological validity is unestablished.
+Explores spatial inference from dog-bark audio; the creator explicitly says it is not yet a 3D map.
+Produces BMX racing motion as a physics-animation experiment; numerical fidelity is unchecked.
+Turns personal correspondence, calendars, and writing into a maintained wiki and recurring briefings; the artifact is private.
+Migrates an existing application from Supabase to Cloudflare D1, tackling infrastructure maintenance rather than a new demo.''' .splitlines()
+assert len(descriptions)==72
+for row,description in zip(rows,descriptions):row['summary']=description
+extras=[
+('CAD and fabrication','NS6400 model train','Creator on Reddit','https://www.reddit.com/r/codex/comments/1w7rvgr/astra_just_built_my_sscale_model_train_in_onshape/','Adapts a locomotive body to an existing chassis, with reported revisions for snap-fits, lighting, and printing.'),
+('CAD and fabrication','Aurora TF-01 turbofan','Adam','https://x.com/adamdotnew/status/2096053889141489669','Shows a cutaway engine assembly with 140 instances and motion controls; dimensional revision behavior remains untested.'),
+('CAD and fabrication','SO-101 arm','MakerMatters','https://x.com/MakerMatters/status/2096262183281692918','Exposes an articulated assembly and mechanism controls in WebCAD, making relationships between moving parts inspectable.'),
+('CAD and fabrication','FreeCAD scooter redesign','heecheee','https://x.com/heecheee/status/2096179696245629412','Brings iterative mechanical design into an open-source CAD application; constraint preservation is unresolved.'),
+('Interactive worlds','Exploded human anatomy','ashebytes','https://x.com/ashebytes/status/2096221988763173186','Separates the body into a reported 2,234 modeled pieces so viewers can inspect internal organization; anatomical accuracy is unverified.'),
+('Games','Thornwake','Meng To','https://x.com/MengTo/status/2096213835460084184','Combines procedural scenery, coherent game interfaces, and combat, then recreates the project in Blender for a trailer.'),
+('Film and music','Backrooms film','Duncan Trussell','https://x.com/duncantrussell/status/2096003511104508411','Uses fluorescent rooms, staging, and an unsettling figure to develop an atmospheric Blender film.'),
+('Reasoning and research','Production rewrite evaluation','Every','https://every.to/benchmarks/senior-engineer-benchmark','Tests work on an established software system; Astra trails the human references, with differing follow-up conditions complicating comparisons.'),
+('Reasoning and research','Allocator implementation difficulties','Victor Taelin','https://x.com/VictorTaelin/status/2096273196412498057','Reports difficulty converting a diagnosis into a solution under real constraints, exposing a limit beyond impressive demonstrations.'),
+('Reasoning and research','Research-taste experiment','Ethan Mollick','https://x.com/emollick/status/2095717185200988439','Reports technically competent but uninteresting research choices, separating execution skill from judgment about worthwhile work.')]
+for cat,title,author,url,summary in extras:rows.append(dict(category=cat,title=title,author=author,url=url,summary=summary))
+# Keep parametric CAD distinct from general 3D modeling.
+for row in rows:
+ if row.get('candidate') in ['C03','C04','C06','C07']:row['category']='3D modeling and visualization'
+ if row['author']=='i':row['author']='Creator post'
+category_names={'Historical reconstruction':'History and architecture','Interactive worlds':'Worlds and interactive visualization','CAD and fabrication':'CAD and fabrication','Games':'Games','Scientific and engineering simulation':'Science and simulation','Film and music':'Film and music','Education and explanation':'Education','Product and interfaces':'Interfaces and product design','Reasoning and research':'Reasoning and evaluations','Software and personal knowledge':'Software and personal knowledge','3D modeling and visualization':'3D modeling and visualization'}
+order=list(category_names)
+rows.sort(key=lambda x:order.index(x['category']))
+links={
+'C18':[('Play','https://gogh-strike.surge.sh/'),('Code','https://github.com/petergpt/gogh-strike')],
+'C19':[('Play','https://zork-underground-empire.netlify.app/')],
+'C20':[('Code','https://github.com/ToBeWin/vector-rush')],
+'C33':[('Explore','https://waterloo-guard-meets-the-line.vercel.app/')],
+'C34':[('Explore','https://alexandria-mouseion.netlify.app/'),('Code','https://github.com/emollick/alexandria-mouseion')],
+'C39':[('Build account','https://developers.openai.com/blog/how-to-build-games-with-astra')],
+'C40':[('Build account','https://somethingbig.ai/a')],
+'C41':[('Code','https://github.com/emollick/abyssal-living-deep')],
+'C42':[('Explore','https://van-goghs-town.surge.sh/')],
+'C50':[('Try','https://parallax-desk.uhgall.chatgpt.site')],
+'C59':[('Paper','https://epoch.ai/files/frontiermath-erdos.pdf'),('Proofs','https://github.com/epoch-research/LeanOpenProblems')],
+'C60':[('Evaluation','https://quesma.com/benchmarks/babaisbench/')]
+}
+assert len(rows)==82 and len({r['url'] for r in rows})==82
+header='''---
+title: "Astra Demonstrations: The Full Catalog"
+author: "Dan O'Leary"
+date: "2026-09-05"
+categories: [AI, agents]
+description: "A compact catalog of 82 Astra demonstrations, experiments, and evaluations, grouped by category."
+image: ../2026-09-05-astra-first-48-hours/waterloo.png
+draft: false
+toc: false
+---
+
+This is the companion to [Astra's First 48 Hours](../2026-09-05-astra-first-48-hours/index.qmd): 82 demonstrations, experiments, and evaluations, grouped by category. It includes the original 72 candidates and ten later additions, including CAD projects, Thornwake, and examples of limitations. The main article develops the findings; this table is for finding something to explore.
+
+Descriptions summarize the creators' accounts and the evidence available on September 5, 2026. Inclusion is not independent validation, and this is not a ranking. Related projects by the same creator remain identified separately. Additional live-demo and code links are included where located.
+
+::: {.catalog-table}
+| Category | Demo / creator | What's interesting | Links |
+|---|---|---|---|
+'''
+lines=[]
+for row in rows:
+ original='Original' if 'x.com/' in row['url'] or 'reddit.com/' in row['url'] else 'Report'
+ extra=links.get(row.get('candidate'),[])
+ urls=[(original,row['url'])]+[(a,b) for a,b in extra if b!=row['url']]
+ author=row['author']; title=row['title']
+ lines.append('| '+ ' | '.join([category_names[row['category']],f'{title} · {author}',row['summary'],' · '.join(f'[{a}]({b})' for a,b in urls)])+' |')
+css='''
+:::
+
+```{=html}
+<style>
+.catalog-table {overflow-x:auto; margin:1.5rem 0;}
+.catalog-table table {min-width:760px; font-size:.9rem;}
+.catalog-table th:nth-child(1) {width:16%;}
+.catalog-table th:nth-child(2) {width:24%;}
+.catalog-table th:nth-child(3) {width:44%;}
+.catalog-table th:nth-child(4) {width:16%;}
+.catalog-table td {vertical-align:top; padding:.65rem .5rem;}
+.catalog-table tbody tr:nth-child(even) {background:rgba(127,127,127,.045);}
+</style>
+```
+'''
+Path('/private/tmp/astra-catalog/index.qmd').write_text(header+'\n'.join(lines)+'\n'+css)
+Path('/private/tmp/astra-catalog/catalog.json').write_text(json.dumps(rows,indent=2))
+main=Path('/casa/pub/blog/posts/2026-09-05-astra-first-48-hours/index.qmd').read_text()
+main=main.replace('\n---\n\n*Sources and scope:', '\nFor more examples, browse the [full demonstration catalog](../2026-09-05-astra-demonstration-catalog/index.qmd), a summary table of all 82 demonstrations, experiments, and evaluations.\n\n---\n\n*Sources and scope:')
+assert 'full demonstration catalog' in main
+Path('/private/tmp/astra-catalog/main.qmd').write_text(main)
+print('Built',len(rows),'rows in',len(set(r['category'] for r in rows)),'categories')

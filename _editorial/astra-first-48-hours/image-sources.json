@@ -1,0 +1,272 @@
+{
+  "article": "../../posts/2026-09-05-astra-first-48-hours/index.qmd",
+  "basis": "Reconstructed from final published source on 2026-09-05. Source URLs identify the attributed demonstration or application, not necessarily the exact media download URL. Historical capture timestamps and video offsets were not reconstructed.",
+  "images": [
+    {
+      "caption": "Alexandria — Ethan Mollick · city and reading collection",
+      "path": "images/alexandria.png",
+      "alt": "Alexandria: Ethan Mollick · city and reading collection",
+      "source_url": "https://alexandria-mouseion.netlify.app/",
+      "sha256": "7a67ce1dbf7ae39e1376f6e1612a79fbf93348f7343cf78810fe2d58f89f6003"
+    },
+    {
+      "caption": "Newton’s cenotaph — Ethan Mollick · unbuilt architecture",
+      "path": "images/cenotaph.png",
+      "alt": "Newton’s cenotaph: Ethan Mollick · unbuilt architecture",
+      "source_url": "https://x.com/emollick/status/2096270461122347131",
+      "sha256": "15c3719d5fdeec0c1ca616de5334b7639d1972265be8a60f788f863cb6515830"
+    },
+    {
+      "caption": "Turtle ship — Ship interior and naval reconstruction",
+      "path": "images/turtle.png",
+      "alt": "Turtle ship: Ship interior and naval reconstruction",
+      "source_url": "https://x.com/i/status/2096241698925916633",
+      "sha256": "d08d31a9274fc8347a21bb5d262620c23686982f6b6d9f9b03ef6c2ec050d636"
+    },
+    {
+      "caption": "Van Gogh’s Town — Peter Gostev · a walkable painting",
+      "path": "images/vangogh.png",
+      "alt": "Van Gogh’s Town: Peter Gostev · a walkable painting",
+      "source_url": "https://van-goghs-town.surge.sh/",
+      "sha256": "3e65e4c4819b38238504838c602d8b1757e82ea5c009a3aed902fb0574ab7625"
+    },
+    {
+      "caption": "ABYSSAL — Ethan Mollick · underwater environment",
+      "path": "images/abyssal.png",
+      "alt": "ABYSSAL: Ethan Mollick · underwater environment",
+      "source_url": "https://x.com/emollick/status/2095673885605630429",
+      "sha256": "8da6668ab7b7466a8746ec5bd2145804d5777dc5ad551ba3bb5d25d6bed014e3"
+    },
+    {
+      "caption": "Shanghai Bund — @yiyangleex · photograph to world",
+      "path": "images/shanghai.png",
+      "alt": "Shanghai Bund: @yiyangleex · photograph to world",
+      "source_url": "https://x.com/yiyangleex/status/2096290966550544893",
+      "sha256": "b4ea85d854dadec196423a8975bddd4d20833d07e6eade024e0271bda60797ed"
+    },
+    {
+      "caption": "Exploded anatomy — @ashebytes · body and components",
+      "path": "images/anatomy.png",
+      "alt": "Exploded anatomy: @ashebytes · body and components",
+      "source_url": "https://x.com/ashebytes/status/2096221988763173186",
+      "sha256": "2fc37e3768c8ddbbad22d804e6f3ea6b0d96cd1d15f6b5a1724358e46909c50a"
+    },
+    {
+      "caption": "Aurora TF-01 — Adam · cutaway turbofan assembly",
+      "path": "images/turbofan.png",
+      "alt": "Aurora TF-01: Adam · cutaway turbofan assembly",
+      "source_url": "https://x.com/adamdotnew/status/2096053889141489669",
+      "sha256": "e4cfe4a29d39c8e8aec571adf6be9ef80eb6ba8539938a08ae0d0208fd8afaed"
+    },
+    {
+      "caption": "SO-101 arm — MakerMatters · articulated assembly",
+      "path": "images/so101.png",
+      "alt": "SO-101 arm: MakerMatters · articulated assembly",
+      "source_url": "https://x.com/MakerMatters/status/2096262183281692918",
+      "sha256": "d8444556578d232d819df2efb401279aa09088f367f1cb9c1e6810e7eb1c5f40"
+    },
+    {
+      "caption": "FreeCAD scooter — @heecheee · design comparison",
+      "path": "images/scooter.png",
+      "alt": "FreeCAD scooter: @heecheee · design comparison",
+      "source_url": "https://x.com/heecheee/status/2096179696245629412",
+      "sha256": "c7a16852af6e1fabb7b559db3911e4e2d6762ef466c3872e44e8b4cb4857f28c"
+    },
+    {
+      "caption": "Dual-GB10 enclosure — @mr_r0b0t · fabrication workflow",
+      "path": "images/enclosure.png",
+      "alt": "Dual-GB10 enclosure: @mr_r0b0t · fabrication workflow",
+      "source_url": "https://x.com/mr_r0b0t/status/2096266507839824353",
+      "sha256": "d5bf6349ae503f7acd9bc6f5898e0cd1c27ad23a4a96a99f8a93f7a12cbc758b"
+    },
+    {
+      "caption": "Zork in 3D — Ethan Mollick · spatial adventure",
+      "path": "images/zork.png",
+      "alt": "Zork in 3D: Ethan Mollick · spatial adventure",
+      "source_url": "https://zork-underground-empire.netlify.app/",
+      "sha256": "7b0581bcb952ad82a82a3295f7c1a33898f4d3d4361f40501791f0f848fc976d"
+    },
+    {
+      "caption": "VECTOR RUSH — @AIDREAMMAN · antigravity racing",
+      "path": "images/vector.png",
+      "alt": "VECTOR RUSH: @AIDREAMMAN · antigravity racing",
+      "source_url": "https://x.com/AIDREAMMAN/status/2096284215126229146",
+      "sha256": "2703a16824791438490c489632c31fb90621b1416a688525b357f32a8bf3bc68"
+    },
+    {
+      "caption": "FTL-like game — @SIGKITTEN · agent self-play",
+      "path": "images/ftl.png",
+      "alt": "FTL-like game: @SIGKITTEN · agent self-play",
+      "source_url": "https://x.com/SIGKITTEN/status/2095647833797824735",
+      "sha256": "7aad00c0f963b1f0689098548202977675116741f218fc0d9e1081f3c9556ab2"
+    },
+    {
+      "caption": "Lumen Echo — LumenMythTech · Game Boy ROM",
+      "path": "images/gameboy.png",
+      "alt": "Lumen Echo: LumenMythTech · Game Boy ROM",
+      "source_url": "https://x.com/LumenMythTech/status/2096292333318717859",
+      "sha256": "7f04026ac21f20ecef1360c093ad1a288e5f68a46b1a23adf2fcb753a469b24c"
+    },
+    {
+      "caption": "Making a racing game — @suganthan · parent-guided creation",
+      "path": "images/child-racer.png",
+      "alt": "Making a racing game: @suganthan · parent-guided creation",
+      "source_url": "https://x.com/suganthan/status/2096286445434708416",
+      "sha256": "023c3a5633b5fe8f1226b22f10f47aac00da6d6d1c35cfff9e6e6733d795394b"
+    },
+    {
+      "caption": "Orbital rendezvous — Guidance and docking simulation",
+      "path": "images/orbital.png",
+      "alt": "Orbital rendezvous: Guidance and docking simulation",
+      "source_url": "https://x.com/i/status/2096225621303042258",
+      "sha256": "451917ce7fcf11acbdbc63016934bcb96dc133e5efc2a65e8dcb0f2e11331093"
+    },
+    {
+      "caption": "Trackmania physics — @achepta_tm · behavioral reconstruction",
+      "path": "images/trackmania.png",
+      "alt": "Trackmania physics: @achepta_tm · behavioral reconstruction",
+      "source_url": "https://x.com/achepta_tm/status/2096258619574513880",
+      "sha256": "19bf999e032fed096abf4239f0e7880f407baf00ef54370b339a387a671b6b7a"
+    },
+    {
+      "caption": "Jet Factory V2 — @konstantinsaifo · production flow",
+      "path": "images/factory.png",
+      "alt": "Jet Factory V2: @konstantinsaifo · production flow",
+      "source_url": "https://x.com/konstantinsaifo/status/2096260471020011981",
+      "sha256": "c5402925e478c40bd6c9a62d24301da2c5f83e02768234c8c04a2415aaaefc77"
+    },
+    {
+      "caption": "Cell motility — @tsuname · an interactive sandbox",
+      "path": "images/cell.png",
+      "alt": "Cell motility: @tsuname · an interactive sandbox",
+      "source_url": "https://x.com/tsuname/status/2096283873214956016",
+      "sha256": "4d2f3ee8c33364625daf6dc71afb619ce587da81d972afc4bdb5ddf429ab6f21"
+    },
+    {
+      "caption": "Inhabited civilization — Matt Shumer · agent-driven inhabitants",
+      "path": "images/civilization.png",
+      "alt": "Inhabited civilization: Matt Shumer · agent-driven inhabitants",
+      "source_url": "https://x.com/mattshumer_/status/2095596175705399482",
+      "sha256": "374553530b1bbcd9b4d1d9aca8eeb62a6f3f7e3f50f5392754a55e34fa2acc9e"
+    },
+    {
+      "caption": "Piano and pianist — Higgsfield · music and finger animation",
+      "path": "images/piano.png",
+      "alt": "Piano and pianist: Higgsfield · music and finger animation",
+      "source_url": "https://x.com/higgsfield_ai/status/2096292350180163648",
+      "sha256": "2689449035f4a9795271639207b5a81929db17ae6543a7917bfc4d7b09ea8291"
+    },
+    {
+      "caption": "A Room Made of Replies — Skye Sharkie · film and production tools",
+      "path": "images/replies-film.png",
+      "alt": "A Room Made of Replies: Skye Sharkie · film and production tools",
+      "source_url": "https://x.com/SkyeSharkie/status/2096276401204936939",
+      "sha256": "e216f792856d44d630ea2296f9d6a383166d5311e18eb11071109ba6b17c45be"
+    },
+    {
+      "caption": "INCEPTION titles — @lepadphone · motion design",
+      "path": "images/inception.png",
+      "alt": "INCEPTION titles: @lepadphone · motion design",
+      "source_url": "https://x.com/lepadphone/status/2096285071192035406",
+      "sha256": "04bf1e8facc9f819919b7bd88c19670e2be51ab94cf9b07447216ed014067d91"
+    },
+    {
+      "caption": "Backrooms — Duncan Trussell · atmospheric film",
+      "path": "images/backrooms.png",
+      "alt": "Backrooms: Duncan Trussell · atmospheric film",
+      "source_url": "https://x.com/duncantrussell/status/2096003511104508411",
+      "sha256": "807bee71383e66f2e82fd8eadcc8e4ce9ebbd16d154ab686484bd4570177f3d0"
+    },
+    {
+      "caption": "T-cell explainer — Derya Unutmaz · audiovisual teaching",
+      "path": "images/tcell.png",
+      "alt": "T-cell explainer: Derya Unutmaz · audiovisual teaching",
+      "source_url": "https://x.com/DeryaTR_/status/2095659170661904804",
+      "sha256": "e559bef6fb269294db7954684058489cc5c66305493ea796df9ea1681fb4c873"
+    },
+    {
+      "caption": "Codex in an iPod — Pietro Schirano · spatial interface",
+      "path": "images/ipod.png",
+      "alt": "Codex in an iPod: Pietro Schirano · spatial interface",
+      "source_url": "https://x.com/skirano/status/2095648379455861054",
+      "sha256": "291c30dab97df0ce8524c623e80aa89c09ee14726c4b8bd27579801214dcd604"
+    },
+    {
+      "caption": "Google Sheets portrait — @velvet_shark · 9,216 painted cells",
+      "path": "images/sheets.png",
+      "alt": "Google Sheets portrait: @velvet_shark · 9,216 painted cells",
+      "source_url": "https://x.com/velvet_shark/status/2096284077150114303",
+      "sha256": "1cdd29418e42456e8445c75c1cc55ec57f3342313260e9378c7e98d039910020"
+    },
+    {
+      "caption": "Video to interactive code — Pietro Schirano · reference to interface",
+      "path": "images/video-interface.png",
+      "alt": "Video to interactive code: Pietro Schirano · reference to interface",
+      "source_url": "https://x.com/skirano/status/2095595938534351231",
+      "sha256": "448809ce2025b058f681abbdf449b9eef3e2cc63b2879a8bb1d274ab6f9e673b"
+    },
+    {
+      "path": "waterloo.png",
+      "source_url": "https://x.com/danshipper/status/2095880567313092770",
+      "caption": "The volley at Waterloo, viewed from behind the British line. Screenshot of Dan Shipper's reconstruction; the timeline and viewpoint controls let readers inspect the encounter.",
+      "alt": "Waterloo reconstruction showing British troops in the foreground, a French formation across the field, and controls for time and viewpoint.",
+      "sha256": "d7de79f2ab94f87d96df8bf339657b15c72ee0ca2c3ccc31a3beb3352e55c2c1"
+    },
+    {
+      "path": "images/manhattan.png",
+      "source_url": "https://x.com/mattshumer_/status/2095609734845927525",
+      "caption": "Street-level Manhattan in Matt Shumer's Unreal demonstration. Frame from the creator's video.",
+      "alt": "An orange sports car on a detailed Manhattan street, with buildings and traffic.",
+      "sha256": "b05a43468bd3af282f8fdb390d95d7dab27a590b8333f2cdbf64e88e57e30559"
+    },
+    {
+      "path": "images/rover.png",
+      "source_url": "https://x.com/Alpha10six/status/2096261751389978640",
+      "caption": "A requested bracket revision alongside the Onshape rover assembly. Screenshot from @Alpha10six's demonstration; the creator identifies the human's control of the view and Codex's backend editing role.",
+      "alt": "Onshape rover assembly beside the agent conversation, showing cameras, sensors, and stacked chassis plates.",
+      "sha256": "87e923411580e19783cd935ec4de8b7a5e9ddc9cc99c1c8fadb118470aee65b8"
+    },
+    {
+      "path": "images/gogh.png",
+      "source_url": "https://x.com/petergostev/status/2096013280519016608",
+      "caption": "The painted buildings, broken-color street, and blue-and-yellow palette of Gogh Strike. Frame from Peter Gostev's gameplay demonstration.",
+      "alt": "First-person view down a Gogh Strike street, with painterly patches of blue and yellow across buildings and pavement.",
+      "sha256": "de10ad88711494b0c4ad23ce8d5fe51a0b0c4132b536352aeff21f949b3b608f"
+    },
+    {
+      "path": "images/thornwake-game.png",
+      "source_url": "https://x.com/MengTo/status/2096213835460084184",
+      "caption": "Thornwake gameplay: a forest path and an integrated game interface. Frame from Meng To's demonstration.",
+      "alt": "Thornwake gameplay showing a wooded stone path, character, quest, and ornamental action controls.",
+      "sha256": "34fff7744244dbff17d3458f09b127bcf98cfd2b74ee004f203be670f24b762c"
+    },
+    {
+      "path": "images/thornwake-trailer.png",
+      "source_url": "https://x.com/MengTo/status/2096213835460084184",
+      "caption": "The same project's cinematic presentation: an armored character in the Blender trailer. Frame from Meng To's demonstration.",
+      "alt": "Armored Thornwake character holding a sword and shield in a forest scene from the trailer.",
+      "sha256": "51d1844431d91313c28c7f6eb4c75ffd2bf304940379f12abe53e79b10fd9dc6"
+    },
+    {
+      "path": "images/fly.png",
+      "source_url": "https://x.com/mehrantsi/status/2096282317148885453",
+      "caption": "Mehran's fly simulation connects a rendered environment with neural and sensory readouts. Frame from the creator's video.",
+      "alt": "A simulated fly beside food on a wooden surface, with neural activity and sensory panels.",
+      "sha256": "ab50f364179f08ca26a5aff668b02dac1f79602b21e907e0fb1edae5d5dc1739"
+    },
+    {
+      "path": "images/ableton.png",
+      "source_url": "https://x.com/skirano/status/2095595942544089525",
+      "caption": "Instrument tracks, arranged sections, and editable notes in Pietro Schirano's Ableton demonstration. Frame from the [original music video](https://x.com/skirano/status/2095595942544089525).",
+      "alt": "Ableton arrangement view with colored instrument tracks, named song sections, and a MIDI note editor.",
+      "sha256": "56e8225e96cd6afa7398a495ef4c7ad4abf31ef6fe2fca78da41e632ba7f3f10"
+    },
+    {
+      "path": "images/parallax.png",
+      "source_url": "https://x.com/outscape/status/2096286659566309605",
+      "caption": "Parallax Desk's overlapping workspace. Static view with the camera onboarding overlay dismissed for this capture; head tracking was not enabled.",
+      "alt": "Overlapping notes, files, and code windows in Parallax Desk, with depth controls.",
+      "sha256": "24489a1a07f77504fdbd4a711914dfb0949fa003c7307db03b0413ab53daaf8b"
+    }
+  ]
+}

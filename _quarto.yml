@@ -1,9 +1,16 @@
 project:
   type: website
+  render:
+    - "**/*.qmd"
+    - "**/*.md"
+    - "!_editorial/**"
+    - "!docs/**"
   resources:
     - robots.txt
     - llms.txt
     - dissertation/**
+    - "!_editorial/**"
+    - "!docs/**"
 
 website:
   draft-mode: gone

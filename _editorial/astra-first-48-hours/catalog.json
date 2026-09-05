@@ -1,0 +1,2145 @@
+[
+  {
+    "id": "2095880567313092770",
+    "category": "Historical reconstruction",
+    "title": "Waterloo: The Guard meets the line",
+    "author": "danshipper",
+    "url": "https://x.com/danshipper/status/2095880567313092770",
+    "scores": {
+      "evidence": 4,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 84,
+    "assessment": "User-confirmed requested example. Live build inspected; playback and volley jump operated successfully. Historical notes distinguish sourced episode from invented choreography and geometry; museum account supports the broad episode.",
+    "evidence": "Live interaction, screenshot inspected, source notes and museum account read.",
+    "artifact": "https://waterloo-guard-meets-the-line.vercel.app/",
+    "candidate": "C33",
+    "summary": "Makes a Waterloo encounter explorable through viewpoints and a timeline, with notes separating sources from interpretation.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/danshipper/status/2095880567313092770"
+      },
+      {
+        "label": "Explore",
+        "url": "https://waterloo-guard-meets-the-line.vercel.app/"
+      }
+    ]
+  },
+  {
+    "id": "2095601539066777748",
+    "category": "Historical reconstruction",
+    "title": "Library of Alexandria / Mouseion",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2095601539066777748",
+    "scores": {
+      "evidence": 4,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 80,
+    "assessment": "Live reading catalogue opened; surviving editions and lost/fragmentary records are distinguished. Source repository linked; geometry and ancient holdings remain interpretive.",
+    "created_at": "2026-09-03T19:55:15.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C34",
+    "summary": "Connects an imagined ancient city to readable texts while distinguishing surviving works from lost or fragmentary ones.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2095601539066777748"
+      },
+      {
+        "label": "Explore",
+        "url": "https://alexandria-mouseion.netlify.app/"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/emollick/alexandria-mouseion"
+      }
+    ]
+  },
+  {
+    "id": "2096270461122347131",
+    "category": "Historical reconstruction",
+    "title": "Boullée's unbuilt Newton cenotaph",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2096270461122347131",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 64,
+    "assessment": "Sparse sketches and description become a narrated Blender walkthrough; unseen geometry is interpretive.",
+    "created_at": "2026-09-05T16:13:19.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C35",
+    "summary": "Turns sketches of an unbuilt monument into a narrated spatial walkthrough, making its scale easier to imagine.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2096270461122347131"
+      }
+    ]
+  },
+  {
+    "id": "2096241698925916633",
+    "category": "Historical reconstruction",
+    "title": "Geobukseon turtle-ship cinematic",
+    "author": "Creator post",
+    "url": "https://x.com/i/status/2096241698925916633",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 59,
+    "assessment": "Ship interior and naval battle inspired by Yi's campaigns; cinematic interpretation, not a verified battle model.",
+    "created_at": "2026-09-05T14:19:01.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C36",
+    "summary": "Connects a turtle ship's interior to a naval encounter inspired by Yi's campaigns; historical fidelity remains unestablished.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/i/status/2096241698925916633"
+      }
+    ]
+  },
+  {
+    "id": "2096282340913717537",
+    "category": "Historical reconstruction",
+    "title": "Duomo cathedral scene",
+    "author": "kristel_tech",
+    "url": "https://x.com/kristel_tech/status/2096282340913717537",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Editable Blender reconstruction with camera/render work; architectural accuracy unverified.",
+    "created_at": "2026-09-05T17:00:31.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C37",
+    "summary": "Reconstructs a cathedral in Blender with editable camera and rendering work.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/kristel_tech/status/2096282340913717537"
+      }
+    ]
+  },
+  {
+    "id": "2095653641164329143",
+    "category": "Historical reconstruction",
+    "title": "Palace of Fine Arts in Blender",
+    "author": "sharifshameem",
+    "url": "https://x.com/sharifshameem/status/2095653641164329143",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 49,
+    "assessment": "Architectural reconstruction; avoid repeating the post's suspect exposition about the fair's date and inventions.",
+    "created_at": "2026-09-03T23:22:18.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C38",
+    "summary": "Reconstructs the Palace of Fine Arts in Blender, making architectural form available for spatial inspection.",
+    "display_category": "History and architecture",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/sharifshameem/status/2095653641164329143"
+      }
+    ]
+  },
+  {
+    "id": "2096291942091153563",
+    "category": "Interactive worlds",
+    "title": "Void Explorer: procedural planetary landings",
+    "author": "truthyvalue",
+    "url": "https://x.com/truthyvalue/status/2096291942091153563",
+    "scores": {
+      "evidence": 4,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 80,
+    "assessment": "Detailed developer build account inspected; iterative art direction, physics and scale handling. Exploration alone is not a demonstrated game loop.",
+    "created_at": "2026-09-05T17:38:40.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C39",
+    "summary": "Connects spaceflight to planetary exploration, with an account of rendering scale, physics, and visual iteration.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/truthyvalue/status/2096291942091153563"
+      },
+      {
+        "label": "Build account",
+        "url": "https://developers.openai.com/blog/how-to-build-games-with-astra"
+      }
+    ]
+  },
+  {
+    "id": "2095609734845927525",
+    "category": "Interactive worlds",
+    "title": "Manhattan in Unreal Engine",
+    "author": "mattshumer_",
+    "url": "https://x.com/mattshumer_/status/2095609734845927525",
+    "scores": {
+      "evidence": 3,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 76,
+    "assessment": "Detailed creator account: a week-scale ongoing build, existing assets, coordinator/implementer setup and large token usage. Not a completed city or demonstrated game loop.",
+    "created_at": "2026-09-03T20:27:49.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C40",
+    "summary": "Sustains a large, drivable Manhattan build in Unreal over roughly a week; existing assets and substantial compute are disclosed.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/mattshumer_/status/2095609734845927525"
+      },
+      {
+        "label": "Build account",
+        "url": "https://somethingbig.ai/a"
+      }
+    ]
+  },
+  {
+    "id": "2095673885605630429",
+    "category": "Interactive worlds",
+    "title": "ABYSSAL: living deep",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2095673885605630429",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 68,
+    "assessment": "Public deployment and repository located; procedural marine behaviors are not biological validation.",
+    "created_at": "2026-09-04T00:42:44.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C41",
+    "summary": "Adds procedural marine behavior to an underwater environment, giving exploration activity beyond static scenery.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2095673885605630429"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/emollick/abyssal-living-deep"
+      }
+    ]
+  },
+  {
+    "id": "2095776685807346105",
+    "category": "Interactive worlds",
+    "title": "Van Gogh's Town",
+    "author": "petergostev",
+    "url": "https://x.com/petergostev/status/2095776685807346105",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 66,
+    "assessment": "Six paintings interpreted as a walkable town; same creator as Gogh Strike, distinct work but related project family.",
+    "created_at": "2026-09-04T07:31:14.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C42",
+    "summary": "Interprets six Van Gogh paintings as a shared walkable town; related to the same creator's Gogh Strike.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/petergostev/status/2095776685807346105"
+      },
+      {
+        "label": "Explore",
+        "url": "https://van-goghs-town.surge.sh/"
+      }
+    ]
+  },
+  {
+    "id": "2096285284178788612",
+    "category": "Interactive worlds",
+    "title": "VRChat beach world",
+    "author": "pichikyo",
+    "url": "https://x.com/pichikyo/status/2096285284178788612",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 58,
+    "assessment": "Blender/Unity workflow with collisions and optimization; author says baking remained unfinished when quota ran out.",
+    "created_at": "2026-09-05T17:12:13.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C43",
+    "summary": "Builds a beach world for VRChat, including collisions and optimization; baking remained unfinished.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/pichikyo/status/2096285284178788612"
+      }
+    ]
+  },
+  {
+    "id": "2096284195517596099",
+    "category": "Interactive worlds",
+    "title": "Garden City from a reference image",
+    "author": "JHereM",
+    "url": "https://x.com/JHereM/status/2096284195517596099",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 54,
+    "assessment": "Public explorable city built from visual reference; no game loop demonstrated.",
+    "created_at": "2026-09-05T17:07:53.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C44",
+    "summary": "Turns a reference image into an explorable Garden City, extending a flat visual into a place.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/JHereM/status/2096284195517596099"
+      }
+    ]
+  },
+  {
+    "id": "2096285235961045307",
+    "category": "Interactive worlds",
+    "title": "Museum of bad marketing ideas",
+    "author": "ecomchasedimond",
+    "url": "https://x.com/ecomchasedimond/status/2096285235961045307",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Walkable editorial exhibition; no game objectives implied.",
+    "created_at": "2026-09-05T17:12:02.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C45",
+    "summary": "Makes an editorial collection of bad marketing ideas into a walkable museum.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/ecomchasedimond/status/2096285235961045307"
+      }
+    ]
+  },
+  {
+    "id": "2096290770017984785",
+    "category": "Interactive worlds",
+    "title": "Personal house walkthrough",
+    "author": "SebastianRoehl",
+    "url": "https://x.com/SebastianRoehl/status/2096290770017984785",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creator reports an hour of prompting; no measured floor-plan comparison.",
+    "created_at": "2026-09-05T17:34:01.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C46",
+    "summary": "Creates a walkthrough of a personal house, making domestic space easier to inspect in 3D.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/SebastianRoehl/status/2096290770017984785"
+      }
+    ]
+  },
+  {
+    "id": "2096291179843440952",
+    "category": "Interactive worlds",
+    "title": "Screenshot-to-explorable world",
+    "author": "yungcontent",
+    "url": "https://x.com/yungcontent/status/2096291179843440952",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Spatial reconstruction demonstration; unseen areas necessarily involve invention.",
+    "created_at": "2026-09-05T17:35:39.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C47",
+    "summary": "Turns a screenshot into an explorable world, with unseen areas necessarily involving invention.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/yungcontent/status/2096291179843440952"
+      }
+    ]
+  },
+  {
+    "id": "2096290966550544893",
+    "category": "Interactive worlds",
+    "title": "Shanghai Bund from one photograph",
+    "author": "yiyangleex",
+    "url": "https://x.com/yiyangleex/status/2096290966550544893",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creator shows photo-to-Blender-to-Godot walkthrough; geometric fidelity to Shanghai not checked.",
+    "created_at": "2026-09-05T17:34:48.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C48",
+    "summary": "Uses a single Shanghai photograph as the starting point for a Blender-to-Godot walkthrough.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/yiyangleex/status/2096290966550544893"
+      }
+    ]
+  },
+  {
+    "id": "2096253137510347082",
+    "category": "Interactive worlds",
+    "title": "Rainy bear world",
+    "author": "BubuStd",
+    "url": "https://x.com/BubuStd/status/2096253137510347082",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 2,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 48,
+    "assessment": "Atmospheric world building; objectives or challenge not established.",
+    "created_at": "2026-09-05T15:04:29.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C49",
+    "summary": "Builds an atmospheric rainy world featuring a bear; a game objective is not established.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/BubuStd/status/2096253137510347082"
+      }
+    ]
+  },
+  {
+    "category": "Interactive worlds",
+    "title": "Exploded human anatomy",
+    "author": "ashebytes",
+    "url": "https://x.com/ashebytes/status/2096221988763173186",
+    "summary": "Separates the body into a reported 2,234 modeled pieces so viewers can inspect internal organization; anatomical accuracy is unverified.",
+    "display_category": "Worlds and interactive visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/ashebytes/status/2096221988763173186"
+      }
+    ]
+  },
+  {
+    "id": "2096266507839824353",
+    "category": "CAD and fabrication",
+    "title": "Dual-GB10 enclosure test coupons",
+    "author": "mr_r0b0t",
+    "url": "https://x.com/mr_r0b0t/status/2096266507839824353",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 66,
+    "assessment": "Hermes/Astra design reaches physical test printing; a coupon is not a finished validated enclosure.",
+    "created_at": "2026-09-05T15:57:36.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C01",
+    "summary": "Takes an electronics enclosure through repeated revisions and small physical fit tests before committing to a full print.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/mr_r0b0t/status/2096266507839824353"
+      }
+    ]
+  },
+  {
+    "id": "2096261751389978640",
+    "category": "CAD and fabrication",
+    "title": "Onshape robot with selected sensors",
+    "author": "Alpha10six",
+    "url": "https://x.com/Alpha10six/status/2096261751389978640",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 66,
+    "assessment": "Backend CAD connector built by the agent; creator explicitly operates the mouse and model view.",
+    "created_at": "2026-09-05T15:38:42.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C02",
+    "summary": "Revises sensor mounts, component placement, and ventilation in an existing Onshape assembly through an agent-built connector.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/Alpha10six/status/2096261751389978640"
+      }
+    ]
+  },
+  {
+    "id": "2096290662412947597",
+    "category": "CAD and fabrication",
+    "title": "Image-to-CAD construction",
+    "author": "wieslawsoltes",
+    "url": "https://x.com/wieslawsoltes/status/2096290662412947597",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Attached CAD demonstration; dimensional correctness and manufacturability not established.",
+    "created_at": "2026-09-05T17:33:35.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C05",
+    "summary": "Reconstructs a CAD model from an image, exploring a route from visual reference to geometry.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/wieslawsoltes/status/2096290662412947597"
+      }
+    ]
+  },
+  {
+    "category": "CAD and fabrication",
+    "title": "NS6400 model train",
+    "author": "Creator on Reddit",
+    "url": "https://www.reddit.com/r/codex/comments/1w7rvgr/astra_just_built_my_sscale_model_train_in_onshape/",
+    "summary": "Adapts a locomotive body to an existing chassis, with reported revisions for snap-fits, lighting, and printing.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://www.reddit.com/r/codex/comments/1w7rvgr/astra_just_built_my_sscale_model_train_in_onshape/"
+      }
+    ]
+  },
+  {
+    "category": "CAD and fabrication",
+    "title": "Aurora TF-01 turbofan",
+    "author": "Adam",
+    "url": "https://x.com/adamdotnew/status/2096053889141489669",
+    "summary": "Shows a cutaway engine assembly with 140 instances and motion controls; dimensional revision behavior remains untested.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/adamdotnew/status/2096053889141489669"
+      }
+    ]
+  },
+  {
+    "category": "CAD and fabrication",
+    "title": "SO-101 arm",
+    "author": "MakerMatters",
+    "url": "https://x.com/MakerMatters/status/2096262183281692918",
+    "summary": "Exposes an articulated assembly and mechanism controls in WebCAD, making relationships between moving parts inspectable.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/MakerMatters/status/2096262183281692918"
+      }
+    ]
+  },
+  {
+    "category": "CAD and fabrication",
+    "title": "FreeCAD scooter redesign",
+    "author": "heecheee",
+    "url": "https://x.com/heecheee/status/2096179696245629412",
+    "summary": "Brings iterative mechanical design into an open-source CAD application; constraint preservation is unresolved.",
+    "display_category": "CAD and fabrication",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/heecheee/status/2096179696245629412"
+      }
+    ]
+  },
+  {
+    "id": "2096013280519016608",
+    "category": "Games",
+    "title": "Gogh Strike",
+    "author": "petergostev",
+    "url": "https://x.com/petergostev/status/2096013280519016608",
+    "scores": {
+      "evidence": 3,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 74,
+    "assessment": "Inspected artist selection and entered FPS HUD. Pointer-lock overlay persisted under automation, so movement/combat not verified. Repository read: current build is single-player with bots; the post's 5v5 differs from the README's 6v6.",
+    "created_at": "2026-09-04T23:11:22.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C18",
+    "summary": "Turns painters into rival crews in a town with a coherent painted style; the available build uses bots, not online multiplayer.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/petergostev/status/2096013280519016608"
+      },
+      {
+        "label": "Play",
+        "url": "https://gogh-strike.surge.sh/"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/petergpt/gogh-strike"
+      }
+    ]
+  },
+  {
+    "id": "2096047660662722620",
+    "category": "Games",
+    "title": "Zork in 3D",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2096047660662722620",
+    "scores": {
+      "evidence": 3,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 74,
+    "assessment": "Loaded and resumed West of House; movement/interaction inputs issued, proximity message returned, screenshot inspected. Full puzzle fidelity and playthrough untested.",
+    "created_at": "2026-09-05T01:27:59.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C19",
+    "summary": "Translates a text adventure into a navigable world with inventory, a journal, and treasure tracking.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2096047660662722620"
+      },
+      {
+        "label": "Play",
+        "url": "https://zork-underground-empire.netlify.app/"
+      }
+    ]
+  },
+  {
+    "id": "2096284215126229146",
+    "category": "Games",
+    "title": "VECTOR RUSH antigravity racer",
+    "author": "AIDREAMMAN",
+    "url": "https://x.com/AIDREAMMAN/status/2096284215126229146",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 4
+    },
+    "score": 60,
+    "assessment": "Godot/Blender racer with a linked source repository; source and gameplay not executed locally.",
+    "created_at": "2026-09-05T17:07:58.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C20",
+    "summary": "Builds an antigravity racer with Godot and Blender and exposes the source for inspection.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/AIDREAMMAN/status/2096284215126229146"
+      },
+      {
+        "label": "Code",
+        "url": "https://github.com/ToBeWin/vector-rush"
+      }
+    ]
+  },
+  {
+    "id": "2096288449259069747",
+    "category": "Games",
+    "title": "AETHER / The Far Shore",
+    "author": "clankenluben",
+    "url": "https://x.com/clankenluben/status/2096288449259069747",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 58,
+    "assessment": "Survival/MMO claim with public deployment; concurrency and multiplayer operation untested.",
+    "created_at": "2026-09-05T17:24:48.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C21",
+    "summary": "Presents a survival/MMO project with a public build; working multiplayer and concurrency remain untested.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/clankenluben/status/2096288449259069747"
+      }
+    ]
+  },
+  {
+    "id": "2096292333318717859",
+    "category": "Games",
+    "title": "Lumen Echo Game Boy ROM",
+    "author": "LumenMythTech",
+    "url": "https://x.com/LumenMythTech/status/2096292333318717859",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 58,
+    "assessment": "ROM-oriented project with screenshots; hardware or emulator behavior not tested here.",
+    "created_at": "2026-09-05T17:40:14.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C22",
+    "summary": "Targets Game Boy hardware, making its limited memory and display part of the development challenge.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/LumenMythTech/status/2096292333318717859"
+      }
+    ]
+  },
+  {
+    "id": "2095647833797824735",
+    "category": "Games",
+    "title": "FTL-like game with agent self-play",
+    "author": "SIGKITTEN",
+    "url": "https://x.com/SIGKITTEN/status/2095647833797824735",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Video-backed author claim of building and testing its own game; no full playthrough inspected.",
+    "created_at": "2026-09-03T22:59:13.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C23",
+    "summary": "Claims to build and play its own game, suggesting a feedback loop between implementation and testing.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/SIGKITTEN/status/2095647833797824735"
+      }
+    ]
+  },
+  {
+    "id": "2096071878427234309",
+    "category": "Games",
+    "title": "Fortnite as a text adventure",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2096071878427234309",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 54,
+    "assessment": "Public adaptation organized around game actions; distinct from a visual world demo.",
+    "created_at": "2026-09-05T03:04:13.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C24",
+    "summary": "Recasts Fortnite as a text adventure, translating its action into a different medium.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2096071878427234309"
+      }
+    ]
+  },
+  {
+    "id": "2096282758930645170",
+    "category": "Games",
+    "title": "One More Vine",
+    "author": "bennash",
+    "url": "https://x.com/bennash/status/2096282758930645170",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 54,
+    "assessment": "Four-level Pitfall-style game with a public URL; replayability not evaluated.",
+    "created_at": "2026-09-05T17:02:11.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C25",
+    "summary": "Builds a four-level Pitfall-style game around a compact, recognizable platforming brief.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/bennash/status/2096282758930645170"
+      }
+    ]
+  },
+  {
+    "id": "2096260456654516486",
+    "category": "Games",
+    "title": "RPGJS and Tiled multiplayer project",
+    "author": "rpgjs_dev",
+    "url": "https://x.com/rpgjs_dev/status/2096260456654516486",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 54,
+    "assessment": "Existing RPGJS framework supplies substantial capabilities; not an engine built from scratch.",
+    "created_at": "2026-09-05T15:33:34.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C26",
+    "summary": "Uses RPGJS and the Tiled map editor to develop a multiplayer project on top of an existing framework.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/rpgjs_dev/status/2096260456654516486"
+      }
+    ]
+  },
+  {
+    "id": "2096290464177500414",
+    "category": "Games",
+    "title": "Battle of Alesia RTS",
+    "author": "IvanCaceres",
+    "url": "https://x.com/IvanCaceres/status/2096290464177500414",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creator explicitly describes an RTS; planned multiplayer is not completed multiplayer. Distinct from Waterloo.",
+    "created_at": "2026-09-05T17:32:48.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C27",
+    "summary": "Uses the Battle of Alesia as a real-time strategy setting; multiplayer is described as planned.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/IvanCaceres/status/2096290464177500414"
+      }
+    ]
+  },
+  {
+    "id": "2096283462781055047",
+    "category": "Games",
+    "title": "Minecraft meets Rimworld prototype",
+    "author": "TheAtticWizard",
+    "url": "https://x.com/TheAtticWizard/status/2096283462781055047",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Recognizable survival/strategy ambition; prototype completeness and sustained play not verified.",
+    "created_at": "2026-09-05T17:04:59.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C28",
+    "summary": "Combines Minecraft-like construction with Rimworld-style survival and strategy in a prototype.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/TheAtticWizard/status/2096283462781055047"
+      }
+    ]
+  },
+  {
+    "id": "2096286445434708416",
+    "category": "Games",
+    "title": "Nine-year-old's racing game",
+    "author": "suganthan",
+    "url": "https://x.com/suganthan/status/2096286445434708416",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Parent-guided Three.js/Rapier project; interesting accessibility example rather than autonomous production.",
+    "created_at": "2026-09-05T17:16:50.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C29",
+    "summary": "Shows a parent helping a nine-year-old make a racing game, widening participation in game creation.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/suganthan/status/2096286445434708416"
+      }
+    ]
+  },
+  {
+    "id": "2095595936701419637",
+    "category": "Games",
+    "title": "PS1-style Beyblade game",
+    "author": "skirano",
+    "url": "https://x.com/skirano/status/2095595936701419637",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creator's game thread; mechanics and full playability untested here.",
+    "created_at": "2026-09-03T19:33:00.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C30",
+    "summary": "Builds a Beyblade game with a deliberately requested PS1 visual style.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/skirano/status/2095595936701419637"
+      }
+    ]
+  },
+  {
+    "id": "2096267800398500327",
+    "category": "Games",
+    "title": "Unity physics platformer",
+    "author": "spencerclarkdev",
+    "url": "https://x.com/spencerclarkdev/status/2096267800398500327",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Reported 52-minute build plus a follow-up prompt; full game completion not checked.",
+    "created_at": "2026-09-05T16:02:45.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C31",
+    "summary": "Builds a physics platformer in Unity, testing the coordination of movement, collisions, and level design.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/spencerclarkdev/status/2096267800398500327"
+      }
+    ]
+  },
+  {
+    "id": "2096288397136732186",
+    "category": "Games",
+    "title": "Whale Rush multiplayer FPS",
+    "author": "vikings_ace",
+    "url": "https://x.com/vikings_ace/status/2096288397136732186",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 3
+    },
+    "score": 51,
+    "assessment": "Existing project completed with Astra; do not attribute the whole prior codebase to this model.",
+    "created_at": "2026-09-05T17:24:35.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C32",
+    "summary": "Helps finish an existing multiplayer FPS project; the earlier codebase should not be attributed to Astra.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/vikings_ace/status/2096288397136732186"
+      }
+    ]
+  },
+  {
+    "category": "Games",
+    "title": "Thornwake",
+    "author": "Meng To",
+    "url": "https://x.com/MengTo/status/2096213835460084184",
+    "summary": "Combines procedural scenery, coherent game interfaces, and combat, then recreates the project in Blender for a trailer.",
+    "display_category": "Games",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/MengTo/status/2096213835460084184"
+      }
+    ]
+  },
+  {
+    "id": "2096282317148885453",
+    "category": "Scientific and engineering simulation",
+    "title": "Fly brain and nerve cord in a browser",
+    "author": "mehrantsi",
+    "url": "https://x.com/mehrantsi/status/2096282317148885453",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 72,
+    "assessment": "Clear attribution: Sol built earlier Rust/Metal work; Astra integrated new data and ported to WASM/WebGPU. Biological fidelity not validated here.",
+    "created_at": "2026-09-05T17:00:26.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C62",
+    "summary": "Integrates brain and nerve-cord data and ports an existing fly simulation into the browser; biological fidelity is unestablished.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/mehrantsi/status/2096282317148885453"
+      }
+    ]
+  },
+  {
+    "id": "2096225621303042258",
+    "category": "Scientific and engineering simulation",
+    "title": "Orbital rendezvous and docking",
+    "author": "Creator post",
+    "url": "https://x.com/i/status/2096225621303042258",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 70,
+    "assessment": "Detailed author grading distinguishes two-body truth propagation from HCW guidance. Self-assessment and altered hard-failure treatment limit benchmark claims.",
+    "created_at": "2026-09-05T13:15:08.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C63",
+    "summary": "Models spacecraft rendezvous and docking with explicit guidance and success criteria.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/i/status/2096225621303042258"
+      }
+    ]
+  },
+  {
+    "id": "2096258619574513880",
+    "category": "Scientific and engineering simulation",
+    "title": "Trackmania physics rebuilt for the browser",
+    "author": "achepta_tm",
+    "url": "https://x.com/achepta_tm/status/2096258619574513880",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 70,
+    "assessment": "C# to WASM with existing collidable game meshes; fidelity to the original engine not independently established.",
+    "created_at": "2026-09-05T15:26:16.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C64",
+    "summary": "Rebuilds Trackmania driving physics for the browser, creating a behavioral target beyond plausible animation.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/achepta_tm/status/2096258619574513880"
+      }
+    ]
+  },
+  {
+    "id": "2095596175705399482",
+    "category": "Scientific and engineering simulation",
+    "title": "Agent-inhabited civilization",
+    "author": "mattshumer_",
+    "url": "https://x.com/mattshumer_/status/2095596175705399482",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 68,
+    "assessment": "Astra-driven inhabitants in Unreal; existing assets and elaborate orchestration disclosed. Simulation-within-simulation updates grouped into this one candidate.",
+    "created_at": "2026-09-03T19:33:57.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C65",
+    "summary": "Populates an Unreal environment with agent-driven inhabitants, making their actions part of the experiment.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/mattshumer_/status/2095596175705399482"
+      }
+    ]
+  },
+  {
+    "id": "2095975490708291948",
+    "category": "Scientific and engineering simulation",
+    "title": "MaleCNS fly connectome in Minecraft",
+    "author": "evnsnclr",
+    "url": "https://x.com/evnsnclr/status/2095975490708291948",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 68,
+    "assessment": "Early development with a 166,700-neuron claim; not proof of a faithful whole-brain emulation.",
+    "created_at": "2026-09-04T20:41:12.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C66",
+    "summary": "Connects a reported 166,700-neuron fly dataset to movement in Minecraft; this is early development, not verified whole-brain emulation.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/evnsnclr/status/2095975490708291948"
+      }
+    ]
+  },
+  {
+    "id": "2096260471020011981",
+    "category": "Scientific and engineering simulation",
+    "title": "Jet Factory V2",
+    "author": "konstantinsaifo",
+    "url": "https://x.com/konstantinsaifo/status/2096260471020011981",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 63,
+    "assessment": "Manufacturing cycle and tug-return simulation; real-world timing provenance asserted, not audited.",
+    "created_at": "2026-09-05T15:33:37.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C67",
+    "summary": "Depicts machine cycles and a returning tug to make manufacturing and transport flow visible.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/konstantinsaifo/status/2096260471020011981"
+      }
+    ]
+  },
+  {
+    "id": "2096283873214956016",
+    "category": "Scientific and engineering simulation",
+    "title": "Cell motility and stress-response sandbox",
+    "author": "tsuname",
+    "url": "https://x.com/tsuname/status/2096283873214956016",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 61,
+    "assessment": "Interactive biological concepts; no predictive validation or parameter provenance established.",
+    "created_at": "2026-09-05T17:06:37.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C68",
+    "summary": "Exposes stresses and gradients as controls for exploring cell movement; predictive biological validity is unestablished.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/tsuname/status/2096283873214956016"
+      }
+    ]
+  },
+  {
+    "id": "2095989219390844985",
+    "category": "Scientific and engineering simulation",
+    "title": "Spatial inference from dog-bark audio",
+    "author": "literallydenis",
+    "url": "https://x.com/literallydenis/status/2095989219390844985",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 59,
+    "assessment": "Creator explicitly says this is not a 3D map yet; intriguing experiment, not verified acoustic room reconstruction.",
+    "created_at": "2026-09-04T21:35:46.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C69",
+    "summary": "Explores spatial inference from dog-bark audio; the creator explicitly says it is not yet a 3D map.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/literallydenis/status/2095989219390844985"
+      }
+    ]
+  },
+  {
+    "id": "2096280064019353891",
+    "category": "Scientific and engineering simulation",
+    "title": "BMX race physics",
+    "author": "Im_IrushiK",
+    "url": "https://x.com/Im_IrushiK/status/2096280064019353891",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 49,
+    "assessment": "Physics animation/video; numerical accuracy and controllability not checked.",
+    "created_at": "2026-09-05T16:51:28.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C70",
+    "summary": "Produces BMX racing motion as a physics-animation experiment; numerical fidelity is unchecked.",
+    "display_category": "Science and simulation",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/Im_IrushiK/status/2096280064019353891"
+      }
+    ]
+  },
+  {
+    "id": "2095595942544089525",
+    "category": "Film and music",
+    "title": "Synth composition and arrangement in Ableton",
+    "author": "skirano",
+    "url": "https://x.com/skirano/status/2095595942544089525",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 66,
+    "assessment": "Creator identifies Ableton MCP, synthesized instruments and arrangement; not a generic text-to-music clip.",
+    "created_at": "2026-09-03T19:33:01.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C09",
+    "summary": "Creates synthesized instruments, musical parts, and an editable arrangement inside Ableton.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/skirano/status/2095595942544089525"
+      }
+    ]
+  },
+  {
+    "id": "2096276401204936939",
+    "category": "Film and music",
+    "title": "A Room Made of Replies",
+    "author": "SkyeSharkie",
+    "url": "https://x.com/SkyeSharkie/status/2096276401204936939",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 59,
+    "assessment": "Film plus claims of tooling changes; do not infer verified robot behavior from a creative demonstration.",
+    "created_at": "2026-09-05T16:36:55.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C10",
+    "summary": "Combines a film with reported changes to its production tools, extending the agent's role into the creative workflow.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/SkyeSharkie/status/2096276401204936939"
+      }
+    ]
+  },
+  {
+    "id": "2096292350180163648",
+    "category": "Film and music",
+    "title": "Piano waltz with synchronized 3D pianist",
+    "author": "higgsfield_ai",
+    "url": "https://x.com/higgsfield_ai/status/2096292350180163648",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 59,
+    "assessment": "Vendor demonstration of music-to-finger animation; note synchronization and authorship not independently checked.",
+    "created_at": "2026-09-05T17:40:18.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C11",
+    "summary": "Pairs a composed waltz with a 3D pianist whose finger movements are claimed to follow the notes.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/higgsfield_ai/status/2096292350180163648"
+      }
+    ]
+  },
+  {
+    "id": "2096287401177960882",
+    "category": "Film and music",
+    "title": "1980s action figures from video",
+    "author": "neurofoo",
+    "url": "https://x.com/neurofoo/status/2096287401177960882",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creative transformation; author explicitly flags an inconsistent ear.",
+    "created_at": "2026-09-05T17:20:38.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C12",
+    "summary": "Transforms video into an action-figure aesthetic; the creator points out a visible inconsistency in an ear.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/neurofoo/status/2096287401177960882"
+      }
+    ]
+  },
+  {
+    "id": "2096285071192035406",
+    "category": "Film and music",
+    "title": "INCEPTION title sequence",
+    "author": "lepadphone",
+    "url": "https://x.com/lepadphone/status/2096285071192035406",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Blender title animation; music excluded from the model's contribution by the creator.",
+    "created_at": "2026-09-05T17:11:22.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C13",
+    "summary": "Uses architectural imagery and animated typography to pursue a recognizable cinematic style; music is excluded from Astra's contribution.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/lepadphone/status/2096285071192035406"
+      }
+    ]
+  },
+  {
+    "id": "2096286887388553268",
+    "category": "Film and music",
+    "title": "One-minute animated film pipeline",
+    "author": "catalogicalism",
+    "url": "https://x.com/catalogicalism/status/2096286887388553268",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Creator describes an existing AI pipeline; no-human-edit claim not independently audited.",
+    "created_at": "2026-09-05T17:18:35.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C14",
+    "summary": "Produces a one-minute animated film through an existing AI production pipeline.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/catalogicalism/status/2096286887388553268"
+      }
+    ]
+  },
+  {
+    "id": "2096252019329716464",
+    "category": "Film and music",
+    "title": "Western cinematic in Blender",
+    "author": "TopviewAIhq",
+    "url": "https://x.com/TopviewAIhq/status/2096252019329716464",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 52,
+    "assessment": "Vendor demonstration with editable scene claim; source project not inspected.",
+    "created_at": "2026-09-05T15:00:02.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C15",
+    "summary": "Builds a Western cinematic in Blender, with the creator reporting an editable scene rather than only a finished video.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/TopviewAIhq/status/2096252019329716464"
+      }
+    ]
+  },
+  {
+    "id": "2096284502192721938",
+    "category": "Film and music",
+    "title": "DaVinci Resolve editing workflow",
+    "author": "argofowl",
+    "url": "https://x.com/argofowl/status/2096284502192721938",
+    "scores": {
+      "evidence": 1,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 50,
+    "assessment": "Creator reports cuts, captions and removal of bad takes, but failed color correction. Mixed outcome retained.",
+    "created_at": "2026-09-05T17:09:07.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C16",
+    "summary": "Handles cuts, captions, and bad-take removal in an editing application, but reportedly fails at color correction.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/argofowl/status/2096284502192721938"
+      }
+    ]
+  },
+  {
+    "id": "2096291647927792037",
+    "category": "Film and music",
+    "title": "Wireframe motion sequence",
+    "author": "Cupang1997",
+    "url": "https://x.com/Cupang1997/status/2096291647927792037",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 49,
+    "assessment": "Flova-assisted visual production; contribution of pre-existing tooling matters.",
+    "created_at": "2026-09-05T17:37:30.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C17",
+    "summary": "Produces a wireframe motion sequence with Flova, combining code and existing creative tooling.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/Cupang1997/status/2096291647927792037"
+      }
+    ]
+  },
+  {
+    "category": "Film and music",
+    "title": "Backrooms film",
+    "author": "Duncan Trussell",
+    "url": "https://x.com/duncantrussell/status/2096003511104508411",
+    "summary": "Uses fluorescent rooms, staging, and an unsettling figure to develop an atmospheric Blender film.",
+    "display_category": "Film and music",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/duncantrussell/status/2096003511104508411"
+      }
+    ]
+  },
+  {
+    "id": "2095659170661904804",
+    "category": "Education and explanation",
+    "title": "T-cell explainer by Derya Unutmaz",
+    "author": "DeryaTR_",
+    "url": "https://x.com/DeryaTR_/status/2095659170661904804",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 61,
+    "assessment": "Immunologist-led five-minute explanation using Remotion, Imagegen and HeyGen; expert endorsement, not independent content validation.",
+    "created_at": "2026-09-03T23:44:16.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C08",
+    "summary": "An immunologist directs an audiovisual T-cell explanation using generated imagery, narration, and code-based video tools.",
+    "display_category": "Education",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/DeryaTR_/status/2095659170661904804"
+      }
+    ]
+  },
+  {
+    "id": "2096286659566309605",
+    "category": "Product and interfaces",
+    "title": "Parallax Desk head-tracked windows",
+    "author": "outscape",
+    "url": "https://x.com/outscape/status/2096286659566309605",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 3
+    },
+    "score": 66,
+    "assessment": "Public spatial desktop demo; camera tracking not enabled in this session.",
+    "created_at": "2026-09-05T17:17:41.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C50",
+    "summary": "Uses head position to change the apparent depth and overlap of desktop windows.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/outscape/status/2096286659566309605"
+      },
+      {
+        "label": "Try",
+        "url": "https://parallax-desk.uhgall.chatgpt.site"
+      }
+    ]
+  },
+  {
+    "id": "2095648379455861054",
+    "category": "Product and interfaces",
+    "title": "3D iPod-shaped Codex thread app",
+    "author": "skirano",
+    "url": "https://x.com/skirano/status/2095648379455861054",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 64,
+    "assessment": "Blender object plus native application interface; report of a 15-minute build not independently timed.",
+    "created_at": "2026-09-03T23:01:23.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C51",
+    "summary": "Makes Codex conversations browsable through a familiar 3D iPod-shaped interface.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/skirano/status/2095648379455861054"
+      }
+    ]
+  },
+  {
+    "id": "2096284077150114303",
+    "category": "Product and interfaces",
+    "title": "Portrait painted in 9,216 Google Sheets cells",
+    "author": "velvet_shark",
+    "url": "https://x.com/velvet_shark/status/2096284077150114303",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 4,
+      "usefulness": 4,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 64,
+    "assessment": "Cross-application construction and screencast editing; impressive tool use, limited direct productivity value.",
+    "created_at": "2026-09-05T17:07:25.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C52",
+    "summary": "Paints a portrait into 9,216 spreadsheet cells, demonstrating coordinated edits inside an existing application.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/velvet_shark/status/2096284077150114303"
+      }
+    ]
+  },
+  {
+    "id": "2095595932335170031",
+    "category": "Product and interfaces",
+    "title": "Codex Micro 3D device animation",
+    "author": "skirano",
+    "url": "https://x.com/skirano/status/2095595932335170031",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Reference-image-driven Blender object and animation; distinct from the iPod application.",
+    "created_at": "2026-09-03T19:32:59.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C53",
+    "summary": "Builds and animates a 3D device from an image, connecting product reference to motion.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/skirano/status/2095595932335170031"
+      }
+    ]
+  },
+  {
+    "id": "2095595938534351231",
+    "category": "Product and interfaces",
+    "title": "Video recreated as interactive code",
+    "author": "skirano",
+    "url": "https://x.com/skirano/status/2095595938534351231",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Side-by-side reconstruction demonstration; fidelity and interactivity not independently tested.",
+    "created_at": "2026-09-03T19:33:00.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C54",
+    "summary": "Recreates a reference video as an interactive card-customization interface, turning shown behavior into editable code.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/skirano/status/2095595938534351231"
+      }
+    ]
+  },
+  {
+    "id": "2096291729540517937",
+    "category": "Product and interfaces",
+    "title": "iPhone Flip product page",
+    "author": "ashen_one",
+    "url": "https://x.com/ashen_one/status/2096291729540517937",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Image generation and Blender CLI workflow; token and quota claims not independently measured.",
+    "created_at": "2026-09-05T17:37:50.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C55",
+    "summary": "Combines generated imagery and Blender work in a product page for a fictional folding iPhone.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/ashen_one/status/2096291729540517937"
+      }
+    ]
+  },
+  {
+    "id": "2096291423142244437",
+    "category": "Product and interfaces",
+    "title": "Jarvis desktop companion",
+    "author": "ucsandman",
+    "url": "https://x.com/ucsandman/status/2096291423142244437",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 3,
+      "reproducibility": 3
+    },
+    "score": 54,
+    "assessment": "Screen-sharing assistant and small apps; privacy behavior and reliability not reviewed.",
+    "created_at": "2026-09-05T17:36:37.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C56",
+    "summary": "Combines screen sharing with a desktop companion and small applications; reliability and privacy behavior were not reviewed.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/ucsandman/status/2096291423142244437"
+      }
+    ]
+  },
+  {
+    "id": "2096292362490433796",
+    "category": "Product and interfaces",
+    "title": "Adonis animated landing page",
+    "author": "ElieAsaade",
+    "url": "https://x.com/ElieAsaade/status/2096292362490433796",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 3
+    },
+    "score": 51,
+    "assessment": "Blender-to-website production; creator timing is self-reported.",
+    "created_at": "2026-09-05T17:40:21.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C57",
+    "summary": "Connects Blender animation to a landing page, carrying 3D production into a website.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/ElieAsaade/status/2096292362490433796"
+      }
+    ]
+  },
+  {
+    "id": "2096287840468447240",
+    "category": "Product and interfaces",
+    "title": "Autonomously refreshed data graphics",
+    "author": "Nonfon420",
+    "url": "https://x.com/Nonfon420/status/2096287840468447240",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 49,
+    "assessment": "Before/after graphics and creator account; underlying data correctness not audited.",
+    "created_at": "2026-09-05T17:22:22.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C58",
+    "summary": "Refreshes data graphics with reported autonomy; the underlying data correctness was not audited.",
+    "display_category": "Interfaces and product design",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/Nonfon420/status/2096287840468447240"
+      }
+    ]
+  },
+  {
+    "id": "epoch-frontiermath-erdos",
+    "category": "Reasoning and research",
+    "title": "FrontierMath Erdős: formally checked new results",
+    "author": "Epoch AI researchers",
+    "url": "https://epoch.ai/latest/announcing-frontiermath-erdos",
+    "scores": {
+      "evidence": 5,
+      "difficulty": 5,
+      "usefulness": 4,
+      "originality": 5,
+      "reproducibility": 4
+    },
+    "score": 94,
+    "assessment": "Primary paper and proof repository inspected, Lean not rerun. Corrected budgeted result is 2/68; five unique solutions require additional nonstandard runs. Pricing correction complicates budget comparisons.",
+    "evidence": "Researcher-reported formal verification with published proof artifacts; not independently reproduced in this session.",
+    "candidate": "C59",
+    "summary": "Produces formally checked solutions to two of 68 open problems under the benchmark protocol; additional runs bring the unique total to five.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Report",
+        "url": "https://epoch.ai/latest/announcing-frontiermath-erdos"
+      },
+      {
+        "label": "Paper",
+        "url": "https://epoch.ai/files/frontiermath-erdos.pdf"
+      },
+      {
+        "label": "Proofs",
+        "url": "https://github.com/epoch-research/LeanOpenProblems"
+      }
+    ]
+  },
+  {
+    "id": "2096253047030657199",
+    "category": "Reasoning and research",
+    "title": "BabaIsBench puzzle solving",
+    "author": "pmigdal",
+    "url": "https://x.com/pmigdal/status/2096253047030657199",
+    "scores": {
+      "evidence": 4,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 4
+    },
+    "score": 84,
+    "assessment": "Primary benchmark inspected: 15 levels; text interface and differing agent harnesses qualify comparisons.",
+    "created_at": "2026-09-05T15:04:07.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C60",
+    "summary": "Solves 15 Baba Is You Lake levels through a text interface, reasoning about rules that can themselves change.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/pmigdal/status/2096253047030657199"
+      },
+      {
+        "label": "Evaluation",
+        "url": "https://quesma.com/benchmarks/babaisbench/"
+      }
+    ]
+  },
+  {
+    "id": "2096284293152567637",
+    "category": "Reasoning and research",
+    "title": "Solving a creator's grid puzzle",
+    "author": "LoicBoursin",
+    "url": "https://x.com/LoicBoursin/status/2096284293152567637",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 3,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 49,
+    "assessment": "Attached process clip; reported 26 seconds versus a human estimate is not a controlled comparison.",
+    "created_at": "2026-09-05T17:08:17.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C61",
+    "summary": "Solves a creator's grid puzzle with a process clip; the claimed human speed comparison is not controlled.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/LoicBoursin/status/2096284293152567637"
+      }
+    ]
+  },
+  {
+    "category": "Reasoning and research",
+    "title": "Production rewrite evaluation",
+    "author": "Every",
+    "url": "https://every.to/benchmarks/senior-engineer-benchmark",
+    "summary": "Tests work on an established software system; Astra trails the human references, with differing follow-up conditions complicating comparisons.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Report",
+        "url": "https://every.to/benchmarks/senior-engineer-benchmark"
+      }
+    ]
+  },
+  {
+    "category": "Reasoning and research",
+    "title": "Allocator implementation difficulties",
+    "author": "Victor Taelin",
+    "url": "https://x.com/VictorTaelin/status/2096273196412498057",
+    "summary": "Reports difficulty converting a diagnosis into a solution under real constraints, exposing a limit beyond impressive demonstrations.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/VictorTaelin/status/2096273196412498057"
+      }
+    ]
+  },
+  {
+    "category": "Reasoning and research",
+    "title": "Research-taste experiment",
+    "author": "Ethan Mollick",
+    "url": "https://x.com/emollick/status/2095717185200988439",
+    "summary": "Reports technically competent but uninteresting research choices, separating execution skill from judgment about worthwhile work.",
+    "display_category": "Reasoning and evaluations",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2095717185200988439"
+      }
+    ]
+  },
+  {
+    "id": "2095606622055760159",
+    "category": "Software and personal knowledge",
+    "title": "Personal archive becomes a living wiki",
+    "author": "emollick",
+    "url": "https://x.com/emollick/status/2095606622055760159",
+    "scores": {
+      "evidence": 1,
+      "difficulty": 4,
+      "usefulness": 5,
+      "originality": 4,
+      "reproducibility": 2
+    },
+    "score": 62,
+    "assessment": "Five-day project over emails, calendars and writings with recurring briefs. Private artifact unavailable for inspection; directly relevant to this archive.",
+    "created_at": "2026-09-03T20:15:27.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C71",
+    "summary": "Turns personal correspondence, calendars, and writing into a maintained wiki and recurring briefings; the artifact is private.",
+    "display_category": "Software and personal knowledge",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/emollick/status/2095606622055760159"
+      }
+    ]
+  },
+  {
+    "id": "2096284357610610836",
+    "category": "Software and personal knowledge",
+    "title": "Hazumi News database migration",
+    "author": "jrzscodes",
+    "url": "https://x.com/jrzscodes/status/2096284357610610836",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 53,
+    "assessment": "Supabase-to-Cloudflare D1 migration reported by its developer; no migration test run inspected.",
+    "created_at": "2026-09-05T17:08:32.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C72",
+    "summary": "Migrates an existing application from Supabase to Cloudflare D1, tackling infrastructure maintenance rather than a new demo.",
+    "display_category": "Software and personal knowledge",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/jrzscodes/status/2096284357610610836"
+      }
+    ]
+  },
+  {
+    "id": "2096284491677376763",
+    "category": "3D modeling and visualization",
+    "title": "Bottle schematics to Blender beauty shots",
+    "author": "fffabs",
+    "url": "https://x.com/fffabs/status/2096284491677376763",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Engineering drawing to presentation pipeline; rendering does not establish dimensional fidelity.",
+    "created_at": "2026-09-05T17:09:04.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C03",
+    "summary": "Turns bottle schematics into presentation renders, connecting technical drawings to product communication.",
+    "display_category": "3D modeling and visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/fffabs/status/2096284491677376763"
+      }
+    ]
+  },
+  {
+    "id": "2096284092593758631",
+    "category": "3D modeling and visualization",
+    "title": "Floor plan to architectural render",
+    "author": "higgsfield_ai",
+    "url": "https://x.com/higgsfield_ai/status/2096284092593758631",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 3,
+      "usefulness": 4,
+      "originality": 3,
+      "reproducibility": 2
+    },
+    "score": 56,
+    "assessment": "Vendor Blender/Cycles demonstration; clear output, limited independent evidence.",
+    "created_at": "2026-09-05T17:07:29.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C04",
+    "summary": "Uses a floor plan to produce an architectural visualization; dimensional fidelity is not established.",
+    "display_category": "3D modeling and visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/higgsfield_ai/status/2096284092593758631"
+      }
+    ]
+  },
+  {
+    "id": "2096289084960620940",
+    "category": "3D modeling and visualization",
+    "title": "Blender model comparison",
+    "author": "Bac0nGreen02",
+    "url": "https://x.com/Bac0nGreen02/status/2096289084960620940",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 2,
+      "usefulness": 2,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 40,
+    "assessment": "Useful calibration: author acknowledges the result still resembles assembled primitives.",
+    "created_at": "2026-09-05T17:27:19.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C06",
+    "summary": "Compares Blender modeling output while candidly showing that the result still resembles assembled primitives.",
+    "display_category": "3D modeling and visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/Bac0nGreen02/status/2096289084960620940"
+      }
+    ]
+  },
+  {
+    "id": "2096284224537907508",
+    "category": "3D modeling and visualization",
+    "title": "Ender Dragon in Spline",
+    "author": "adonis_singh",
+    "url": "https://x.com/adonis_singh/status/2096284224537907508",
+    "scores": {
+      "evidence": 2,
+      "difficulty": 2,
+      "usefulness": 2,
+      "originality": 2,
+      "reproducibility": 2
+    },
+    "score": 40,
+    "assessment": "Creator explicitly says not yet rigged; treat as modeling, not completed animation.",
+    "created_at": "2026-09-05T17:08:00.000Z",
+    "evidence": "Primary post read; attached media not frame-inspected unless assessment specifies otherwise.",
+    "candidate": "C07",
+    "summary": "Builds a recognizable Ender Dragon in Spline; the model is not yet rigged for animation.",
+    "display_category": "3D modeling and visualization",
+    "links": [
+      {
+        "label": "Original",
+        "url": "https://x.com/adonis_singh/status/2096284224537907508"
+      }
+    ]
+  }
+]
