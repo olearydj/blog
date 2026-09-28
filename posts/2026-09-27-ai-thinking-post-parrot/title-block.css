@@ -1,0 +1,4 @@
+/* Keep the listing/social description in metadata, without repeating the subtitle. */
+#title-block-header .quarto-title .description { display: none; }
+#title-block-header .title { text-wrap: balance; line-height: 1.15; }
+#title-block-header .subtitle { text-wrap: balance; line-height: 1.4; margin-top: 1rem; margin-bottom: 1.25rem; }

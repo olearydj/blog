@@ -1,0 +1,15 @@
+.x-carousel { max-width: 590px; margin: 2rem auto; padding: 1rem; border: 1px solid #d9d6d1; border-radius: 1rem; background: #f5f2ee; font-family: var(--bs-font-sans-serif); }
+.x-carousel-toolbar, .x-carousel-navigation { display: flex; justify-content: space-between; align-items: center; gap: .75rem; font-size: .85rem; }
+.x-carousel-toolbar { margin-bottom: .75rem; }
+.x-carousel-navigation { margin-bottom: 1rem; }
+.x-carousel-navigation[hidden] { display: none; }
+.x-carousel .carousel-indicators { position: static; margin: 0; gap: .2rem; }
+.x-carousel .carousel-indicators button { background-color: #555; width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; margin: 3px; }
+.x-carousel .carousel-item h3 { font-size: .95rem; text-align: center; margin: .25rem 0 .75rem; }
+.x-carousel .twitter-tweet { margin: 0 auto !important; }
+.x-carousel blockquote { padding: 1rem; border: 1px solid #d9d6d1; border-radius: .75rem; background: white; font-size: 1rem; overflow-wrap: anywhere; }
+.x-carousel:not(.is-ready) .carousel-item { display: block; float: none; margin: 0 0 1rem; }
+.x-carousel button:focus-visible { outline: 3px solid #2878b8; outline-offset: 3px; }
+html.local-file-preview .giscus { display: none !important; }
+@media (max-width: 400px) { .x-carousel { padding: .65rem; } .x-carousel-navigation { gap: .25rem; } }
+@media print { .x-carousel .carousel-item { display: block; float: none; margin: 0 0 1rem; break-inside: avoid; } .x-carousel-navigation { display: none; } }
