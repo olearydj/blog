@@ -110,8 +110,8 @@ h3.sub{font-size:clamp(24px, 2.8vw, 30px); text-transform:uppercase; margin-top:
 
 /* ---------- story ---------- */
 .story{padding-bottom:40px}
-.story-grid{display:grid; grid-template-columns:minmax(340px, 560px) minmax(0, 1fr); gap:clamp(20px, 3.5vw, 44px); align-items:start}
-.story-map{grid-column:2; grid-row:1; position:sticky; top:calc(var(--nav-h) + 14px); height:min(62vh, 600px); min-height:420px; border:1px solid var(--rule); border-radius:4px; overflow:hidden; background:var(--sea)}
+.story-grid{display:grid; grid-template-columns:minmax(340px, 500px) minmax(0, 1fr); gap:clamp(20px, 3.5vw, 44px); align-items:start}
+.story-map{--map-h:min(72vh, 720px); grid-column:2; grid-row:1; position:sticky; top:calc(var(--nav-h) + (100vh - var(--nav-h) - var(--map-h)) / 2); height:var(--map-h); min-height:420px; border:1px solid var(--rule); border-radius:4px; overflow:hidden; background:var(--sea)}
 .steps{grid-column:1; grid-row:1; padding-bottom:30vh}
 .step{margin-block:0 42vh; padding:22px 24px 20px; background:var(--surface); border:1px solid var(--rule); border-radius:4px; box-shadow:var(--shadow); display:grid; gap:12px; transition:border-color .3s}
 .step:first-child{margin-top:4px}
