@@ -25,6 +25,10 @@ Lecturer in Industrial and Systems Engineering at Auburn University. Recovering 
 - [Why Antisimplistic?](/posts/2025-10-03-why-antisimplistic/) - The name and philosophy behind it
 - [About](/about.html) - More about me
 
+## Family History
+
+- [Harvey Long's War](/harvey-long/) - S/Sgt James Harvey Long, waist gunner, 750th Bomb Squadron, 457th Bomb Group: his twenty-five missions from Glatton in 1944, reconstructed from the records
+
 ## Publications
 
 - [PhD Dissertation (HTML)](/dissertation/) - Augmented vs. Traditional Instruction in Manufacturing Assembly: An Affordance-Based, Multi-Modal Assessment of Learning, Recall, and Retention (2024)

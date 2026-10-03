@@ -5,10 +5,12 @@ project:
     - "**/*.md"
     - "!_editorial/**"
     - "!docs/**"
+    - "!harvey-long/**"
   resources:
     - robots.txt
     - llms.txt
     - dissertation/**
+    - harvey-long/**
     - "!_editorial/**"
     - "!docs/**"
 

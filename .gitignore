@@ -2,6 +2,7 @@
 /_site/
 *.html
 !dissertation/**/*.html
+!harvey-long/**/*.html
 *.pdf
 !dissertation/**/*.pdf
 
